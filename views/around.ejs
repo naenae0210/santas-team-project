@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Santas</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/navbars/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <script src="https://kit.fontawesome.com/34806286ac.js" crossorigin="anonymous"></script>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <main>
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-0">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">북마크</h1>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="buttons">
+                <div class="dropdown region">
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">지역</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">서울</a>
+                        <a class="dropdown-item" href="#">경기도</a>
+                        <a class="dropdown-item" href="#">인천</a>
+                        <a class="dropdown-item" href="#">강원도</a>
+                        <a class="dropdown-item" href="#">충청도</a>
+                        <a class="dropdown-item" href="#">대전</a>
+                        <a class="dropdown-item" href="#">전라도</a>
+                        <a class="dropdown-item" href="#">광주</a>
+                        <a class="dropdown-item" href="#">경상도</a>
+                        <a class="dropdown-item" href="#">대구</a>
+                        <a class="dropdown-item" href="#">울산</a>
+                        <a class="dropdown-item" href="#">부산</a>
+                        <a class="dropdown-item" href="#">제주도</a>
+                    </div>
+                </div>
+                <form>
+                        <input class="form-control around-search" type="text" placeholder="산 이름" aria-label="Search">
+                        <button class="btn btn-primary around-search">검색</button>
+                </form>
+            </div>
+            <div class="container">
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <img src="./img/seongmigarden.jfif" alt="">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" />
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    성미가든
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="seongmi" onclick="switchHeart(this.id)"></i>
+                                    <!--하트 누르면 db에 저장되도록 해야 할듯?-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <img src="./img/taebaekmakguksu.jfif" alt="">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" />
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    태백막국수
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="taebaekmakguksu" onclick="switchHeart(this.id)"></i>
+                                    <!--<small class="text-muted">시간</small>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    산 이름
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="산이름" onclick="switchHeart(this.id)"></i>
+                                    <!--<small class="text-muted">시간</small>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    산 이름
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="산이름" onclick="switchHeart(this.id)"></i>
+                                    <!--<small class="text-muted">시간</small>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    산 이름
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="산이름" onclick="switchHeart(this.id)"></i>
+                                    <!--<small class="text-muted">시간</small>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    산 이름
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="산이름" onclick="switchHeart(this.id)"></i>
+                                    <!--<small class="text-muted">시간</small>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    산 이름
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="산이름" onclick="switchHeart(this.id)"></i>
+                                    <!--<small class="text-muted">시간</small>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    산 이름
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="산이름" onclick="switchHeart(this.id)"></i>
+                                    <!--<small class="text-muted">시간</small>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#cae3cc" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                            </svg>
+
+                            <div class="card-body">
+                                <p class="card-text">
+                                    산 이름
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                    </div>
+                                    <i class="fa-regular fa-heart" id="산이름" onclick="switchHeart(this.id)"></i>
+                                    <!--<small class="text-muted">시간</small>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-muted py-5">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a href="#">Back to top</a>
+            </p>
+            <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchHeart(clickedId) {
+            var defaultHeart = document.getElementById(clickedId);
+            
+            if (defaultHeart.classList.contains('fa-regular')) {
+                defaultHeart.classList.replace('fa-regular', 'fa-solid');
+                defaultHeart.style.color = "red";
+            }
+            else {
+                defaultHeart.classList.replace('fa-solid', 'fa-regular');
+                defaultHeart.style.color = "black";
+            }
+        }
+    </script>
+    <script src="../public/js/bootstrap.bundle.min.js"></script>
+
+
+</body></html>
