@@ -6,6 +6,8 @@ const express = require("express"),
 
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 8080);
+app.set("layout extractScripts", true);
+app.set("layout extractStyles", true);
 app.use(
   express.urlencoded({
     extended: false
