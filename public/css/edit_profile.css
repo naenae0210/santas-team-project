@@ -1,3 +1,7 @@
 .container {
   max-width: 960px;
 }
+
+.mb-3, .needs-validation {
+  padding-left: 50px;
+}
