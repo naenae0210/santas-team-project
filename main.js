@@ -28,6 +28,7 @@ app.get("/mountain", homeController.showMountain);
 app.get("/mountainInfo", homeController.showMtInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);
+app.get("/signUp", homeController.showSignUp);
 app.post("/signUp", homeController.postedSignUpForm);
 
 app.use(errorController.pageNotFoundError);

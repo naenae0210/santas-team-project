@@ -38,6 +38,10 @@ exports.showSignIn = (req, res) => {
   res.render("signIn");
 };
 
+exports.showSignUp = (req, res) => {
+  res.render("signUp");
+};
+
 exports.postedSignUpForm = (req, res) => {
   res.render("signUp");
 };
