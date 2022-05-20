@@ -19,7 +19,7 @@ exports.showMyPost = (req, res) => {
 };
 
 exports.showMyProfile = (req, res) => {
-  res.render("editProfile");
+  res.render("myProfile");
 };
 
 exports.showMountain = (req, res) => {
