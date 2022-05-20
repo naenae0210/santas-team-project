@@ -1,19 +1,19 @@
 
-<style>
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-    }
-
-    @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-            font-size: 3.5rem;
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
         }
-    }
-</style>
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
 
 <body>
 
@@ -22,7 +22,7 @@
         <section class="py-5 text-center container">
             <div class="row py-lg-0">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">북마크</h1>
+                    <h1 class="fw-light">주변정보</h1>
                 </div>
             </div>
         </section>
@@ -47,13 +47,19 @@
                         <a class="dropdown-item" href="#">제주도</a>
                     </div>
                 </div>
-                <form>
-                        <input class="form-control around-search" type="text" placeholder="산 이름" aria-label="Search">
-                        <button class="btn btn-primary around-search">검색</button>
-                </form>
+                <div class="dropdown hard">
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">난이도</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">1</a>
+                        <a class="dropdown-item" href="#">2</a>
+                        <a class="dropdown-item" href="#">3</a>
+                        <a class="dropdown-item" href="#">4</a>
+                        <a class="dropdown-item" href="#">5</a>
+                    </div>
+                </div>
             </div>
             <div class="container">
-
+                <h1>회원 정보 받아서 북마크 표시한 것만 출력</h1>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div class="col">
                         <div class="card shadow-sm">
@@ -81,21 +87,21 @@
                     <div class="col">
                         <div class="card shadow-sm">
                             <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <img src="./img/taebaekmakguksu.jfif" alt="">
+                                <img src="./img/taebaek.jpg" alt="">
                                 <title>Placeholder</title>
                                 <rect width="100%" height="100%" fill="#cae3cc" />
                             </svg>
 
                             <div class="card-body">
                                 <p class="card-text">
-                                    태백막국수
+                                    태백산
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                         <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
                                     </div>
-                                    <i class="fa-regular fa-heart" id="taebaekmakguksu" onclick="switchHeart(this.id)"></i>
+                                    <i class="fa-regular fa-heart" id="taebaek" onclick="switchHeart(this.id)"></i>
                                     <!--<small class="text-muted">시간</small>-->
                                 </div>
                             </div>
@@ -262,8 +268,6 @@
         </div>
 
     </main>
-
-
 </body>
 
 <script>

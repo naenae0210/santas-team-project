@@ -34,8 +34,8 @@ exports.showSearchBar = (req, res) => {
   res.render("search");
 };
 
-exports.showSignUp = (req, res) => {
-  res.render("signUp");
+exports.showSignIn = (req, res) => {
+  res.render("signIn");
 };
 
 exports.postedSignUpForm = (req, res) => {
