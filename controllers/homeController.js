@@ -1,5 +1,5 @@
 exports.showHome = (req, res) => {
-  res.render("home");
+  res.render("index");
 };
 
 exports.showAround = (req, res) => {

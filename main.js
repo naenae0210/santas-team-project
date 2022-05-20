@@ -6,10 +6,10 @@ const express = require("express"),
 
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 80);
+app.use(layouts);
 app.set("layout extractScripts", true);
 app.set("layout extractStyles", true);
 
-app.use(layouts);
 app.use(express.static("public"));
 app.use(
   express.urlencoded({
