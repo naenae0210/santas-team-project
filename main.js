@@ -5,24 +5,28 @@ const express = require("express"),
   layouts = require("express-ejs-layouts");
 
 app.set("view engine", "ejs");
-app.set("port", process.env.PORT || 8080);
+app.set("port", process.env.PORT || 80);
 app.set("layout extractScripts", true);
 app.set("layout extractStyles", true);
+
+app.use(layouts);
+app.use(express.static("public"));
 app.use(
   express.urlencoded({
     extended: false
   })
 );
 app.use(express.json());
-app.use(layouts);
-app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-app.get("/mountain", homeController.showMountain);
-app.get("/info", homeController.showInfo);
+app.get("/", homeController.showHome);
+app.get("/around", homeController.showAround);
+app.get("/bookmark", homeController.showBookmark);
 app.get("/community", homeController.showCommunity);
+app.get("/delPost", homeController.showMyPost);
+app.get("/myProfile", homeController.showMyProfile);
+app.get("/mountain", homeController.showMountain);
+app.get("/mountainInfo", homeController.showMtInfo);
+app.get("/search", homeController.showSearchBar);
 app.get("/signUp", homeController.showSignUp);
 app.post("/signUp", homeController.postedSignUpForm);
 
