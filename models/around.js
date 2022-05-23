@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   around.init({
     address: DataTypes.STRING,
     mountainNum: DataTypes.INTEGER,
-    name: DataTypes.STRING,
+    aroundName: DataTypes.STRING,
     kind: DataTypes.STRING,
-    score: DataTypes.INTEGER
+    scroe: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'around',

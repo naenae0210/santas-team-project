@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     detail: DataTypes.STRING,
     date: DataTypes.DATE,
-    id: DataTypes.STRING
+    user_id: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'post',

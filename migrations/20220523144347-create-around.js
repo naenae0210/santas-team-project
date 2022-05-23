@@ -1,27 +1,27 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('comments', {
+    await queryInterface.createTable('arounds', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      commentNum: {
-        type: Sequelize.INTEGER
-      },
-      postNum: {
-        type: Sequelize.INTEGER
-      },
-      commentDetail: {
+      address: {
         type: Sequelize.STRING
       },
-      date: {
-        type: Sequelize.DATE
+      mountainNum: {
+        type: Sequelize.INTEGER
       },
-      id: {
+      aroundName: {
         type: Sequelize.STRING
+      },
+      kind: {
+        type: Sequelize.STRING
+      },
+      scroe: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('comments');
+    await queryInterface.dropTable('arounds');
   }
 };
