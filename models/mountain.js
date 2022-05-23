@@ -40,4 +40,4 @@ module.exports = (sequelize, Sequelize) => {
       modelName: 'mountain',
     });
     return Mountain;
-  };
+  }

@@ -1,27 +1,32 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class around extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+
+module.exports = (sequelize, Sequelize) => {
+  class Around extends Sequelize.Model {
   }
-  around.init({
-    address: DataTypes.STRING,
-    mountainNum: DataTypes.INTEGER,
-    aroundName: DataTypes.STRING,
-    kind: DataTypes.STRING,
-    scroe: DataTypes.INTEGER
-  }, {
+  Comment.Init({
+    address: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      primaryKey: true
+    },
+    number: {
+      type: Sequlize.INTEGER,
+      references: {
+	      model: Mountain,
+	      key: number,
+	      deferrable: Deferrable.INITIALLY_IMMEDIATE
+      }
+    },
+   name : {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    score: {
+      type: Sequelize.INTEGER
+    }
+  },
+  {
     sequelize,
     modelName: 'around',
   });
-  return around;
-};
+  return Around;
+}

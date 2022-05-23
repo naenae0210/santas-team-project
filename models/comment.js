@@ -1,27 +1,41 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class comment extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+module.exports = (sequelize, Sequelize) => {
+  class Comment extends Sequelize.Model {
   }
-  comment.init({
-    commentNum: DataTypes.INTEGER,
-    postNum: DataTypes.INTEGER,
-    commentDetail: DataTypes.STRING,
-    commentDate: DataTypes.DATE,
-    user_id: DataTypes.STRING
-  }, {
+  Comment.Init({
+    commentNum: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    postNum: {
+      type: Sequlize.INTEGER,
+      references: {
+	      model: Post,
+	      key: postNum,
+	      deferrable: Deferrable.INITIALLY_IMMEDIATE
+      }
+    },
+   commentDetail : {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    commentDate: {
+      type: Sequelize.DATEONLY,
+      allowNull: false
+    },
+    id: {
+      type: Sequelize.STRING,
+      references: {
+          model: User,
+          key: 'id',
+          deferrable: Deferrable.INITIALLY_IMMEDIATE
+     }
+    }
+  },
+  {
     sequelize,
     modelName: 'comment',
   });
-  return comment;
-};
+  return Comment;
+}
