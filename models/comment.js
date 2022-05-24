@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       references: {
 	      model: Post,
-	      key: postNum,
+	      key: 'postNum',
 	      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       }
     },
