@@ -14,5 +14,4 @@ db.Around = require("./around.js")(sequelize, Sequelize);
 db.Post = require("./post.js")(sequelize, Sequelize);
 db.Comment = require("./comment.js")(sequelize, Sequelize);
 
-
 module.exports = db;

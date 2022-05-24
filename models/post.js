@@ -1,9 +1,7 @@
 const User = require('./user');
 
 module.exports = (sequelize, Sequelize) => {
-	class Post extends Sequelize.Model {
-	}
-	Post.Init({
+	const post = sequelize.define('post', {
 		postNum: {
 			type: Sequelize.INTEGER,
 			allowNull: false,
@@ -30,12 +28,7 @@ module.exports = (sequelize, Sequelize) => {
 				deferrable: Deferrable.INITIALLY_IMMEDIATE
 			}
 		}
- 
-	},
-		{
-			sequelize,
-			modelName: 'post',
 		});
-	return Post;
+	return post;
 
 }

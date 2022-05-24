@@ -1,9 +1,7 @@
 const Mountain = require('./mountain');
 
 module.exports = (sequelize, Sequelize) => {
-  class Around extends Sequelize.Model {
-  }
-  Around.Init({
+  const around = sequelize.define('around', {
     address: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -24,10 +22,6 @@ module.exports = (sequelize, Sequelize) => {
     score: {
       type: Sequelize.INTEGER
     }
-  },
-  {
-    sequelize,
-    modelName: 'around',
   });
-  return Around;
+  return around;
 }

@@ -2,9 +2,7 @@ const Mountain = require("./mountain");
 const User = require("./user");
 
 module.exports = (sequelize, Sequelize) => {
-    class Bookmark extends Sequelize.Model {
-    }
-    Bookmark.Init({
+    const bookmark = sequelize.define('bookmark', {
       id: {
         type: Sequelize.STRING,
         references: {
@@ -21,10 +19,6 @@ module.exports = (sequelize, Sequelize) => {
               deferrable: Deferrable.INITIALLY_IMMEDIATE
           }
       }
-    },
-    {
-      sequelize,
-      modelName: 'bookmark',
     });
-    return Bookmark;
+    return bookmark;
   }
