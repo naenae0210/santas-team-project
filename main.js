@@ -7,6 +7,7 @@ models.sequelize.sync().then( () => {
     console.log(err);
 })
 
+
 const express = require("express"),
   app = express(),
   homeController = require("./controllers/homeController"),

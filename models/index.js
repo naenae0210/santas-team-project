@@ -7,13 +7,11 @@ let sequelize = new Sequelize(config.database, config.username, config.password,
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.user = require("./user.js")(sequelize, Sequelize);
-db.mountain = require("./mountain.js")(sequelize, Sequelize);
-db.bookmark = require("./bookmark.js")(sequelize, Sequelize);
-
-db.around = require("./around.js")(sequelize, Sequelize);
-db.post = require("./post.js")(sequelize, Sequelize);
-db.comment = require("./comment.js")(sequelize, Sequelize);
-
+db.User = require("./user.js")(sequelize, Sequelize);
+db.Mountain = require("./mountain.js")(sequelize, Sequelize);
+db.Bookmark = require("./bookmark.js")(sequelize, Sequelize);
+db.Around = require("./around.js")(sequelize, Sequelize);
+db.Post = require("./post.js")(sequelize, Sequelize);
+db.Comment = require("./comment.js")(sequelize, Sequelize);
 
 module.exports = db;
