@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
       references: {
 	      model: Post,
 	      key: postNum,
-	      deferrable: Deferrable.INITIALLY_IMMEDIATE
+	      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       }
     },
    commentDetail : {
@@ -29,7 +29,7 @@ module.exports = (sequelize, Sequelize) => {
       references: {
           model: User,
           key: 'id',
-          deferrable: Deferrable.INITIALLY_IMMEDIATE
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
      }
     }
   });
