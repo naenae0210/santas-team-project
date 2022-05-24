@@ -7,8 +7,11 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-    number: {
+    mountainNum: {
       type: Sequelize.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
       references: {
 	      model: Mountain,
 	      key: number,
