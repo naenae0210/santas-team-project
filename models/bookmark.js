@@ -5,6 +5,9 @@ module.exports = (sequelize, Sequelize) => {
     const bookmark = sequelize.define('bookmark', {
       id: {
         type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        primaryKey: true,
         references: {
             model: User,
             key: 'id',
@@ -13,6 +16,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       mountainNum: {
           type: Sequelize.INTEGER,
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
           references: {
               model: Mountain,
               key: 'number',
