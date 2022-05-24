@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         unique: true,
         primaryKey: true,
         references: {
-            model: User,
+            model: 'users',
             key: 'id',
             deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
@@ -19,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         primaryKey: true,
         references: {
-            model: Mountain,
+            model: 'mountains',
             key: 'number',
             deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }

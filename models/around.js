@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       primaryKey: true,
       references: {
-          model: Mountain,
+          model: 'mountains',
           key: 'number',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       }

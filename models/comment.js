@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
     postNum: {
       type: Sequelize.INTEGER,
       references: {
-	      model: Post,
+	      model: 'posts',
 	      key: 'postNum',
 	      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       }
@@ -30,7 +30,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       unique: true,
       references: {
-          model: User,
+          model: 'users',
           key: 'id',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
      }

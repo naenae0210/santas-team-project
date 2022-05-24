@@ -1,4 +1,4 @@
-const User = require('./user');
+const User = require('./user'); 
 
 module.exports = (sequelize, Sequelize) => {
 	const post = sequelize.define('post', {
@@ -21,16 +21,28 @@ module.exports = (sequelize, Sequelize) => {
 			allowNull: false
 		},
 		id: {
+                        type: Sequelize.STRING,
+                        allowNull: false,
+                        unique: true,	
+                        references: {
+                                model: 'users',
+                                key: 'id',
+				deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+                        }
+		}
+
+		/*,
+		id: {
 			type: Sequelize.STRING,
 			allowNull: false,
-      		unique: true,
+      			unique: true,
 			references: {
 				model: User,
 				key: 'id',
-				deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-			}
-		}
+				deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE	}
+		}*/
 		});
+	
 	return post;
 
 }

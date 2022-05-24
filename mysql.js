@@ -11,9 +11,11 @@ let test = async () => {
 		waitForConnections: true,
 		insecureAuth: true
 	});
+	/*
 	let sql = 'SELECT * FROM around';
 	let [rows, fields] = await db.query(sql);
 	console.log(rows);
+	*/
 };
 test();
 
