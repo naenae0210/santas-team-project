@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
 			references: {
 				model: User,
 				key: 'id',
-				deferrable: Deferrable.INITIALLY_IMMEDIATE
+				deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
 			}
 		}
 		});
