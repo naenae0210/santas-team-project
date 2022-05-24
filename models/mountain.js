@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const mountain = sequelize.define('mountain', {
       number: {
-        type: Sequelize.INTEEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
