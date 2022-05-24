@@ -10,7 +10,6 @@ module.exports = (sequelize, Sequelize) => {
     mountainNum: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
       references: {
 	      model: Mountain,
