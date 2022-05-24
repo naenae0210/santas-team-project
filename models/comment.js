@@ -1,3 +1,5 @@
+const Post = require('./post');
+
 module.exports = (sequelize, Sequelize) => {
   class Comment extends Sequelize.Model {
   }
@@ -9,7 +11,7 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true
     },
     postNum: {
-      type: Sequlize.INTEGER,
+      type: Sequelize.INTEGER,
       references: {
 	      model: Post,
 	      key: postNum,

@@ -1,15 +1,16 @@
+const Mountain = require('./mountain');
 
 module.exports = (sequelize, Sequelize) => {
   class Around extends Sequelize.Model {
   }
-  Comment.Init({
+  Around.Init({
     address: {
       type: Sequelize.STRING,
       allowNull: false,
       primaryKey: true
     },
     number: {
-      type: Sequlize.INTEGER,
+      type: Sequelize.INTEGER,
       references: {
 	      model: Mountain,
 	      key: number,

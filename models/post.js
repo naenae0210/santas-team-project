@@ -1,3 +1,5 @@
+const User = require('./user');
+
 module.exports = (sequelize, Sequelize) => {
 	class Post extends Sequelize.Model {
 	}
