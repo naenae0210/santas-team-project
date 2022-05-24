@@ -1,7 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    class Mountain extends Sequelize.Model {
-    }
-    Mountain.Init({
+    const mountain = sequelize.define('mountain', {
       number: {
         type: Sequelize.INTEEGER,
         allowNull: false,
@@ -33,11 +31,6 @@ module.exports = (sequelize, Sequelize) => {
       landscape: {
         type: Sequelize.BLOB
       }
-
-    },
-    {
-      sequelize,
-      modelName: 'mountain',
     });
-    return Mountain;
+    return mountain;
   }

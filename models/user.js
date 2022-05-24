@@ -1,7 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  class User extends Sequelize.Model {
-  }
-  User.Init({
+  const user =  sequelize.define('user', {
     id: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -24,10 +22,6 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false
     }
-  },
-  {
-    sequelize,
-    modelName: 'user',
   });
-  return User;
+  return user;
 }
