@@ -86,8 +86,7 @@ body {
   line-height: 1.8;
   color: #222;
   background: #f8f8f8;
-  font-weight: 400;
-  font-family: Poppins; }
+  font-weight: 400; }
 
 .container {
   width: 900px;
@@ -212,7 +211,6 @@ input {
   border: none;
   border-bottom: 1px solid #999;
   padding: 6px 30px;
-  font-family: Poppins;
   box-sizing: border-box; }
   input::-webkit-input-placeholder {
     color: #999; }
