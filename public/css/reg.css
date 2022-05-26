@@ -285,7 +285,8 @@ input[type=checkbox]:not(old):checked + label > span:before {
 
 .agree-term {
   display: inline-block;
-  width: auto; }
+  width: auto;
+  font-size: 9px; }
 
 label {
   position: absolute;
