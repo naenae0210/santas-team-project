@@ -9,6 +9,11 @@ list-type-ulli, .socials {
   margin: 0;
   padding: 0; }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 a:focus, a:active {
   text-decoration: none;
   outline: none;
