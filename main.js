@@ -1,3 +1,4 @@
+const db = require("./models/index.js");
 const models = require("./models/index.js");
 
 models.sequelize.sync().then( () => {
@@ -12,7 +13,11 @@ const express = require("express"),
   app = express(),
   homeController = require("./controllers/homeController"),
   errorController = require("./controllers/errorController"),
+  mountainController = require("./controllers/mountainController"),
+  bookmarkController = require("./controllers/bookmarkController")
   layouts = require("express-ejs-layouts");
+
+db.sequelize.sync();
 
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 80);
@@ -34,12 +39,15 @@ app.get("/bookmark", homeController.showBookmark);
 app.get("/community", homeController.showCommunity);
 app.get("/delPost", homeController.showMyPost);
 app.get("/myProfile", homeController.showMyProfile);
-app.get("/mountain", homeController.showMountain);
+app.get("/mountain", mountainController.cntMountains);
 app.get("/mountainInfo", homeController.showMtInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);
 app.get("/signUp", homeController.showSignUp);
 app.post("/signUp", homeController.postedSignUpForm);
+app.get("/bookmark/:mountainNum", bookmarkController.create);
+app.get("/bookmark/:mountainNum/delete", bookmarkController.delete);
+app.get("/mountainInfo/:mountainNum", homeController.showMtInfo);
 
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
