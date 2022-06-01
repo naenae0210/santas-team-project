@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  class User extends Model {
+  class User extends Models {
 
   }
 
