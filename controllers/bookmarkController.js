@@ -1,7 +1,7 @@
 const mysql = require('../models/index'),
     Bookmark = mysql.Bookmark,
     User = require('./userController'),
-    Mountain = require('./mountainController')
+    Mountain = require('./mountainController');
 
 exports.create = async (req, res) => {
     const userParams = User.getUserParams(req.body);

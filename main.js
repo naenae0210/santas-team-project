@@ -48,6 +48,9 @@ app.post("/signUp", homeController.postedSignUpForm);
 app.get("/bookmark/:mountainNum", bookmarkController.create);
 app.get("/bookmark/:mountainNum/delete", bookmarkController.delete);
 app.get("/mountainInfo/:mountainNum", homeController.showMtInfo);
+app.get("/mountain/:searchWord", mountainController.searchMountainByAdd);
+app.get("/mountain/difficulty/:searchWord", mountainController.searchMountainByDifficulty)
+app.post("/around", aroundController.searchAroundByName);
 
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);

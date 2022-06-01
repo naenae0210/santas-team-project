@@ -1,5 +1,5 @@
 
-    <style>
+<style>
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -13,7 +13,7 @@
                 font-size: 3.5rem;
             }
         }
-    </style>
+</style>
 
 <body>
 
@@ -32,35 +32,49 @@
                 <div class="dropdown region">
                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">지역</button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">서울</a>
-                        <a class="dropdown-item" href="#">경기도</a>
-                        <a class="dropdown-item" href="#">인천</a>
-                        <a class="dropdown-item" href="#">강원도</a>
-                        <a class="dropdown-item" href="#">충청도</a>
-                        <a class="dropdown-item" href="#">대전</a>
-                        <a class="dropdown-item" href="#">전라도</a>
-                        <a class="dropdown-item" href="#">광주</a>
-                        <a class="dropdown-item" href="#">경상도</a>
-                        <a class="dropdown-item" href="#">대구</a>
-                        <a class="dropdown-item" href="#">울산</a>
-                        <a class="dropdown-item" href="#">부산</a>
-                        <a class="dropdown-item" href="#">제주도</a>
+                        <a class="dropdown-item" href="/around/서울">서울</a>
+                        <a class="dropdown-item" href="/around/경기">경기도</a>
+                        <a class="dropdown-item" href="/around/인천">인천</a>
+                        <a class="dropdown-item" href="/around/강원">강원도</a>
+                        <a class="dropdown-item" href="/around/충청">충청도</a>
+                        <a class="dropdown-item" href="/around/대전">대전</a>
+                        <a class="dropdown-item" href="/around/전라">전라도</a>
+                        <a class="dropdown-item" href="/around/광주">광주</a>
+                        <a class="dropdown-item" href="/around/경상">경상도</a>
+                        <a class="dropdown-item" href="/around/대구">대구</a>
+                        <a class="dropdown-item" href="/around/울산">울산</a>
+                        <a class="dropdown-item" href="/around/부산">부산</a>
+                        <a class="dropdown-item" href="/around/제주">제주도</a>
                     </div>
                 </div>
-                <div class="dropdown hard">
-                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">난이도</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">1</a>
-                        <a class="dropdown-item" href="#">2</a>
-                        <a class="dropdown-item" href="#">3</a>
-                        <a class="dropdown-item" href="#">4</a>
-                        <a class="dropdown-item" href="#">5</a>
-                    </div>
-                </div>
+                <form method="post" action="/around">
+                        <input class="form-control around-search" type="text" placeholder="산 이름" aria-label="Search" name="searchWord">
+                        <input type="submit" name="submit"><button class="btn btn-primary around-search">검색</button></input>
+                </form>
             </div>
             <div class="container">
-                <h1>회원 정보 받아서 북마크 표시한 것만 출력</h1>
+                <!-- <h1>회원 정보 받아서 북마크 표시한 것만 출력</h1> -->
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <% arounds.forEach(a => { %>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <img src="" alt="" />
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#cae3cc" />
+                                </svg>
+    
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <%= a.name %>
+                                    </p>
+                                    <!--<div class="d-flex justify-content-between align-items-center">
+                                        <i class="fa-regular fa-heart" id="<%= m.name %>" onclick="switchHeart(this.id)"></i>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %> 
                     <div class="col">
                         <div class="card shadow-sm">
                             <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
