@@ -7,13 +7,18 @@ exports.cntMountains = async (req, res) => {
     try {
         data = await Mountain.findAll();
         console.log(data);
-        res.render("mountain", {mountains: data});
+        res.render("/mountain", {mountains: data});
     } catch (err) {
         res.status(500).send({
             message: err.message
         });
     }
 };
+
+exports.allMountain = async (req, res) {
+    const mountainList = await Mountain.findAll();
+    res.render('/mountain', mountainList);
+}
 
 exports.getMountainParams = body => {
     return {
@@ -33,8 +38,9 @@ exports.searchMountainByAdd = async(req, res) => {
                 [Op.like]: "%" + searchWord + "%"
             }
         }
-    }).then(result => {
-        res.json(result)
+    }).then(mountainList => {
+        res.render('/mountain', mountainList);
+        res.redirect("/mountain/" + searchWord);
     }).catch(err => {
         res.status(500).send({
             message: err.message
@@ -49,8 +55,9 @@ exports.searchMountainByDifficulty = async (req, res) => {
         where: {
             difficulty: searchWord
         }
-    }).then(result => {
-        res.json(result)
+    }).then(mountainList => {
+        res.render('/mountain', mountainList);
+        res.redirect("/mountain/" + searchWord);
     }).catch(err => {
         res.status(500).send({
             message: err.message

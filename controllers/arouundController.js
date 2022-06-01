@@ -21,8 +21,14 @@ exports.searchAroundByName = async (req, res) => {
                 }
             }
         ]
-    }).then((result) => {
-        res.json(result);
-        res.redirect("around");
+    }).then((aroundList) => {
+        res.render('/around', aroundList);
+        res.redirect("/around/" + searchWord);
     })
+}
+
+exports.allAround = async (req, res) {
+    const aroundList = await Around.findAll();
+    res.render('/around', aroundList);
+    
 }

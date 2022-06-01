@@ -55,7 +55,7 @@
             <div class="container">
                 <!-- <h1>회원 정보 받아서 북마크 표시한 것만 출력</h1> -->
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <% arounds.forEach(a => { %>
+                    <% aroundList.forEach(a => { %>
                         <div class="col">
                             <div class="card shadow-sm">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -69,7 +69,7 @@
                                         <%= a.name %>
                                     </p>
                                     <!--<div class="d-flex justify-content-between align-items-center">
-                                        <i class="fa-regular fa-heart" id="<%= m.name %>" onclick="switchHeart(this.id)"></i>
+                                        <i class="fa-regular fa-heart" id="<%= a.name %>" onclick="switchHeart(this.id)"></i>
                                     </div>-->
                                 </div>
                             </div>
@@ -283,18 +283,3 @@
 
     </main>
 </body>
-
-<script>
-    function switchHeart(clickedId) {
-        var defaultHeart = document.getElementById(clickedId);
-        
-        if (defaultHeart.classList.contains('fa-regular')) {
-            defaultHeart.classList.replace('fa-regular', 'fa-solid');
-            defaultHeart.style.color = "red";
-        }
-        else {
-            defaultHeart.classList.replace('fa-solid', 'fa-regular');
-            defaultHeart.style.color = "black";
-        }
-    }
-</script>
