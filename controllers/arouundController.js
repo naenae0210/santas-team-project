@@ -27,7 +27,7 @@ exports.searchAroundByName = async (req, res) => {
     })
 }
 
-exports.allAround = async (req, res) => {
+exports.allAround = async (req, res) =>{
     const aroundList = await Around.findAll();
     res.render('/around', aroundList);
     
