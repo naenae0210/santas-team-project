@@ -22,7 +22,7 @@ exports.showMyProfile = (req, res) => {
   res.render("myProfile");
 };
 
-exports.showMountain = (req, res) => {
+exports.showMountain = (req, res, next) => {
   res.render("mountain");
   next();
 };
