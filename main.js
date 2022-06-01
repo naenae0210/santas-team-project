@@ -40,7 +40,7 @@ app.get("/bookmark", homeController.showBookmark);
 app.get("/community", homeController.showCommunity);
 app.get("/delPost", homeController.showMyPost);
 app.get("/myProfile", homeController.showMyProfile);
-app.get("/mountain", mountainController.showMountains);
+app.get("/mountain", homeController.showMountains);
 app.get("/mountainInfo", homeController.showMtInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);
