@@ -15,7 +15,7 @@ exports.cntMountains = async (req, res) => {
     }
 };
 
-exports.allMountain = async (req, res) {
+exports.allMountain = async (req, res) => {
     const mountainList = await Mountain.findAll();
     res.render('/mountain', mountainList);
 }
