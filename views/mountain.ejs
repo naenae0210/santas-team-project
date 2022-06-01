@@ -75,7 +75,7 @@
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/mountainInfo/<%= m.number %>">View</a></button>
                                         </div>
-                                        <i class="fa-regular fa-heart" id="<%= m.number %>" onclick="switchHeart(this.id, m)"></i>
+                                        <i class="fa-regular fa-heart" id="<%= m.number %>" onclick="switchHeart(this.id)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -292,18 +292,18 @@
 </body>
 
 <script>
-    function switchHeart(clickedId, m) {
+    function switchHeart(clickedId) {
         const defaultHeart = document.getElementById(clickedId);
         
         if (defaultHeart.classList.contains('fa-regular')) {
             defaultHeart.classList.replace('fa-regular', 'fa-solid');
             defaultHeart.style.color = "red";
-            req.render("<%= `bookmark/${m.number}` %>");
+            // req.render("<%= `bookmark/${m.number}` %>");
         }
         else {
             defaultHeart.classList.replace('fa-solid', 'fa-regular');
             defaultHeart.style.color = "black";
-            req.render("<%= `bookmark/${m.number}/delete` %>");
+            // req.render("<%= `bookmark/${m.number}/delete` %>");
         }
     }
 </script>
