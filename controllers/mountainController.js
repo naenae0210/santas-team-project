@@ -3,12 +3,9 @@ const mysql = require('../models/index'),
     sequelize = require("sequelize"),
     Op = sequelize.Op;
 
-app.set('view engine','ejs');
-app.engine('ejs', require('ejs').__express);
-
 exports.cntMountains = async (req, res) => {
     try {
-        data = await Mountain.findAll();
+        const data = await Mountain.findAll();
         console.log(data);
         res.render("/mountain", {mountains: data});
     } catch (err) {
@@ -60,7 +57,7 @@ exports.searchMountainByDifficulty = async (req, res) => {
         }
     }).then(mountainList => {
         res.render('/mountain', mountainList);
-        res.redirect("/mountain/" + searchWord);
+        res.redirect("/mountain/difficulty/" + searchWord);
     }).catch(err => {
         res.status(500).send({
             message: err.message
