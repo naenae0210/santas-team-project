@@ -3,18 +3,6 @@ const mysql = require('../models/index'),
     sequelize = require("sequelize"),
     Op = sequelize.Op;
 
-exports.cntMountains = async (req, res) => {
-    try {
-        const data = await Mountain.findAll();
-        console.log(data);
-        res.render("/mountain", {mountains: data});
-    } catch (err) {
-        res.status(500).send({
-            message: err.message
-        });
-    }
-};
-
 exports.allMountain = async (req, res) => {
     const mountainList = await Mountain.findAll();
     res.render('/mountain', mountainList);
