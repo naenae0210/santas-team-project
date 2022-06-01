@@ -291,19 +291,19 @@
 
 </body>
 
-<script>
+<script >
     function switchHeart(clickedId) {
         const defaultHeart = document.getElementById(clickedId);
         
         if (defaultHeart.classList.contains('fa-regular')) {
             defaultHeart.classList.replace('fa-regular', 'fa-solid');
             defaultHeart.style.color = "red";
-            req.render("bookmark/<%= m.number %>");
+            // req.render("bookmark/<%= m.number %>");
         }
         else {
             defaultHeart.classList.replace('fa-solid', 'fa-regular');
             defaultHeart.style.color = "black";
-            req.render("bookmark/<%= m.number %>");
+            // req.render("bookmark/<%= m.number %>");
         }
     }
 </script>
