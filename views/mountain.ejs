@@ -58,6 +58,7 @@
             <div class="container">
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <% const m %>
                     <%= mountains.forEach(m => { %>
                         <div class="col">
                             <div class="card shadow-sm">
@@ -298,12 +299,12 @@
         if (defaultHeart.classList.contains('fa-regular')) {
             defaultHeart.classList.replace('fa-regular', 'fa-solid');
             defaultHeart.style.color = "red";
-            // req.render("<%= `bookmark/${m.number}` %>");
+            req.render("bookmark/<%= m.number %>");
         }
         else {
             defaultHeart.classList.replace('fa-solid', 'fa-regular');
             defaultHeart.style.color = "black";
-            // req.render("<%= `bookmark/${m.number}/delete` %>");
+            req.render("bookmark/<%= m.number %>");
         }
     }
 </script>
