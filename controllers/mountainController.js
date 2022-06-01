@@ -44,7 +44,7 @@ exports.searchMountainByDifficulty = async (req, res) => {
             difficulty: searchWord
         }
     }).then(mountainList => {
-        res.render('/mountain', {mountains : mountainList});
+        res.render('/mountain', {'mountains' : mountainList});
         res.redirect("/mountain/difficulty/" + searchWord);
     }).catch(err => {
         res.status(500).send({
