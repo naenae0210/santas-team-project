@@ -5,9 +5,9 @@ const mysql = require('../models/index'),
 
 exports.allMountain = async (req, res) => {
     try {
-        const mountainList = await Mountain.findAll();
-        console.log(mountainList);
-        res.render('/mountain', {mountains : mountainList});
+        data = await Mountain.findAll();
+        console.log(data);
+        res.render('/mountain', {mountains : data});
     } catch (err) {
         res.status(500).send({
             message: err.message
