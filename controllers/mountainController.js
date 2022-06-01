@@ -5,7 +5,7 @@ const mysql = require('../models/index'),
 
 exports.allMountain = async (req, res) => {
     const mountainList = await Mountain.findAll();
-    res.render('/mountain', {'mountains' : mountainList});
+    res.render('/mountain', {mountains : mountainList});
 }
 
 exports.getMountainParams = body => {
@@ -27,7 +27,7 @@ exports.searchMountainByAdd = async(req, res) => {
             }
         }
     }).then(mountainList => {
-        res.render('/mountain', {'mountains' : mountainList});
+        res.render('/mountain', {mountains : mountainList});
         res.redirect("/mountain/" + searchWord);
     }).catch(err => {
         res.status(500).send({
@@ -44,7 +44,7 @@ exports.searchMountainByDifficulty = async (req, res) => {
             difficulty: searchWord
         }
     }).then(mountainList => {
-        res.render('/mountain', {'mountains' : mountainList});
+        res.render('/mountain', {mountains : mountainList});
         res.redirect("/mountain/difficulty/" + searchWord);
     }).catch(err => {
         res.status(500).send({
