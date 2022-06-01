@@ -4,7 +4,7 @@ const mysql = require('../models/index'),
     Op = sequelize.Op;
 
 exports.allMountain = async (req, res) => {
-    try {
+    /* try {
         const mountains = await Mountain.findAll();
         console.log(mountains);
         res.render('mountain', {mountains});
@@ -12,7 +12,15 @@ exports.allMountain = async (req, res) => {
         res.status(500).send({
             message: err.message
         });
-    }
+    } */
+
+    Mountain.findAll().then(mountainList => {
+        res.render('mountain', {mountains : mountainList});
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
+    })
 };
 
 exports.getMountainParams = body => {
@@ -34,7 +42,7 @@ exports.searchMountainByAdd = async(req, res) => {
             }
         }
     }).then(mountainList => {
-        res.render('/mountain', {mountains : mountainList});
+        res.render('/mountain/' + searchWord, {mountains : mountainList});
         res.redirect("/mountain/" + searchWord);
     }).catch(err => {
         res.status(500).send({
@@ -51,7 +59,7 @@ exports.searchMountainByDifficulty = async (req, res) => {
             difficulty: searchWord
         }
     }).then(mountainList => {
-        res.render('/mountain', {mountains : mountainList});
+        res.render('/mountain/' + searchWord, {mountains : mountainList});
         res.redirect("/mountain/difficulty/" + searchWord);
     }).catch(err => {
         res.status(500).send({
