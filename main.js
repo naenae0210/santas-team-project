@@ -14,7 +14,8 @@ const express = require("express"),
   homeController = require("./controllers/homeController"),
   errorController = require("./controllers/errorController"),
   mountainController = require("./controllers/mountainController"),
-  bookmarkController = require("./controllers/bookmarkController")
+  bookmarkController = require("./controllers/bookmarkController"),
+  aroundController = require("./controllers/arouundController"),
   layouts = require("express-ejs-layouts");
 
 db.sequelize.sync();
