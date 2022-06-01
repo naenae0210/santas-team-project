@@ -74,7 +74,7 @@
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="#">View</a></button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%= `/mountainInfo/${m.number}` %>">View</a></button>
                                         </div>
                                         <i class="fa-regular fa-heart" id="<%= m.name %>" onclick="switchHeart(this.id)"></i>
                                     </div>
@@ -299,12 +299,12 @@
         if (defaultHeart.classList.contains('fa-regular')) {
             defaultHeart.classList.replace('fa-regular', 'fa-solid');
             defaultHeart.style.color = "red";
-            req.render("`bookmark/${m.number}`");
+            req.render("<%= `bookmark/${m.number}` %>");
         }
         else {
             defaultHeart.classList.replace('fa-solid', 'fa-regular');
             defaultHeart.style.color = "black";
-            req.render("`bookmark/${m.number}/delete`");
+            req.render("<%= `bookmark/${m.number}/delete` %>");
         }
     }
 </script>
