@@ -58,8 +58,7 @@
             <div class="container">
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <%= const mountainList = mountains %>
-                    <%= mountainList.forEach(m => { %>
+                    <%= mountains.forEach(m => { %>
                         <div class="col">
                             <div class="card shadow-sm">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -76,7 +75,7 @@
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary"><a href="<%= `/mountainInfo/${m.number}` %>">View</a></button>
                                         </div>
-                                        <i class="fa-regular fa-heart" id="<%= m.name %>" onclick="switchHeart(this.id)"></i>
+                                        <i class="fa-regular fa-heart" id="<%= m.number %>" onclick="switchHeart(this.id)"></i>
                                     </div>
                                 </div>
                             </div>
