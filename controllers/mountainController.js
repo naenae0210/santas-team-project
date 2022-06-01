@@ -3,6 +3,9 @@ const mysql = require('../models/index'),
     sequelize = require("sequelize"),
     Op = sequelize.Op;
 
+app.set('view engine','ejs');
+app.engine('ejs', require('ejs').__express);
+
 exports.cntMountains = async (req, res) => {
     try {
         data = await Mountain.findAll();
