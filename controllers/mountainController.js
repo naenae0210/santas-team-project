@@ -4,9 +4,16 @@ const mysql = require('../models/index'),
     Op = sequelize.Op;
 
 exports.allMountain = async (req, res) => {
-    const mountainList = await Mountain.findAll();
-    res.render('/mountain', {mountains : mountainList});
-}
+    try {
+        const mountainList = await Mountain.findAll();
+        console.log(mountainList);
+        res.render('/mountain', {mountains : mountainList});
+    } catch (err) {
+        res.status(500).send({
+            message: err.message
+        });
+    }
+};
 
 exports.getMountainParams = body => {
     return {
