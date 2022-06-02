@@ -8,10 +8,10 @@ exports.searchAroundByName = async (req, res) => {
     const searchWord = req.body.searchWord;
     console.log(searchWord);
     
-    Around.findAll({
+    await Around.findAll({
         include: [
             {
-                model: mountain,
+                model: Mountain,
                 required: true,
                 attributes: ['number', 'name', 'address'],
                 through: {
