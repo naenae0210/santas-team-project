@@ -5,7 +5,8 @@ const mysql = require('../models/index'),
     Op = sequelize.Op;
 
 exports.searchAroundByName = async (req, res) => {
-    const searchWord = req.body.searchWord;
+    const searchWord = req.getParameter("searchWord");
+    console.log(searchWord);
     
     Around.findAll({
         include: [
