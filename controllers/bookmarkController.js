@@ -62,11 +62,8 @@ exports.allBookmark = async (req, res) => {
         include: [
             {
                 model: Mountain,
-                required: true,
-                attributes: ['number', 'name', 'address'],
-                through: {
-                    attributes: ['mountainNum', 'number']
-                }
+                as: 'mountain',
+                required: true
             }
         ]
     }).then((bookmarkList) => {

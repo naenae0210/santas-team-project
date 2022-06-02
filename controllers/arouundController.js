@@ -12,6 +12,7 @@ exports.searchAroundByName = async (req, res) => {
         include: [
             {
                 model: Mountain,
+                as: 'mountain',
                 required: true,
                 where: {
                     name: {
