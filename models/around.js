@@ -26,6 +26,5 @@ module.exports = (sequelize, Sequelize) => {
     }
   });
 
-  around.belongsTo(Mountain);
   return around;
 }

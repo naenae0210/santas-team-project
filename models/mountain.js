@@ -35,7 +35,5 @@ module.exports = (sequelize, Sequelize) => {
       }
     });
 
-    mountain.hasMany(Around);
-
     return mountain;
   }
