@@ -62,7 +62,7 @@ exports.searchMountainByDifficulty = async (req, res) => {
 }
 
 function switchToKorean(searchWord) {
-    const sW = "";
+    let sW = "";
     switch (searchWord) {
         case "seoul":
             sW = "서울";
