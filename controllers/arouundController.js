@@ -29,7 +29,7 @@ exports.searchAroundByName = async (req, res) => {
 
 exports.allAround = async (req, res) => {
     Mountain.findAll().then(aroundList => {
-        res.render('mountain', {arounds : aroundList});
+        res.render('around', {arounds : aroundList});
     }).catch(err => {
         res.status(500).send({
             message: err.message

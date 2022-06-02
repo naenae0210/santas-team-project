@@ -70,7 +70,7 @@ exports.allBookmark = async (req, res) => {
             }
         ]
     }).then((bookmarkList) => {
-        res.render('/bookmark/', { bookmarks: bookmarkList
+        res.render('/bookmark', { bookmarks: bookmarkList
         });
     })
 }
