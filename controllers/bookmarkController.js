@@ -1,6 +1,6 @@
 const mysql = require('../models/index'),
     Bookmark = mysql.Bookmark,
-    User = require('./userController'),
+    User = mysql.User,
     Mountain = mysql.Mountain;
 
 exports.create = async (req, res) => {
@@ -53,7 +53,7 @@ exports.getBookMark = async (req, res) => {
 }
 
 exports.allBookmark = async (req, res) => {    
-    const userParams = User.getUserParams(req.body);
+    const userParams = User.getUserParams();
 
     Bookmark.findAll({
         where: {
