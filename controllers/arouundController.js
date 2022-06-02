@@ -22,7 +22,7 @@ exports.searchAroundByName = async (req, res) => {
             }
         ]
     }).then((aroundList) => {
-        res.render('/around', {arounds: aroundList});
+        res.render('around', {arounds: aroundList});
     })
 }
 

@@ -41,7 +41,8 @@ app.get("/community", homeController.showCommunity);
 app.get("/delPost", homeController.showMyPost);
 app.get("/myProfile", homeController.showMyProfile);
 app.get("/mountain", mountainController.allMountain);
-app.post("/mountain", mountainController.searchMountainByAdd);
+app.post("/mountain/address", mountainController.searchMountainByAdd);
+app.post("/mountain/difficulty", mountainController.searchMountainByDifficulty);
 app.get("/mountainInfo", homeController.showMtInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);
@@ -50,8 +51,6 @@ app.post("/signUp", homeController.postedSignUpForm);
 app.get("/bookmark/:mountainNum", bookmarkController.create);
 app.get("/bookmark/:mountainNum/delete", bookmarkController.delete);
 app.get("/mountainInfo/:mountainNum", homeController.showMtInfo);
-app.get("/mountain/:searchWord", mountainController.searchMountainByAdd);
-app.get("/mountain/difficulty/:searchWord", mountainController.searchMountainByDifficulty)
 app.post("/around", aroundController.searchAroundByName);
 
 app.use(errorController.pageNotFoundError);

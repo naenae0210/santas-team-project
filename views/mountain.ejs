@@ -31,7 +31,7 @@
                 <div class="dropdown region">
                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">지역</button>
                     <div class="dropdown-menu">
-                        <form action="/mountain" method="post"><a class="dropdown-item" type="submit" name="searchWord">서울</a></form>
+                        <form action="/mountain/address" method="post"><a class="dropdown-item" type="submit" name="searchWord">서울</a></form>
                         <a class="dropdown-item" href="/mountain/경기">경기도</a>
                         <a class="dropdown-item" href="/mountain/인천">인천</a>
                         <a class="dropdown-item" href="/mountain/강원">강원도</a>
@@ -49,7 +49,7 @@
                 <div class="dropdown hard">
                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">난이도</button>
                     <div class="dropdown-menu">
-                        <form action="/mountain" method="get"><a class="dropdown-item" type="submit" name="difficulty">상</a></form>
+                        <form action="/mountain/difficulty" method="post"><a class="dropdown-item" type="submit" name="difficulty">상</a></form>
                         <a class="dropdown-item" href="/mountain/difficulty/중">중</a>
                         <a class="dropdown-item" href="/mountain/difficulty/하">하</a>
                     </div>

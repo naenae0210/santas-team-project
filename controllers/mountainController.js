@@ -33,7 +33,7 @@ exports.searchMountainByAdd = async(req, res) => {
             }
         }
     }).then(mountainList => {
-        res.render('/mountain', {mountains : mountainList});
+        res.render('mountain', {mountains : mountainList});
     }).catch(err => {
         res.status(500).send({
             message: err.message
@@ -42,7 +42,7 @@ exports.searchMountainByAdd = async(req, res) => {
 }
 
 exports.searchMountainByDifficulty = async (req, res) => {
-    const searchWord = req.body.searchWord;
+    const searchWord = req.body.difficulty;
     console.log(searchWord);
 
     Mountain.findAll({
@@ -50,8 +50,8 @@ exports.searchMountainByDifficulty = async (req, res) => {
             difficulty: searchWord
         }
     }).then(mountainList => {
-        res.render('/mountain/' + searchWord, {mountains : mountainList});
-        res.redirect("/mountain/difficulty/" + searchWord);
+        res.render('mountain', {mountains : mountainList});
+        res.redirect("/mountain");
     }).catch(err => {
         res.status(500).send({
             message: err.message
