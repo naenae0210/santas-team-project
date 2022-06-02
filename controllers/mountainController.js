@@ -26,11 +26,6 @@ exports.searchMountainByAdd = async(req, res) => {
     const searchWord = req.params.region;
     console.log(searchWord);
 
-    switch (searchWord) {
-        case "seoul":
-            searchWord = "서울";
-    }
-
     Mountain.findAll({
         where: {
             address: {
