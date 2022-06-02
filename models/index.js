@@ -14,11 +14,11 @@ db.Around = require("./around.js")(sequelize, Sequelize);
 db.Comment = require("./comment.js")(sequelize, Sequelize);
 db.Bookmark = require("./bookmark.js")(sequelize, Sequelize);
 
-module.exports = db;
-
 
 Object.keys(db).forEach(modelName => {
     if (db[modelName].associate) {
       db[modelName].associate(db);
     }
 });
+
+module.exports = db;
