@@ -64,47 +64,48 @@ exports.searchMountainByDifficulty = async (req, res) => {
 }
 
 function switchToKorean(searchWord) {
+    const sW = "";
     switch (searchWord) {
         case "seoul":
-            searchWord = "서울";
+            sW = "서울";
             break;
         case "gyeonggi":
-            searchWord = "경기";
+            sW = "경기";
             break;
         case "incheon":
-            searchWord = "인천";
+            sW = "인천";
             break;
         case "gangwon":
-            searchWord = "강원";
+            sW = "강원";
             break;
         case "chungcheong":
-            searchWord = "충청";
+            sW = "충청";
             break;
         case "daejeon":
-            searchWord = "대전";
+            sW = "대전";
             break;
         case "jeolla":
-            searchWord = "전라";
+            sW = "전라";
             break;
         case "gwangju":
-            searchWord = "광주";
+            sW = "광주";
             break;
         case "gyeongsang":
-            searchWord = "경상";
+            sW = "경상";
             break;
         case "daegu":
-            searchWord = "대구";
+            sW = "대구";
             break;
         case "ulsan":
-            searchWord = "울산";
+            sW = "울산";
             break;
         case "busan":
-            searchWord = "부산";
+            sW = "부산";
             break;
         case "jeju":
-            searchWord = "제주";
+            sW = "제주";
             break;
     }
 
-    return searchWord;
+    return sW;
 }
