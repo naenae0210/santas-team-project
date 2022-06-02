@@ -3,6 +3,7 @@ const User = require("./user");
 
 module.exports = (sequelize, Sequelize) => {
     const bookmark = sequelize.define('bookmark', {
+      /*
       id: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -13,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
             key: 'id',
             deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
-      },
+      }, 
       mountainNum: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -23,17 +24,17 @@ module.exports = (sequelize, Sequelize) => {
             key: 'number',
             deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
-      }
+      } */
     });
 
     bookmark.associate = function(models){
       bookmark.belongsTo(models.Mountain, {
         foreignKey: "mountainNum",
-        // targetKey: "number"
+        sourceKey: "number"
       });
       bookmark.belongsTo(models.User, {
         foreignKey: "id",
-        // targetKey: "id"
+        sourceKey: "id"
       })
     };
     return bookmark;

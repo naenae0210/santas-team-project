@@ -38,8 +38,14 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     mountain.associate = function(models) {
-      mountain.hasMany(models.Around);
-      mountain.hasMany(models.Bookmark);
+      mountain.hasMany(models.Around, {
+        foreignKey: "mountainNum",
+        sourceKey: "number"
+      }),
+      mountain.hasMany(models.Bookmark, {
+        foreignKey: "mountainNum",
+        sourceKey: "number"
+      });
     }
     return mountain;
   }
