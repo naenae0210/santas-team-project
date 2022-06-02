@@ -1,6 +1,6 @@
 const mysql = require('../models/index'),
     Bookmark = mysql.Bookmark,
-    User = mysql.User,
+    User = require("./userController"),
     Mountain = mysql.Mountain;
 
 exports.create = async (req, res) => {
