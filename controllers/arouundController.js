@@ -22,8 +22,7 @@ exports.searchAroundByName = async (req, res) => {
             }
         ]
     }).then((aroundList) => {
-        res.render('/around/', {arounds: aroundList});
-        res.redirect("/around/" + searchWord);
+        res.render('/around', {arounds: aroundList});
     })
 }
 
