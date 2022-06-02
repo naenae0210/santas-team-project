@@ -15,6 +15,6 @@ db.Comment = require("./comment.js")(sequelize, Sequelize);
 db.Bookmark = require("./bookmark.js")(sequelize, Sequelize);
 
 db['Around'].belongsTo(db['Mountain'], { foreignKey: "mountainNum"});
-db['Mountain'].hasMany(db['Around'], { foreignKey: "mountainNum"});
+db['Mountain'].hasMany(db['Around'], { foreignKey: "number"});
 
 module.exports = db;
