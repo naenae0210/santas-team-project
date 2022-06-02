@@ -25,5 +25,6 @@ module.exports = (sequelize, Sequelize) => {
         }
       }
     });
+    
     return bookmark;
   }

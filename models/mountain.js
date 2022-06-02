@@ -1,3 +1,5 @@
+const Around = require("../models/index").Around;
+
 module.exports = (sequelize, Sequelize) => {
     const mountain = sequelize.define('mountain', {
       number: {
@@ -32,5 +34,8 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BLOB
       }
     });
+
+    mountain.hasMany(Around);
+
     return mountain;
   }
