@@ -23,7 +23,7 @@ exports.getMountainParams = body => {
 }
 
 exports.searchMountainByAdd = async(req, res) => {
-    const searchWord = req.body.searchWord;
+    const searchWord = req.getParameter("add");
     console.log(searchWord);
 
     Mountain.findAll({
