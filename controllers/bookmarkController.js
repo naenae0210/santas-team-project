@@ -70,7 +70,12 @@ exports.allBookmark = async (req, res) => {
             }
         ]
     }).then((bookmarkList) => {
-        res.render('/bookmark', { bookmarks: bookmarkList
+        const bookmarks = {
+            number: bookmarkList.number,
+            name: bookmarkList.name,
+            address: bookmarkList.address
+        }
+        res.render('/bookmark', { bookmarks
         });
     })
 }
