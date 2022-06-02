@@ -55,7 +55,7 @@ exports.getBookMark = async (req, res) => {
 exports.allBookmark = async (req, res) => {    
     const userParams = User.getUserParams(req.body);
 
-    Around.findAll({
+    Bookmark.findAll({
         where: {
             id : userParams.id
         },
