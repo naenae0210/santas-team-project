@@ -1,6 +1,8 @@
 const mysql = require('../models/index'),
     Around = mysql.Around,
-    Mountain = mysql.Mountain;
+    Mountain = mysql.Mountain,
+    sequelize = require("sequelize"),
+    Op = sequelize.Op;
 
 exports.searchAroundByName = async (req, res) => {
     const searchWord = req.body.searchWord;

@@ -41,6 +41,7 @@ app.get("/community", homeController.showCommunity);
 app.get("/delPost", homeController.showMyPost);
 app.get("/myProfile", homeController.showMyProfile);
 app.get("/mountain", mountainController.allMountain);
+app.post("/mountain", mountainController.searchMountainByAdd);
 app.get("/mountainInfo", homeController.showMtInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);

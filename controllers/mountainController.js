@@ -23,7 +23,7 @@ exports.getMountainParams = body => {
 }
 
 exports.searchMountainByAdd = async(req, res) => {
-    const searchWord = req.params.searchWord;
+    const searchWord = req.getParameter("searchWord");
 
     Mountain.findAll({
         where: {
@@ -33,7 +33,6 @@ exports.searchMountainByAdd = async(req, res) => {
         }
     }).then(mountainList => {
         res.render('/mountain', {mountains : mountainList});
-        res.render('/mountain');
     }).catch(err => {
         res.status(500).send({
             message: err.message
