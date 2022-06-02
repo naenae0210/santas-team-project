@@ -23,7 +23,7 @@ exports.getMountainParams = body => {
 }
 
 exports.searchMountainByAdd = async(req, res) => {
-    const searchWord = req.params.searchWord;
+    const searchWord = req.body.searchWord;
     console.log(searchWord);
 
     Mountain.findAll({
@@ -42,7 +42,8 @@ exports.searchMountainByAdd = async(req, res) => {
 }
 
 exports.searchMountainByDifficulty = async (req, res) => {
-    const searchWord = req.params.searchWord;
+    const searchWord = req.body.searchWord;
+    console.log(searchWord);
 
     Mountain.findAll({
         where: {
