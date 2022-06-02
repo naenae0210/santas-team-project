@@ -14,12 +14,11 @@ db.Around = require("./around.js")(sequelize, Sequelize);
 db.Comment = require("./comment.js")(sequelize, Sequelize);
 db.Bookmark = require("./bookmark.js")(sequelize, Sequelize);
 
-db.Around.belongsTo(db.Mountain, { foreignKey: "mountainNum", targetKey: 'number'});
-db.Mountain.hasMany(db.Around);
-
-db.Mountain.hasMany(db.Bookmark);
-db.User.hasMany(db.Bookmark);
-db.Bookmark.belongsTo(db.User, {foreignKey: "id", targetKey: "id"});
-db.Bookmark.belongsTo(db.Mountain, {foreignKey: "mountainNum", targetKey: "number"});
-
 module.exports = db;
+
+
+Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
+});

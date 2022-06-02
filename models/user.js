@@ -23,5 +23,10 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false
     }
   });
+
+  user.associate = function(models) {
+    user.hasMany(models.bookmark);
+  }
+
   return user;
 }

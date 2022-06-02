@@ -1,3 +1,5 @@
+const post = require("./post");
+
 const Around = require("../models/index").Around;
 
 module.exports = (sequelize, Sequelize) => {
@@ -35,5 +37,9 @@ module.exports = (sequelize, Sequelize) => {
       }
     });
 
+    mountain.associate = function(models) {
+      mountain.hasMany(models.around);
+      mountain.hasMany(models.bookmark);
+    }
     return mountain;
   }

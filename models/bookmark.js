@@ -25,6 +25,14 @@ module.exports = (sequelize, Sequelize) => {
         }
       }
     });
-    
+
+    bookmark.associate = function(models){
+      bookmark.belongsTo(models.mountain, {
+        foreignKey: "number"
+      });
+      bookmark.belongsTo(models.user, {
+        foreignKey: "id"
+      })
+    };
     return bookmark;
   }

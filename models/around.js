@@ -26,5 +26,11 @@ module.exports = (sequelize, Sequelize) => {
     }
   });
 
+  around.associate = function(models){
+    around.belongsTo(models.mountain, {
+      foreignKey: "number"
+    })
+  };
+
   return around;
 }
