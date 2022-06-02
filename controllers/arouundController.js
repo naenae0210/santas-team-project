@@ -13,7 +13,7 @@ exports.searchAroundByName = async (req, res) => {
             {
                 model: Mountain,
                 required: true,
-                as: 'mountains',
+                as: 'mountain',
                 attributes: ['number', 'name', 'address'],
                 through: {
                     attributes: ['number']
