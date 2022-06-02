@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   around.associate = function(models){
-    around.belongsTo(models.mountain, {
+    around.belongsTo(models.Mountain, {
       foreignKey: "mountainNum",
       targetKey: "number"
     })

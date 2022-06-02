@@ -27,11 +27,11 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     bookmark.associate = function(models){
-      bookmark.belongsTo(models.mountain, {
+      bookmark.belongsTo(models.Mountain, {
         foreignKey: "mountainNum",
         targetKey: "number"
       });
-      bookmark.belongsTo(models.user, {
+      bookmark.belongsTo(models.User, {
         foreignKey: "id",
         targetKey: "id"
       })

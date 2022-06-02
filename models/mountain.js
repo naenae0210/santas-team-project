@@ -38,8 +38,8 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     mountain.associate = function(models) {
-      mountain.hasMany(models.around);
-      mountain.hasMany(models.bookmark);
+      mountain.hasMany(models.Around);
+      mountain.hasMany(models.Bookmark);
     }
     return mountain;
   }

@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   user.associate = function(models) {
-    user.hasMany(models.bookmark);
+    user.hasMany(models.Bookmark);
   }
 
   return user;
