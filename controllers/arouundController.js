@@ -11,7 +11,7 @@ exports.searchAroundByName = async (req, res) => {
     Around.findAll({
         include: [
             {
-                model: Mountain,
+                model: mountain,
                 required: true,
                 attributes: ['number', 'name', 'address'],
                 through: {
