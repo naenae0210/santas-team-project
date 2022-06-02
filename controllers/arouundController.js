@@ -15,20 +15,24 @@ exports.searchAroundByName = async (req, res) => {
                     attributes: ['mountainNum', 'number']
                 },
                 where: {
-                    address: {
+                    name: {
                         [Op.like]: "%" + searchWord + "%"
                     }
                 }
             }
         ]
     }).then((aroundList) => {
-        res.render('/around', aroundList);
+        res.render('/around/', {arounds: aroundList});
         res.redirect("/around/" + searchWord);
     })
 }
 
-exports.allAround = async (req, res) =>{
-    const aroundList = await Around.findAll();
-    res.render('/around', aroundList);
-    
-}
+exports.allAround = async (req, res) => {
+    Mountain.findAll().then(aroundList => {
+        res.render('mountain', {arounds : aroundList});
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
+    })
+};

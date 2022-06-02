@@ -35,12 +35,11 @@ app.use(
 app.use(express.json());
 
 app.get("/", homeController.showHome);
-app.get("/around", homeController.showAround);
-app.get("/bookmark", homeController.showBookmark);
+app.get("/around", aroundController.allAround);
+app.get("/bookmark", bookmarkController.allBookmark);
 app.get("/community", homeController.showCommunity);
 app.get("/delPost", homeController.showMyPost);
 app.get("/myProfile", homeController.showMyProfile);
-// app.get("/mountain", homeController.showMountain);
 app.get("/mountain", mountainController.allMountain);
 app.get("/mountainInfo", homeController.showMtInfo);
 app.get("/search", homeController.showSearchBar);

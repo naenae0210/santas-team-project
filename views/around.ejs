@@ -47,7 +47,7 @@
                         <a class="dropdown-item" href="/around/제주">제주도</a>
                     </div>
                 </div>
-                <form method="post" action="/around">
+                <form method="post" action="/around/:searchWord">
                         <input class="form-control around-search" type="text" placeholder="산 이름" aria-label="Search" name="searchWord">
                         <input type="submit" name="submit"><button class="btn btn-primary around-search">검색</button></input>
                 </form>
@@ -55,7 +55,7 @@
             <div class="container">
                 <!-- <h1>회원 정보 받아서 북마크 표시한 것만 출력</h1> -->
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <% aroundList.forEach(a => { %>
+                    <% arounds.forEach(a => { %>
                         <div class="col">
                             <div class="card shadow-sm">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">

@@ -51,3 +51,26 @@ exports.getBookMark = async (req, res) => {
 
     Bookmark.dataValues
 }
+
+exports.allBookmark = async (req, res) => {    
+    const userParams = User.getUserParams(req.body);
+
+    Around.findAll({
+        where: {
+            id : userParams.id
+        },
+        include: [
+            {
+                model: Mountain,
+                required: true,
+                attributes: ['number', 'name', 'address'],
+                through: {
+                    attributes: ['mountainNum', 'number']
+                }
+            }
+        ]
+    }).then((bookmarkList) => {
+        res.render('/bookmark/', { bookmarks: bookmarkList
+        });
+    })
+}

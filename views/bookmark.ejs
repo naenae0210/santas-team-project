@@ -59,29 +59,31 @@
             <div class="container">
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <img src="./img/seongmigarden.jfif" alt="">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#cae3cc" />
-                            </svg>
+                    <% bookmarks.forEach(b => { %>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <img src="./img/seongmigarden.jfif" alt="">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#cae3cc" />
+                                </svg>
 
-                            <div class="card-body">
-                                <p class="card-text">
-                                    성미가든
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-                                    </div>
-                                    <i class="fa-regular fa-heart" id="seongmi" onclick="switchHeart(this.id)"></i>
-                                    <!--하트 누르면 db에 저장되도록 해야 할듯?-->
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <%= b.name %>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                            <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                        </div>
+                                        <i class="fa-regular fa-heart" id="seongmi" onclick="switchHeart(this.id)"></i>
+                                        <!--하트 누르면 db에 저장되도록 해야 할듯?-->
+                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <% }); %>
                     <div class="col">
                         <div class="card shadow-sm">
                             <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
