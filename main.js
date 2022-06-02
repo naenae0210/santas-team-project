@@ -42,7 +42,7 @@ app.get("/delPost", homeController.showMyPost);
 app.get("/myProfile", homeController.showMyProfile);
 app.get("/mountain", mountainController.allMountain);
 app.get("/mountain/:region", mountainController.searchMountainByAdd);
-app.post("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
+app.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
 app.get("/mountainInfo", homeController.showMtInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);
