@@ -24,7 +24,6 @@ exports.showMyProfile = (req, res) => {
 
 exports.showMountain = (req, res, next) => {
   res.render("mountain");
-  next();
 };
 
 exports.showMtInfo = (req, res) => {
