@@ -16,7 +16,8 @@ const express = require("express"),
   mountainController = require("./controllers/mountainController"),
   bookmarkController = require("./controllers/bookmarkController"),
   aroundController = require("./controllers/arouundController"),
-  layouts = require("express-ejs-layouts");
+  layouts = require("express-ejs-layouts"),
+  mountainInfoController = require("./controllers/mountainInfoController");
 
 db.sequelize.sync();
 
@@ -43,7 +44,7 @@ app.get("/myProfile", homeController.showMyProfile);
 app.get("/mountain", mountainController.allMountain);
 app.get("/mountain/:region", mountainController.searchMountainByAdd);
 app.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
-app.get("/mountainInfo", homeController.showMtInfo);
+app.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);
 app.get("/signUp", homeController.showSignUp);
@@ -53,9 +54,12 @@ app.get("/bookmark/:mountainNum/delete", bookmarkController.delete);
 app.get("/mountainInfo/:mountainNum", homeController.showMtInfo);
 app.post("/around", aroundController.searchAroundByName);
 
+
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
 
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
 });
+
+
