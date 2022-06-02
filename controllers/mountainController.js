@@ -42,10 +42,8 @@ exports.searchMountainByAdd = async(req, res) => {
 }
 
 exports.searchMountainByDifficulty = async (req, res) => {
-    const searchWord = switchToKorean(req.params.region);
+    const searchWord = req.params.difficulty;
     console.log(searchWord);
-
-    searchWord = switchToKorean(searchWord);
 
     Mountain.findAll({
         where: {
@@ -53,7 +51,6 @@ exports.searchMountainByDifficulty = async (req, res) => {
         }
     }).then(mountainList => {
         res.render('mountain', {mountains : mountainList});
-        res.redirect("/mountain");
     }).catch(err => {
         res.status(500).send({
             message: err.message
