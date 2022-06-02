@@ -13,11 +13,6 @@ exports.searchAroundByName = async (req, res) => {
             {
                 model: Mountain,
                 required: true,
-                as: 'mountain',
-                attributes: ['number', 'name', 'address'],
-                through: {
-                    attributes: ['mountainNum']
-                },
                 where: {
                     name: {
                         [Op.like]: "%" + searchWord + "%"
