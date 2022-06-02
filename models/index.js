@@ -17,4 +17,9 @@ db.Bookmark = require("./bookmark.js")(sequelize, Sequelize);
 db.Around.belongsTo(db.Mountain, { foreignKey: "mountainNum", targetKey: 'number'});
 db.Mountain.hasMany(db.Around);
 
+db.Mountain.hasMany(db.Bookmark);
+db.User.hasMany(db.Bookmark);
+db.Bookmark.belongsTo(db.User, {foreignKey: "id", targetKey: "id"});
+db.Bookmark.belongsTo(db.Mountain, {foreignKey: "mountainNum", targetKey: "number"});
+
 module.exports = db;
