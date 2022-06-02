@@ -3,7 +3,6 @@ const User = require("./user");
 
 module.exports = (sequelize, Sequelize) => {
     const bookmark = sequelize.define('bookmark', {
-      /*
       id: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -24,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
             key: 'number',
             deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
         }
-      } */
+      }
     });
 
     bookmark.associate = function(models){

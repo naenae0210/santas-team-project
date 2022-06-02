@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
       primaryKey: true
-    }, /*
+    }, 
     mountainNum: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
           key: 'number',
           deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       }
-    }, */
+    }, 
    name : {
       type: Sequelize.STRING,
       allowNull: false
