@@ -44,6 +44,7 @@ request.get(reqUrl, (err, res, body) => {
 			if (mountain.length)
 
 			for(let data in mountain) {
+				console.log(data);
 				const [check, results] = db.query(
 					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`);
 
