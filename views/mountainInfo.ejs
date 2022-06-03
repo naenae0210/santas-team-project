@@ -106,8 +106,8 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading"><%=mountains.name%> <span class="text-muted"> 으로 떠나보세요!</span></h2>
-        <p class="lead">주소: <%=mountains.address%></p>
+        <h2 class="featurette-heading"><%=mountain.name%> <span class="text-muted"> 으로 떠나보세요!</span></h2>
+        <p class="lead">주소: <%=mountain.address%></p>
       </div>
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
@@ -119,24 +119,24 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading"><%=mountains.name%> <span class="text-muted"> 에 대해서.</span></h2>
+        <h2 class="featurette-heading"><%=mountain.name%> <span class="text-muted"> 에 대해서.</span></h2>
         <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
         <table class= "table">
             <tr>
                 <th>고도</th>
-                <td><%= mountains.altitude%></td>
+                <td><%= mountain.altitude%></td>
             </tr>
             <tr>
                 <th>거리</th>
-                <td><%= mountains.distance%></td>
+                <td><%= mountain.distance%></td>
             </tr>
             <tr>
                 <th>난이도</th>
-                <td><%= mountains.difficulty%></td>
+                <td><%= mountain.difficulty%></td>
             </tr>
             <tr>
                 <th>케이블카</th>
-                <td><%= mountains.cableCar%></td>
+                <td><%= mountain.cableCar%></td>
             </tr>
         </table>
       </div>
