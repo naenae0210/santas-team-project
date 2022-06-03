@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       address: {
         type: Sequelize.STRING,
-        allowNull: false
+        // allowNull: false
       },
       altitude: {
         type: Sequelize.INTEGER,
@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       difficulty: {
         type: Sequelize.STRING,
-        allowNull: false
+        // allowNull: false
       },
       cableCar: {
         type: Sequelize.BOOLEAN
