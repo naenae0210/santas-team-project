@@ -42,20 +42,26 @@ request.get(reqUrl, (err, res, body) => {
 			const mountain = json.response.body.items.item;
 
 			mountain.forEach(async (data) => {
-							const [rows, fields] = await db.query(
-								`INSERT INTO mountains(number, name, address, altitude, distance, difficulty, cableCar, landscape) VALUES(?, ?, ?, ?, NULL, NULL, NULL, NULL)`,
-								[
-									data.mntilistno,
-									data.mntiname,
-									data.mntiadd,
-									data.mntihigh
-								]
-							);
-							console.log(rows);
-						})
+				const [check, results] = await db.query(
+					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`);
+
+					if (check[0]['counts(*)'] == 0) {
+						const [rows, fields] = await db.query(
+							`INSERT INTO mountains(number, name, address, altitude, distance, difficulty, cableCar, landscape) VALUES(?, ?, ?, ?, NULL, NULL, NULL, NULL)`,
+							[
+								data.mntilistno,
+								data.mntiname,
+								data.mntiadd,
+								data.mntihigh
+							]
+						);
+						console.log(rows);
+					}
+					});
+					}
 					}
 				}
-			});
+			);
 
 
 			/*
