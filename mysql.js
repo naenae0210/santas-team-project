@@ -43,8 +43,8 @@ request.get(reqUrl, (err, res, body) => {
 
 				console.log(mountain);
 				foo = async () => {
-					const [check, results] = await db.query(
-						`SELECT count(*) FROM mountains where name = "${mountain.mntiname}"`);
+					/* const [check, results] = await db.query(
+						`SELECT count(*) FROM mountains where name = "${mountain.mntiname}"`); */
 						
 						console.log(check);
 						if (check[0]['counts(*)'] == 0) {
