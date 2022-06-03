@@ -65,7 +65,6 @@ app.listen(app.get("port"), () => {
 // api test
 const request = require("request");
 const xml2js = require("xml2js"),
-  fs = require('fs'),
   parser = new xml2js.Parser();
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
@@ -78,10 +77,8 @@ let address = add1 + encodeURI('북한산') + add2 + key + add3;
 
 app.get('/api', function(req, res, next) {
   request(address, function(error, res, body) {
-    fs.readFile(body, function(error, data) {
-      parser.parseString(data, function(error, result) {
-        console.dir(result);
-      })
+    parser.parseStringPromise(body).then(function (result)  {
+      console.dir(result);
     })
   })
 })
