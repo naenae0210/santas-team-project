@@ -64,8 +64,7 @@ app.listen(app.get("port"), () => {
 
 // api test
 const request = require("request");
-const xml2js = require("xml2js");
-let parser = new xml2js.Parser();
+const parseString = require("xml2js").parseString;
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
 
@@ -80,7 +79,8 @@ app.get('/api', function(req, res, next) {
     if (error) {
       console.log(error);
     }
-    parser.parseString(body, function(err, result) {
+    console.log(body);
+    parseString(body, function(err, result) {
       console.log(result);
     })
 
