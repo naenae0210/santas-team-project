@@ -44,10 +44,10 @@ request.get(reqUrl, (err, res, body) => {
 			mountain.forEach((data) => {
 				db.query(
 					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`,
-					(err, results) => {
+					async (err, results) => {
 
 						if (results[0]['count(*)'] == 0) {
-							db.query(
+							await db.query(
 								`INSERT INTO mountains(number, name, address, altitude) VALUES(?, ?, ?, ?)`,
 								[
 									data.mntilistno,
@@ -55,7 +55,7 @@ request.get(reqUrl, (err, res, body) => {
 									data.mntiadd,
 									data.mntihigh
 								],
-								(err, results) => {
+								async (err, results) => {
 									console.log('result: ', results);
 								}
 							);
