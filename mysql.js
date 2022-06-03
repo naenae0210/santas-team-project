@@ -44,7 +44,7 @@ request.get(reqUrl, (err, res, body) => {
 			mountain.forEach((data) => {
 				db.query(
 					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`,
-					(results) => {
+					(err, results) => {
 
 						if (results[0]['count(*)'] == 0) {
 							db.query(
