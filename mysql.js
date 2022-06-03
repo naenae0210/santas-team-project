@@ -29,7 +29,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoO
     add2 = '&ServiceKey=',
     add3 = '&numOfRows=10&pageNo=1&examdate=2017-12-27&_type=json';
 
-let reqUrl = add1 + encodeURI('설악') + add2 + key + add3;
+let reqUrl = add1 + encodeURI('설') + add2 + key + add3;
 
 request.get(reqUrl, (err, res, body) => {
 	if (err) {
@@ -41,7 +41,7 @@ request.get(reqUrl, (err, res, body) => {
 
 			const mountain = json.response.body.items.item;
 
-			Array.from(mountain).forEach(async (data) => {
+			mountain.forEach(async (data) => {
 				console.log(mountain);
 				const [check, results] = await db.query(
 					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`);
