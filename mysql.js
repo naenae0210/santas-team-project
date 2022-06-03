@@ -51,7 +51,7 @@ request.get(reqUrl, (err, res, body) => {
 							const [rows, fields] = await db.query(
 								`INSERT INTO mountains(number, name, address, altitude, distance, difficulty, cableCar, landscape) VALUES(?, ?, ?, ?, NULL, NULL, NULL, NULL)`,
 								[
-									datan.mntilistno,
+									data.mntilistno,
 									data.mntiname,
 									data.mntiadd,
 									data.mntihigh
