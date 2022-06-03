@@ -38,7 +38,7 @@ request.get(reqUrl, (err, res, body) => {
 		if (res.statusCode == 200) {
 			const json = JSON.parse(body);
 
-			const mountain = json.response.header.response.body.items.item;
+			const mountain = json.response.body.items.item;
 
 			mountain.forEach((data) => {
 				connection.query(
