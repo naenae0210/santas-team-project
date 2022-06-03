@@ -4,7 +4,11 @@ const mysql = require("../models/index"),
 
 exports.showMountainInfo = async (req, res, next) => {
 	const mountainNum = req.params.number;
-	Mountain.findById(mountainNum)
+	Mountain.findOne( {
+		where: {
+			number: mountainNum
+		}
+	})
 	.then(mountain => {
 		res.render("mountainInfo", mountain);
 	})
