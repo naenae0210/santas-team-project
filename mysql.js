@@ -47,7 +47,7 @@ request.get(reqUrl, (err, res, body) => {
 						`SELECT count(*) FROM mountains where name = "${mountain.mntiname}"`);
 						
 						console.log(check);
-						if (check[0]['counts(*)'] == 0) {
+						if (check[0]['count(*)'] == 0) {
 							const [rows, fields] = await db.query(
 								`INSERT INTO mountains(number, name, address, altitude, distance, difficulty, cableCar, landscape) VALUES(?, ?, ?, ?, NULL, NULL, NULL, NULL)`,
 								[
