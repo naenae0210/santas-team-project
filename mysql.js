@@ -42,11 +42,11 @@ request.get(reqUrl, (err, res, body) => {
 			let mountain = json.response.body.items.item;
 
 				console.log(mountain);
-				const [check, results] = db.query(
+				const [check, results] = await db.query(
 					`SELECT count(*) FROM mountains where name = "${mountain.mntiname}"`);
 
 					if (check[0]['counts(*)'] == 0) {
-						const [rows, fields] = db.query(
+						const [rows, fields] = await db.query(
 							`INSERT INTO mountains(number, name, address, altitude, distance, difficulty, cableCar, landscape) VALUES(?, ?, ?, ?, NULL, NULL, NULL, NULL)`,
 							[
 								mountain.mntilistno,
