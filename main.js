@@ -1,6 +1,8 @@
 const db = require("./models/index.js");
 const models = require("./models/index.js");
 
+process.setMaxListeners(15);
+
 models.sequelize.sync().then( () => {
     console.log(" DB 연결 성공");
 }).catch(err => {
