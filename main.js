@@ -55,10 +55,6 @@ app.get("/bookmark/:mountainNum", bookmarkController.create);
 app.get("/bookmark/:mountainNum/delete", bookmarkController.delete);
 app.post("/around", aroundController.searchAroundByName);
 
-
-app.use(errorController.pageNotFoundError);
-app.use(errorController.internalServerError);
-
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
 });
@@ -84,3 +80,8 @@ app.get('/api', function(req, res, next) {
     console.log(obj);
   })
 })
+
+// error
+
+app.use(errorController.pageNotFoundError);
+app.use(errorController.internalServerError);
