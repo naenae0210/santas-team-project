@@ -78,7 +78,7 @@ app.get('/api', function(req, res, next) {
   request(address, function(error, res, body) {
     console.log(body);
     parseString(body, function(error, result) {
-      console.log(result);
+      // console.log(result);
     })
 
   })
