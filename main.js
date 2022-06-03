@@ -45,6 +45,7 @@ app.get("/myProfile", homeController.showMyProfile);
 app.get("/mountain", mountainController.allMountain);
 app.get("/mountain/:region", mountainController.searchMountainByAdd);
 app.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
+app.get("/mountainInfo", homeController.showMountainInfo); // test용
 app.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);
@@ -52,7 +53,6 @@ app.get("/signUp", homeController.showSignUp);
 app.post("/signUp", homeController.postedSignUpForm);
 app.get("/bookmark/:mountainNum", bookmarkController.create);
 app.get("/bookmark/:mountainNum/delete", bookmarkController.delete);
-app.get("/mountainInfo/:mountainNum", homeController.showMtInfo);
 app.post("/around", aroundController.searchAroundByName);
 
 
