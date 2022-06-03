@@ -43,18 +43,29 @@ request.get(reqUrl, (err, res, body) => {
 
 			mountain.forEach((data) => {
 				db.query(
-					`INSERT INTO mountains(number, name, address, altitude) VALUES(?, ?, ?, ?)`,
-					[
-						data.Mntilistno,
-						data.mntiname,
-						data.Mntiadd,
-						data.mntihigh
-					],
+					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`,
 					(err, results) => {
 						if (err) throw err;
-						console.log('result: ', results);
+
+						if (results[0]['count(*)'] == 0) {
+							db.query(
+								`INSERT INTO mountains(number, name, address, altitude) VALUES(?, ?, ?, ?)`,
+								[
+									data.mntilistno,
+									data.mntiname,
+									data.mntiadd,
+									data.mntihigh
+								],
+								(err, results) => {
+									if (err) throw err;
+									console.log('result: ', results);
+								}
+							);
+						} else {
+							console.log('same data already in db');
+						}
 					}
-				);
+				)
 			});
 		}
 	}
