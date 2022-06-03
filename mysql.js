@@ -41,15 +41,13 @@ request.get(reqUrl, (err, res, body) => {
 
 			const mountain = json.response.body.items.item;
 
-			if (mountain.length)
-
-			for(let data in mountain) {
-				console.log(data);
-				const [check, results] = db.query(
+			Array.from(mountain).forEach(async (data) => {
+				console.log(mountain);
+				const [check, results] = await db.query(
 					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`);
 
 					if (check[0]['counts(*)'] == 0) {
-						const [rows, fields] = db.query(
+						const [rows, fields] = await db.query(
 							`INSERT INTO mountains(number, name, address, altitude, distance, difficulty, cableCar, landscape) VALUES(?, ?, ?, ?, NULL, NULL, NULL, NULL)`,
 							[
 								data.mntilistno,
@@ -63,7 +61,12 @@ request.get(reqUrl, (err, res, body) => {
 					else {
 						console.log('same data already in db');
 					}
-					}}}});
+					});
+					}
+					}
+				}
+			);
+
 
 			/*
 			mountain.forEach((data) => {
