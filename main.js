@@ -76,8 +76,10 @@ app.get('/api', function(req, res, next) {
     if (error) {
       console.log(error);
     }
-    let obj = JSON.parse(body);
-    console.log(obj);
+    // let result = JSON.parse(body);
+    console.log(body);
+    
+    // for (i in result)
   })
 })
 
