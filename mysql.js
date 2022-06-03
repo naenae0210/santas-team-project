@@ -41,7 +41,7 @@ request.get(reqUrl, (err, res, body) => {
 			const mountain = json.response.body.items.item;
 
 			mountain.forEach((data) => {
-				connection.query(
+				db.query(
 					`INSERT INTO mountains(number, name, address, altitude) VALUES(?, ?, ?, ?)`,
 					[
 						data.Mntilistno,
