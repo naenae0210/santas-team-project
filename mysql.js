@@ -41,13 +41,13 @@ request.get(reqUrl, (err, res, body) => {
 
 			const mountain = json.response.body.items.item;
 
-			mountain.forEach(async (data) => {
+			mountain.forEach((data) => {
 				console.log(mountain);
-				const [check, results] = await db.query(
+				const [check, results] = db.query(
 					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`);
 
 					if (check[0]['counts(*)'] == 0) {
-						const [rows, fields] = await db.query(
+						const [rows, fields] = db.query(
 							`INSERT INTO mountains(number, name, address, altitude, distance, difficulty, cableCar, landscape) VALUES(?, ?, ?, ?, NULL, NULL, NULL, NULL)`,
 							[
 								data.mntilistno,
