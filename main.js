@@ -75,8 +75,7 @@ let address = add1 + encodeURI('북한산') + add2 + key + add3;
 
 app.get('/api', function(req, res, next) {
   request(address, function(error, res, body) {
-    const result = JSON.parse(body);
-    console.log(result);
+    console.log(body);
   })
 })
 
