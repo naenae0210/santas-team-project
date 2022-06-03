@@ -31,7 +31,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoO
 
 let reqUrl = add1 + encodeURI('북한산') + add2 + key + add3;
 
-request.get(reqUrl, async (err, res, body) => {
+request.get(reqUrl, (err, res, body) => {
 	if (err) {
 		console.log(`err => ${err}`);
 	}
@@ -41,7 +41,7 @@ request.get(reqUrl, async (err, res, body) => {
 
 			const mountain = json.response.body.items.item;
 
-			mountain.forEach((data) => {
+			mountain.forEach(async (data) => {
 							const [rows, fields] = await db.query(
 								`INSERT INTO mountains(number, name, address, altitude) VALUES(?, ?, ?, ?)`,
 								[
