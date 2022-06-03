@@ -54,7 +54,7 @@ request.get(reqUrl, (err, res, body) => {
 									data.mntilistno,
 									data.mntiname,
 									data.mntiadd,
-									data.mntihigh
+									1708
 								]
 							);
 							console.log(rows);
