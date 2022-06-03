@@ -8,9 +8,10 @@ exports.showMountainInfo = async (req, res, next) => {
 	.then(mountain => {
 		res.render("mountainInfo", mountain);
 	})
-	.catch(error =>{
-		console.log(`Error fetching subscriber by Number: ${error.message}`);
-		next(error);
+	.catch(err => {
+        res.status(500).send({
+            message: err.message
+        });
 	});
 
 }
