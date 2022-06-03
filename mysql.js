@@ -56,7 +56,6 @@ request.get(reqUrl, (err, res, body) => {
 									data.mntihigh
 								],
 								(err, results) => {
-									if (err) throw err;
 									console.log('result: ', results);
 								}
 							);
