@@ -41,6 +41,10 @@ request.get(reqUrl, (err, res, body) => {
 
 			let mountain = json.response.body.items.item;
 
+			if (!Array.isArray(mountain)) {
+				mountain = new Array(mountain);
+			}
+
 				console.log(mountain);
 				mountain.forEach(async (data) => {
 					const [check, results] = await db.query(
