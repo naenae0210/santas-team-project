@@ -40,9 +40,8 @@ request.get(reqUrl, (err, res, body) => {
 			const json = JSON.parse(body);
 
 			const mountain = json.response.body.items.item;
-			console.log(mountain);
 
-			[].forEach.call(mountain, async (data) => {
+			Array.from(mountain).forEach.call(async (data) => {
 				const [check, results] = await db.query(
 					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`);
 
