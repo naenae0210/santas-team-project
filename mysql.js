@@ -42,19 +42,19 @@ request.get(reqUrl, (err, res, body) => {
 			let mountain = json.response.body.items.item;
 
 				console.log(mountain);
-				async function foo() {
+				mountain.forEach(async (data) => {
 					const [check, results] = await db.query(
-						`SELECT count(*) FROM mountains where name = "${mountain.mntiname}"`);
+						`SELECT count(*) FROM mountains where name = "${data.mntiname}"`);
 						
 						console.log(check);
 						if (check[0]['count(*)'] == 0) {
 							const [rows, fields] = await db.query(
 								`INSERT INTO mountains(number, name, address, altitude, distance, difficulty, cableCar, landscape) VALUES(?, ?, ?, ?, NULL, NULL, NULL, NULL)`,
 								[
-									mountain.mntilistno,
-									mountain.mntiname,
-									mountain.mntiadd,
-									mountain.mntihigh
+									datan.mntilistno,
+									data.mntiname,
+									data.mntiadd,
+									data.mntihigh
 								]
 							);
 							console.log(rows);
@@ -63,7 +63,7 @@ request.get(reqUrl, (err, res, body) => {
 							console.log('same data already in db');
 						}
 					}
-					foo();
+				)
 					}
 					}
 				}
