@@ -82,8 +82,5 @@ request.get(reqUrl, (err, res, body) => {
 						}
 					}
 				)
-			});
-			*/
-		}
-	}
-});
+			}); */
+		
