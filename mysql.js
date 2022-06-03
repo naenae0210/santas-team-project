@@ -42,7 +42,7 @@ request.get(reqUrl, (err, res, body) => {
 			let mountain = json.response.body.items.item;
 
 				console.log(mountain);
-				foo = async () => {
+				async () => {
 					/* const [check, results] = await db.query(
 						`SELECT count(*) FROM mountains where name = "${mountain.mntiname}"`); */
 						
