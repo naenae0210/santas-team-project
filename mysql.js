@@ -39,7 +39,7 @@ request.get(reqUrl, (err, res, body) => {
 		if (res.statusCode == 200) {
 			const json = JSON.parse(body);
 
-			const mountain = json.response.body.items.item;
+			let mountain = json.response.body.items.item;
 
 			mountain.forEach((data) => {
 				console.log(mountain);
