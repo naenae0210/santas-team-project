@@ -36,6 +36,7 @@ app.use(express.json());
 
 app.get("/", homeController.showHome);
 app.get("/around", aroundController.allAround);
+app.get("/around/:region", aroundController.searchAroundByAdd);
 app.get("/bookmark", bookmarkController.allBookmark);
 app.get("/community", homeController.showCommunity);
 app.get("/delPost", homeController.showMyPost);

@@ -4,6 +4,25 @@ const mysql = require('../models/index'),
     sequelize = require("sequelize"),
     Op = sequelize.Op;
 
+exports.searchAroundByAdd = async(req, res) => {
+    const searchWord = switchToKorean(req.params.region);
+    console.log(searchWord);
+    
+    Around.findAll({
+        where: {
+            address: {
+                [Op.like]: "%" + searchWord + "%"
+            }
+        }
+    }).then(aroundList => {
+        res.render('around', {arounds : aroundList});
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        });
+    })
+}
+
 exports.searchAroundByName = async (req, res) => {
     const searchWord = req.body.searchWord;
     console.log(searchWord);
