@@ -9,8 +9,9 @@ exports.showMountainInfo = async (req, res) => {
 			number: mountainNum
 		}
 	})
-	.then(mountain => {
-		res.render('mountainInfo', {mountain: mountain});
+	.then(findMountain => {
+		res.render('mountainInfo', {mountain: findMountain
+		});
 	})
 	.catch(err => {
         res.status(500).send({
