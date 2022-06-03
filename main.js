@@ -72,7 +72,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoO
 let address = add1 + encodeURI('북한산') + add2 + key + add3;
 
 app.get('/api', function(req, res, next) {
-  request(address, function(err, res, body) {
+  request(address, function(error, res, body) {
     if (error) {
       console.log(error);
     }
