@@ -31,7 +31,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoO
 
 let reqUrl = add1 + encodeURI('북한산') + add2 + key + add3;
 
-request.get(reqUrl, (err, res, body) => {
+request.get(reqUrl, async (err, res, body) => {
 	if (err) {
 		console.log(`err => ${err}`);
 	}
@@ -41,6 +41,24 @@ request.get(reqUrl, (err, res, body) => {
 
 			const mountain = json.response.body.items.item;
 
+			mountain.forEach((data) => {
+							const [rows, fields] = await db.query(
+								`INSERT INTO mountains(number, name, address, altitude) VALUES(?, ?, ?, ?)`,
+								[
+									data.mntilistno,
+									data.mntiname,
+									data.mntiadd,
+									data.mntihigh
+								]
+							);
+							console.log(rows);
+						})
+					}
+				}
+			});
+
+
+			/*
 			mountain.forEach((data) => {
 				db.query(
 					`SELECT count(*) FROM mountains where name = "${data.mntiname}"`,
@@ -65,6 +83,7 @@ request.get(reqUrl, (err, res, body) => {
 					}
 				)
 			});
+			*/
 		}
 	}
 });
