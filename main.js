@@ -82,5 +82,5 @@ app.get('/api', function(req, res, next) {
     }
     let obj = JSON.parse(body);
     console.log(obj);
-  }
+  })
 })
