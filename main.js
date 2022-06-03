@@ -64,3 +64,23 @@ app.listen(app.get("port"), () => {
 });
 
 
+// api test
+const request = require("request");
+
+const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
+
+const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoOpenAPI?searchWrd='
+    add2 = '&ServiceKey=',
+    add3 = '&numOfRows=10&pageNo=1&examdate=2017-12-27';
+
+let address = add1 + encodeURI('북한산') + add2 + key + add3;
+
+app.get('/api', function(req, res, next) {
+  request(address, function(err, res, body) {
+    if (error) {
+      console.log(error);
+    }
+    let obj = JSON.parse(body);
+    console.log(obj);
+  }
+})
