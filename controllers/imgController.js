@@ -20,6 +20,10 @@ exports.getImage = async (req, res) => {
 
         console.log(image[0]);
 
-        return "www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename;
+        if (image.length) {
+            return "www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename;
+        }
+        
+        return "";
     })
 };
