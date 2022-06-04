@@ -14,6 +14,10 @@ exports.getImage = async (req, res) => {
 
         let image = json.response.body.items.item;
 
+        if (!Array.isArray(image)) {
+            image = new Array(image);
+        }
+
         console.log(image[0]);
 
         return "www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename;
