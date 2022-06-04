@@ -29,7 +29,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoO
     add2 = '&ServiceKey=',
     add3 = '&numOfRows=10&pageNo=1&examdate=2017-12-27&_type=json';
 
-let reqUrl = add1 + encodeURI('북배산') + add2 + key + add3;
+let reqUrl = add1 + encodeURI('산 이름') + add2 + key + add3;
 
 request.get(reqUrl, (err, res, body) => {
 	if (err) {
