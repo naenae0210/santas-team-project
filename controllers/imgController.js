@@ -6,13 +6,13 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoI
     add2 = '&ServiceKey=',
     add3 = '&_type=json';
 
-function getImage(number) {
-    const address = add1 + number.toString() + add2 + key + add3;
+exports.getImage((req, res) => {
+    const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (err, res, body) => {
         const json = JSON.parse(body);
 
-        let image = json.response.body.items.item;
+        let image = json.response.body.items.item.imgfilename;
 
         if (!Array.isArray(image)) {
             image = new Array(image);
@@ -20,8 +20,6 @@ function getImage(number) {
 
         console.log(image);
 
-        return image;
+        return "www.forest.go.kr/images/data/down/mountain/" + image[0];
     })
-}
-
-module.exports = getImage();
+});

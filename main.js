@@ -18,7 +18,8 @@ const express = require("express"),
   bookmarkController = require("./controllers/bookmarkController"),
   aroundController = require("./controllers/arouundController"),
   layouts = require("express-ejs-layouts"),
-  mountainInfoController = require("./controllers/mountainInfoController")
+  mountainInfoController = require("./controllers/mountainInfoController"),
+  imgController = require("./controllers/imgController"),
   session = require('express-session');
 
 db.sequelize.sync();
@@ -48,6 +49,7 @@ app.get("/myProfile", homeController.showMyProfile);
 app.get("/mountain", mountainController.allMountain);
 app.get("/mountain/:region", mountainController.searchMountainByAdd);
 app.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
+app.get("/mountain/image/:number", imgController.getImage);
 app.get("/mountainInfo", mountainInfoController.showMountainInfo); // test용
 app.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);
 app.get("/search", homeController.showSearchBar);
@@ -65,6 +67,7 @@ app.listen(app.get("port"), () => {
 
 // api test
 const request = require("request");
+const imgController = require("./controllers/imgController.js");
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
 
