@@ -12,10 +12,10 @@ exports.getImage = async (req, res) => {
     request.get(address, (err, res, body) => {
         const json = JSON.parse(body);
 
-        let image = json.response.body.items.item[0].imgfilename;
+        let image = json.response.body.items.item;
 
-        console.log(image);
+        console.log(image[0]);
 
-        return "www.forest.go.kr/images/data/down/mountain/" + image;
+        return "www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename;
     })
 };
