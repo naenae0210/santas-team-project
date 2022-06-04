@@ -9,7 +9,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoI
 exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
 
-    request.get(address, (err, res, body) => {
+    request.get(address, (error, response, body) => {
         const json = JSON.parse(body);
 
         let image = json.response.body.items.item;
@@ -21,10 +21,10 @@ exports.getImage = async (req, res) => {
         console.log(image[0]);
 
         if (image != 'undefined' && image != null) {
-            return ("www.forest.go.kr/images/data/down/mountain/" + image[0]['imgfilename']);
+            res.redirect("www.forest.go.kr/images/data/down/mountain/" + image[0]['imgfilename']);
         }
         else {
-            return ("");
+            res.redirect("");
         }
     })
 };
