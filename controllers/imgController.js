@@ -22,4 +22,4 @@ exports.getImage = async (req, res) => {
 
         return "www.forest.go.kr/images/data/down/mountain/" + image[0];
     })
-});
+};
