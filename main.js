@@ -55,7 +55,7 @@ app.get("/signIn", homeController.showSignIn);
 app.get("/signUp", homeController.showSignUp);
 app.post("/signUp", homeController.postedSignUpForm);
 app.post("/bookmark/:mountainNum/create", bookmarkController.create);
-app.get("/bookmark/:mountainNum/delete", bookmarkController.delete);
+app.post("/bookmark/:mountainNum/delete", bookmarkController.delete);
 app.post("/around", aroundController.searchAroundByName);
 
 app.listen(app.get("port"), () => {
