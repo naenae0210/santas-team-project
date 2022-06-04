@@ -24,7 +24,7 @@ exports.getImage = async (req, res) => {
             res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0]['imgfilename']);
         }
         else {
-            res.redirect("images/noimage.jpg");
+            res.redirect("images/noimage.png");
         }
     })
 };
