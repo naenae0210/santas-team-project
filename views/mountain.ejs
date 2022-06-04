@@ -62,8 +62,7 @@
                         <div class="col">
                             <div class="card shadow-sm">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <% const img = require('../controllers/imgController'); %>
-                                    <% const imgObject = img.getImage(m.number); %>
+                                    <% const imgObject = getImage(m.number); %>
                                     <img src="www.forest.go.kr/images/data/down/mountain/<%= imgObject[0] %>" alt="" />
                                     <title>Placeholder</title>
                                     <rect width="100%" height="100%" fill="#cae3cc" />
@@ -124,3 +123,4 @@
     }
 </script>
 
+<script src="../controllers/imgController.js"></script>
