@@ -9,7 +9,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoI
 exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
 
-    request.get(address, (error, response, body) => {
+    request.get(address, (error, resp, body) => {
         const json = JSON.parse(body);
 
         let image = json.response.body.items.item;
