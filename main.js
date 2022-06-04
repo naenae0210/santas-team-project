@@ -67,7 +67,6 @@ app.listen(app.get("port"), () => {
 
 // api test
 const request = require("request");
-const imgController = require("./controllers/imgController.js");
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
 
