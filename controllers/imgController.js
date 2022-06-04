@@ -6,7 +6,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoI
     add2 = '&ServiceKey=',
     add3 = '&_type=json';
 
-exports.getImage((req, res) => {
+exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (err, res, body) => {
