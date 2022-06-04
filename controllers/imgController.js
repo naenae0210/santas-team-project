@@ -20,7 +20,7 @@ exports.getImage = async (req, res) => {
 
         console.log(image[0]);
 
-        if (image != 'undefined' && image != null) {
+        if (image[0] != 'undefined' && image != null) {
             res.redirect("www.forest.go.kr/images/data/down/mountain/" + image[0]['imgfilename']);
         }
         else {
