@@ -76,7 +76,7 @@
                                             <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/mountainInfo/<%= m.number %>">View</a></button>
                                         </div>
                                         <form action="/bookmark/<%= m.number %>" methos="post">
-                                            <i class="fa-regular fa-heart" id="<%= m.number %>" onclick="switchHeart(this.id)"></i>
+                                            <i class="fa-regular fa-heart" id="<%= m.number %>" onclick="switchHeart(this.id)" type="submit" name="searchWord"></i>
                                         </form>
                                     </div>
                                 </div>
