@@ -66,11 +66,33 @@ exports.allBookmark = async (req, res) => {
         ]
     }).then((bookmarkList) => {
         const bookmarks = {
-            number: bookmarkList.number,
+            number: bookmarkList.mountainNum,
             name: Mountain.name,
             address: Mountain.address
         }
-        res.render('/bookmark', { bookmarks
+        res.render('bookmark', { bookmarks
         });
+    })
+}
+
+exports.markBookmark = async (req, res) => {
+    const userId = req.session.id;
+    
+    Bookmark.findAll({
+        where: {
+            id : userId
+        },
+        include: [
+            {
+                model: Mountain,
+                as: 'mountain',
+                required: true
+            }
+        ]
+    }).then((bookmarkList) => {
+        const mountainNums = {
+            number: bookmarkList.mountainNum
+        }
+        req.render("mountain", {bookmarks: mountainNums})
     })
 }

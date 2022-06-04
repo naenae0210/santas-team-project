@@ -5,6 +5,7 @@ const mysql = require('../models/index'),
 
 exports.allMountain = async (req, res) => {
     Mountain.findAll().then(mountainList => {
+        console.log(mountainList);
         res.render('mountain', {mountains : mountainList});
     }).catch(err => {
         res.status(500).send({

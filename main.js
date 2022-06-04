@@ -1,9 +1,8 @@
 const db = require("./models/index.js");
-const models = require("./models/index.js");
 
 process.setMaxListeners(15);
 
-models.sequelize.sync().then( () => {
+db.sequelize.sync().then( () => {
     console.log(" DB 연결 성공");
 }).catch(err => {
     console.log("연결 실패");
@@ -19,7 +18,8 @@ const express = require("express"),
   bookmarkController = require("./controllers/bookmarkController"),
   aroundController = require("./controllers/arouundController"),
   layouts = require("express-ejs-layouts"),
-  mountainInfoController = require("./controllers/mountainInfoController");
+  mountainInfoController = require("./controllers/mountainInfoController")
+  session = require('express-session');
 
 db.sequelize.sync();
 
@@ -36,6 +36,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(session());
 
 app.get("/", homeController.showHome);
 app.get("/around", aroundController.allAround);
@@ -44,7 +45,7 @@ app.get("/bookmark", bookmarkController.allBookmark);
 app.get("/community", homeController.showCommunity);
 app.get("/delPost", homeController.showMyPost);
 app.get("/myProfile", homeController.showMyProfile);
-app.get("/mountain", mountainController.allMountain);
+app.get("/mountain", mountainController.allMountain, bookmarkController.markBookmark);
 app.get("/mountain/:region", mountainController.searchMountainByAdd);
 app.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
 app.get("/mountainInfo", mountainInfoController.showMountainInfo); // test용
