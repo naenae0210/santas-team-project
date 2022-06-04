@@ -6,7 +6,7 @@ const mysql = require("../models/index"),
 		const mountainNum = req.params.number;
 		console.log(mountainNum);
 	
-		Mountain.findAll({
+		Mountain.findOne({
 			where: {
 				number: mountainNum
 			}
