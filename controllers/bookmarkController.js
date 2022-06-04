@@ -1,15 +1,15 @@
 const mysql = require('../models/index'),
     Bookmark = mysql.Bookmark,
-    User = require("./userController"),
-    Mountain = mysql.Mountain;
+    Mountain = mysql.Mountain,
+    session = require('express-session');
 
 exports.create = async (req, res) => {
-    const userParams = User.getUserParams(req.body);
+    const userId = req.session.id;
     
     try {
         const bookmarkParams = {
-            id: userParams.id,
-            mountainNum: req.params.mountainNum
+            id: userId,
+            mountainNum: req.body.mountainNum
         }
         const bookmark = await Bookmark.create(bookmarkParams);
         res.locals.redirect = "/mountain";
@@ -20,12 +20,12 @@ exports.create = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-    const userParams = User.getUserParams(req.body);
+    const userId = req.session.id;
 
     Bookmark.destroy({
         where : {
-            id: userParams.id,
-            mountainNum: req.params.mountainNum
+            id: userId,
+            mountainNum: req.body.mountainNum
         }
     }).then(result => {
         res.redirect("mountain");
@@ -35,12 +35,12 @@ exports.delete = async (req, res) => {
 };
 
 exports.getBookMark = async (req, res) => {
-    const userParams = User.getUserParams(req.body);
+    const userId = req.session.id;
 
     Bookmark.count({
         where : {
-            id: userParams.id,
-            mountainNum: req.params.mountainNum
+            id: userId,
+            mountainNum: req.body.mountainNum
         }
     }
     ).then(c => {
@@ -48,16 +48,14 @@ exports.getBookMark = async (req, res) => {
 
         }
     })
-
-    Bookmark.dataValues
 }
 
 exports.allBookmark = async (req, res) => {    
-    const userParams = User.getUserParams();
+    const userId = req.session.id;
 
     Bookmark.findAll({
         where: {
-            id : userParams.id
+            id : userId
         },
         include: [
             {
@@ -69,8 +67,8 @@ exports.allBookmark = async (req, res) => {
     }).then((bookmarkList) => {
         const bookmarks = {
             number: bookmarkList.number,
-            name: bookmarkList.name,
-            address: bookmarkList.address
+            name: Mountain.name,
+            address: Mountain.address
         }
         res.render('/bookmark', { bookmarks
         });
