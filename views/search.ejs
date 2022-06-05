@@ -16,7 +16,49 @@
     </div>
   </div>
 
-  <!-- recommendation -->
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% mountains.forEach(m => { %>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="/mountain/image/<%= m.number %>" alt="" style="width: 100%; height: 200px; object-fit: cover;" />
+
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= m.name %>
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/mountainInfo/<%= m.number %>">View</a></button>
+                            </div>
+                            <!-- user session 추가 후
+                            <% // let i = 0 %>
+                            <% // bookmarks.forEach(b => { %>
+                                <% // if (b.mountainNum == m.number) { %>
+                                    <% // i = 1 %>
+                                <% // }}) %>
+                            <% // if (i == 0) { %> -->
+                                <form action="/bookmark/<%= m.number %>/create" method="post" onsubmit="switchHeart(this.id, 0)">
+                                    <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
+                                </form>
+                            <% // } %> 
+                            <% // else if (i == 1) { */ %> <!---
+                                <form action="/bookmark/<%= // m.number %>/delete" method="post" onsubmit="switchHeart(this.id, 1)">
+                                    <input type="submit" id="<%= // m.number %>" class="btn fa-input" value="&#xf004" />
+                                </form> -->
+                                <% // const heart = document.getElementById(m.number); %>
+                                <% // heart.style.color = "red"; %>
+                            <% // }; %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }); %> 
+    </div>
+</div>
+
+  <!-- recommendation
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -47,6 +89,6 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>
+  </div> -->
 
 </body>

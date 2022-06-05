@@ -20,6 +20,7 @@ const express = require("express"),
   layouts = require("express-ejs-layouts"),
   mountainInfoController = require("./controllers/mountainInfoController"),
   imgController = require("./controllers/imgController"),
+  searchController = require("./controllers/searchController"),
   session = require('express-session');
 
 db.sequelize.sync();
@@ -54,6 +55,7 @@ app.get("/mountainInfo", mountainInfoController.showMountainInfo); // test용
 app.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);
 app.get("/mountainInfo/:number/:imgNum", imgController.getImages);
 app.get("/search", homeController.showSearchBar);
+app.post("/search", searchController.searchMountain);
 app.get("/signIn", homeController.showSignIn);
 app.get("/signUp", homeController.showSignUp);
 app.post("/signUp", homeController.postedSignUpForm);
