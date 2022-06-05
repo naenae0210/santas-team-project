@@ -1,3 +1,5 @@
+const around = require("../models/around");
+
 const mysql = require("../models/index"),
     Mountain = mysql.Mountain,
     Around = mysql.Around;
@@ -11,9 +13,16 @@ const mysql = require("../models/index"),
 				number: mountainNum
 			}
 		}).then(findMountain => {
-			next();
-			res.render('mountainInfo', {mountains: findMountain})
-			
+			Around.findAll({
+				where: {
+					mountainNum: mountainNum
+				}
+			}).then((aroundList) => {
+				res.render('mountainInfo', {
+					mountains: findMountain,
+					arounds: aroundList
+				})
+			})	
 		}).catch(err => {
 			res.status(500).send({
 				message: err.message
@@ -21,7 +30,7 @@ const mysql = require("../models/index"),
 		})
 	}
 
-
+/*
 exports.showAround = async(req, res) => {
 	const mountainNum = req.params.number;
 
@@ -37,3 +46,4 @@ exports.showAround = async(req, res) => {
 		});
 	})
 }
+*/

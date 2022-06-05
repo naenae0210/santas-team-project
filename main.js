@@ -51,7 +51,7 @@ app.get("/mountain/:region", mountainController.searchMountainByAdd);
 app.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
 app.get("/mountain/image/:number", imgController.getImage);
 app.get("/mountainInfo", mountainInfoController.showMountainInfo); // test용
-app.get("/mountainInfo/:number", mountainInfoController.showMountainInfo, mountainInfoController.showAround);
+app.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);
 app.get("/search", homeController.showSearchBar);
 app.get("/signIn", homeController.showSignIn);
 app.get("/signUp", homeController.showSignUp);
