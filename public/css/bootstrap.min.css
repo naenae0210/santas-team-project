@@ -74,8 +74,8 @@
     }
 }
 
-.heartSubmit {
-    font-family: FontAwesome;
+.fa-input {
+    font-family: FontAwesome, ‘Helvetica Neue’, Helvetica, Arial, sans-serif;
 }
 
 body {
