@@ -27,14 +27,7 @@ exports.showAround = async(req, res) => {
 	Around.findAll({
 		where: {
 			mountainNum: mountainNum
-		},
-		include: [
-			{
-				model: Mountain,
-				as: 'mountain',
-				required: true
-			}
-		]
+		}
 	}).then((aroundList) => {
 		res.render('mountainInfo', {arounds: aroundList});
 	}).catch(err => {
