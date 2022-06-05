@@ -21,7 +21,7 @@ const mysql = require("../models/index"),
 	}
 
 
-exports.showAround = async(req, res) => {
+exports.showAround = async(req, res, next) => {
 	const mountainNum = req.params.number;
 
 	Around.findAll({
