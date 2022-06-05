@@ -92,3 +92,17 @@
   </div> -->
 
 </body>
+
+<script>
+  function switchHeart(clickedId, status) {
+      const defaultHeart = document.getElementById(clickedId);
+      
+      if (status == 0) {
+          defaultHeart.style.color = "red";
+      }
+      else {
+          defaultHeart.style.color = "black";
+      }
+  }
+</script>
+
