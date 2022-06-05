@@ -19,7 +19,7 @@ const mysql = require("../models/index"),
 				}
 			}).then((aroundList) => {
 				res.render('mountainInfo', {
-					mountains: findMountain,
+					mountain: findMountain,
 					arounds: aroundList
 				})
 			})	
