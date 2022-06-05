@@ -11,7 +11,7 @@ const mysql = require("../models/index"),
 				number: mountainNum
 			}
 		}).then(findMountain => {
-			res.send('mountainInfo', {mountain : findMountain});
+			res.json({mountain : findMountain});
 			next();
 		}).catch(err => {
 			res.status(500).send({
