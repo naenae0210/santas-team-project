@@ -12,7 +12,7 @@ const mysql = require("../models/index"),
 			}
 		}).then(findMountain => {
 			// res.render('mountainInfo', {mountain : findMountain});
-			next(req, res, findMountain);
+			next(findMountain);
 		}).catch(err => {
 			res.status(500).send({
 				message: err.message
