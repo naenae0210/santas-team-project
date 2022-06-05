@@ -17,5 +17,24 @@ const mysql = require("../models/index"),
 				message: err.message
 			});
 		})
+
+		Around.findAll({
+			where: {
+				mountainNum: mountainNum
+			},
+			include: [
+				{
+					model: Mountain,
+					as: 'mountain',
+					required: true
+				}
+			]
+		}).then((aroundList) => {
+			res.render('mountainInfo', {arounds: aroundList});
+		}).catch(err => {
+			res.status(500).send({
+				message: err.message
+			});
+		})
 	}
 
