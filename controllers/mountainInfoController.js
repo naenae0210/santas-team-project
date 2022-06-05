@@ -11,8 +11,9 @@ const mysql = require("../models/index"),
 				number: mountainNum
 			}
 		}).then(findMountain => {
-			res.render('mountainInfo', {mountains: findMountain}, this.showAround(req, res, mountainNum));
 			next();
+			res.render('mountainInfo', {mountains: findMountain})
+			
 		}).catch(err => {
 			res.status(500).send({
 				message: err.message
@@ -21,11 +22,12 @@ const mysql = require("../models/index"),
 	}
 
 
-exports.showAround = async(req, res, number) => {
+exports.showAround = async(req, res) => {
+	const mountainNum = req.params.number;
 
 	Around.findAll({
 		where: {
-			mountainNum: number
+			mountainNum: mountainNum
 		}
 	}).then((aroundList) => {
 		res.render('mountainInfo', {arounds: aroundList});
