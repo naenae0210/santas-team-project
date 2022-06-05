@@ -81,16 +81,16 @@
                                             <% // if (b.mountainNum == m.number) { %>
                                                 <% // i = 1 %>
                                             <% // }}) %>
-                                        <% // if (i == 0) { %>
-                                            <form action="/bookmark/<%= // m.number %>/create" method="post">
-                                                <i class="fa-regular fa-heart" id="<%= // m.number %>" onclick="switchHeart(this.id)" type="submit"></i>
+                                        <% // if (i == 0) { %> -->
+                                            <form action="/bookmark/<%= m.number %>/create" method="post">
+                                                <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" onclick="switchHeart(this.id, 0)" />
                                             </form>
                                         <% // } %> 
-                                        <% // else if (i == 1) { */ %> -->
-                                            <form action="/bookmark/<%= m.number %>/delete" method="post">
-                                                <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" onclick="switchHeart(this.id)" />
-                                                <!-- <i class="fa-regular fa-heart" id="<%= m.number %>" onclick="switchHeart(this.id)" type="submit"></i>-->
-                                            </form>
+                                        <% // else if (i == 1) { */ %> <!---
+                                            <form action="/bookmark/<%= // m.number %>/delete" method="post">
+                                                <input type="submit" id="<%= // m.number %>" class="btn fa-input" value="&#xf004" onclick="switchHeart(this.id, 1)" />
+                                                <i class="fa-regular fa-heart" id="<%= // m.number %>" onclick="switchHeart(this.id)" type="submit"></i>
+                                            </form> -->
                                             <% // const heart = document.getElementById(m.number); %>
                                             <% // heart.classList.replace('fa-regular', 'fa-solid'); %>
                                             <% // heart.style.color = "red"; %>
@@ -109,15 +109,13 @@
 </body>
 
 <script>
-    function switchHeart(clickedId) {
+    function switchHeart(clickedId, status) {
         const defaultHeart = document.getElementById(clickedId);
         
-        if (defaultHeart.classList.contains('fa-regular')) {
-            defaultHeart.classList.replace('fa-regular', 'fa-solid');
+        if (status == 0) {
             defaultHeart.style.color = "red";
         }
         else {
-            defaultHeart.classList.replace('fa-solid', 'fa-regular');
             defaultHeart.style.color = "black";
         }
     }
