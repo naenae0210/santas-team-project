@@ -83,13 +83,12 @@
                                             <% // }}) %>
                                         <% // if (i == 0) { %> -->
                                             <form action="/bookmark/<%= m.number %>/create" method="post" onsubmit="switchHeart(this.id, 0)">
-                                                <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" onclick="switchHeart(this.id, 0)" />
+                                                <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
                                             </form>
                                         <% // } %> 
                                         <% // else if (i == 1) { */ %> <!---
-                                            <form action="/bookmark/<%= // m.number %>/delete" method="post">
-                                                <input type="submit" id="<%= // m.number %>" class="btn fa-input" value="&#xf004" onclick="switchHeart(this.id, 1)" />
-                                                <i class="fa-regular fa-heart" id="<%= // m.number %>" onclick="switchHeart(this.id)" type="submit"></i>
+                                            <form action="/bookmark/<%= // m.number %>/delete" method="post" onsubmit="switchHeart(this.id, 1)">
+                                                <input type="submit" id="<%= // m.number %>" class="btn fa-input" value="&#xf004" />
                                             </form> -->
                                             <% // const heart = document.getElementById(m.number); %>
                                             <% // heart.style.color = "red"; %>
