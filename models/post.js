@@ -1,48 +1,70 @@
-const User = require('./user'); 
+const User = require('./user');
 
 module.exports = (sequelize, Sequelize) => {
-	const post = sequelize.define('post', {
-		postNum: {
-			type: Sequelize.INTEGER,
-			allowNull: false,
-			autoIncrement: true,
-			primaryKey: true
-		},
-		title: {
-			type: Sequelize.STRING,
-			allowNull: false
-		},
-		detail : {
-			type: Sequelize.STRING,
-			allowNull: false
-		},
-		date: {
-			type: Sequelize.DATEONLY,
-			allowNull: false
-		},
-		id: {
-                        type: Sequelize.STRING,
-                        allowNull: false,
-                        unique: true,	
-                        references: {
-                                model: 'users',
-                                key: 'id',
-				deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        const User = require('./user')(sequelize, Sequelize);
+        class Post extends Sequelize.Model {
+                static async findByPkAndUpdate(id, params) {
+                        try {
+                                let post = await Post.findByPk(id);
+                                if (post) {
+                                        post = await Post.update(params, {
+                                                where: {
+                                                        id:id
+                                                }
+                                        });
+                                }
+                                return post;
+                        } catch (err) {
+                                console.log(err);
                         }
-		}
+                }
+                static async findByPkAndRemove(id) {
+                        try {
+                                let post = await Post.findByPk(id);
+                                if (post) {
+                                        post = await Post.destroy({
+                                                where: {
+                                                        id:id
+                                                }
+                                        });
+                                }
+                                return post;
+                        } catch (err) {
+                                console.log(err);
+                        }
+                }
+			};
 
-		/*,
-		id: {
-			type: Sequelize.STRING,
-			allowNull: false,
-      			unique: true,
-			references: {
-				model: User,
-				key: 'id',
-				deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE	}
-		}*/
-		});
-	
-	return post;
+			Post.init({
+					id: { //postNum
+							type: Sequelize.INTEGER,
+							allowNull: false,
+							autoIncrement: true,
+							primaryKey: true
+					},
+					title: {
+							type: Sequelize.STRING,
+							allowNull: false
+					},
+					detail: {
+							type: Sequelize.STRING,
+							allowNull: false
+					},
+					/*
+					userId: {
+							type: Sequelize.STRING,
+							allowNull: false,
+							unique: true,
+							references: {
+									model: 'users',
+									key: 'id',
+									deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+							}
+					}*/
+			}, {
+					sequelize,
+					modelName: 'post'
+				});
 
-}
+				return Post;
+		};
