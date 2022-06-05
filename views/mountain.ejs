@@ -82,7 +82,7 @@
                                                 <% // i = 1 %>
                                             <% // }}) %>
                                         <% // if (i == 0) { %> -->
-                                            <form action="" method="post">
+                                            <form action="/bookmark/<%= m.number %>/create" method="post" onsubmit="switchHeart(this.id, 0)">
                                                 <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" onclick="switchHeart(this.id, 0)" />
                                             </form>
                                         <% // } %> 
@@ -92,7 +92,6 @@
                                                 <i class="fa-regular fa-heart" id="<%= // m.number %>" onclick="switchHeart(this.id)" type="submit"></i>
                                             </form> -->
                                             <% // const heart = document.getElementById(m.number); %>
-                                            <% // heart.classList.replace('fa-regular', 'fa-solid'); %>
                                             <% // heart.style.color = "red"; %>
                                         <% // }; %>
                                     </div>
