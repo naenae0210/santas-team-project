@@ -1,11 +1,36 @@
 const mysql = require('../models/index'),
     Mountain = mysql.Mountain,
+    Bookmark = mysql.Bookmark,
     sequelize = require("sequelize"),
     Op = sequelize.Op;
 
 exports.allMountain = async (req, res) => {
     Mountain.findAll().then(mountainList => {
         res.render('mountain', {mountains : mountainList});
+        /*
+        const userId = req.session.id;
+    
+        Bookmark.findAll({
+            where: {
+                id : userId
+            },
+            include: [
+                {
+                    model: Mountain,
+                   as: 'mountain',
+                   required: true
+               }
+            ]
+        }).then((bookmarkList) => {
+            res.render('mountain', {
+                mountains: mountainList,
+                bookmarks: bookmarkList
+            })
+        }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
+        */
     }).catch(err => {
         res.status(500).send({
             message: err.message

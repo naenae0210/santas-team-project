@@ -74,6 +74,10 @@
     }
 }
 
+.heartSubmit {
+    font-family: FontAwesome;
+}
+
 body {
     margin: 0;
     font-family: 'Gothic A1', sans-serif;

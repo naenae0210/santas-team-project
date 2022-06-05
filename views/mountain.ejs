@@ -78,17 +78,18 @@
                                         <!-- user session 추가 후
                                         <% // let i = 0 %>
                                         <% // bookmarks.forEach(b => { %>
-                                            <% // if (b.number == m.number) { %>
+                                            <% // if (b.mountainNum == m.number) { %>
                                                 <% // i = 1 %>
                                             <% // }}) %>
                                         <% // if (i == 0) { %>
-                                            <form action="/bookmark/<%= // m.number %>/create" method="post"></form>
+                                            <form action="/bookmark/<%= // m.number %>/create" method="post">
                                                 <i class="fa-regular fa-heart" id="<%= // m.number %>" onclick="switchHeart(this.id)" type="submit"></i>
                                             </form>
                                         <% // } %> 
                                         <% // else if (i == 1) { */ %> -->
-                                            <form action="/bookmark/<%= m.number %>/delete" method="post"></form>
-                                                <i class="fa-regular fa-heart" id="<%= m.number %>" onclick="switchHeart(this.id)" type="submit"></i>
+                                            <form action="/bookmark/<%= m.number %>/delete" method="post">
+                                                <input type="submit" id="<%= m.number %>" class="heartSubmit" value="&#xf004" onclick="switchHeart(this.id)" />
+                                                <!-- <i class="fa-regular fa-heart" id="<%= m.number %>" onclick="switchHeart(this.id)" type="submit"></i>-->
                                             </form>
                                             <% // const heart = document.getElementById(m.number); %>
                                             <% // heart.classList.replace('fa-regular', 'fa-solid'); %>
