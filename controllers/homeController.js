@@ -31,7 +31,7 @@ exports.showMtInfo = (req, res) => {
 };
 
 exports.showSearchBar = (req, res) => {
-  res.render("search", {mountains: {}});
+  res.render("search", {mountains: []});
 };
 
 exports.showSignIn = (req, res) => {

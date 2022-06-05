@@ -5,12 +5,12 @@
   <!-- main -->
   <div class="container-fluid" id="search">
     <div class="d-grid gap-4">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="어디로 떠나실래요?" aria-label="search">
+      <form class="d-flex" action="/search" method="post">
+        <input class="form-control me-2" type="text" placeholder="어디로 떠나실래요?" aria-label="search" name="searchWord">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="지역으로 찾아보세요!" aria-label="search">
+      <form class="d-flex" action="/search/region" method="post">
+        <input class="form-control me-2" type="text" placeholder="지역으로 찾아보세요!" aria-label="search" name="searchWord">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

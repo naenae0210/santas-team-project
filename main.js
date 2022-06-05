@@ -56,6 +56,7 @@ app.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);
 app.get("/mountainInfo/:number/:imgNum", imgController.getImages);
 app.get("/search", homeController.showSearchBar);
 app.post("/search", searchController.searchMountain);
+app.post("/search/region" searchController.searchMountainByAdd);
 app.get("/signIn", homeController.showSignIn);
 app.get("/signUp", homeController.showSignUp);
 app.post("/signUp", homeController.postedSignUpForm);
