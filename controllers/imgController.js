@@ -33,7 +33,6 @@ exports.getImages = async (req, res) => {
     const imgNum = req.params.imgNum;
 
     request.get(address, (error, resp, body) => {
-        console.log(body);
         const json = JSON.parse(body);
 
         let image = json.response.body.items.item;
