@@ -1,5 +1,5 @@
 const db = require("../models/index"),
-    Post = db.Post,
+    Post = db.post,
     getPostParams = body => {
         return {
             id: body.id,
