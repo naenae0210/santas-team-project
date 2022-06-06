@@ -63,7 +63,9 @@ exports.allAround = async (req, res) => {
                 model: Mountain,
                 as: 'mountain',
                 required: true,
-                attributes: ['name']
+                where: {
+                    number: Around.mountainNum
+                }
             }
         ]
     }).then(aroundList => {
