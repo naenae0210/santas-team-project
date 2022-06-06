@@ -2,13 +2,13 @@ const request = require("request");
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
 
-const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?mntiListNo='
-    add2 = '&ServiceKey=',
+const add1 = 'https://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?serviceKey='
+    add2 = '&mntiListNo=',
     add3 = '&_type=json';
 
 exports.getImage = async (req, res) => {
 
-    const address = add1 + req.params.number + add2 + key + add3;
+    const address = add1 + key + add2 + req.params.number + add3;
 
     request.get(address, (error, resp, body) => {
         const json = JSON.parse(body);
