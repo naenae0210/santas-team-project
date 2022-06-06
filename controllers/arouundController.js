@@ -68,7 +68,9 @@ exports.allAround = async (req, res) => {
         ]
     }).then(aroundList => {
         res.render('around', {arounds: aroundList,
-        mountain: 'mountain'.name
+        mountain: {
+            name: 'mountain'.name
+        }
     });
     }).catch(err => {
         res.status(500).send({
