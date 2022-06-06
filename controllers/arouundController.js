@@ -18,12 +18,7 @@ exports.searchAroundByAdd = async(req, res) => {
             {
                 model: Mountain,
                 as: 'mountain',
-                required: true,
-                where: {
-                    name: {
-                        [Op.like]: "%" + searchWord + "%"
-                    }
-                }
+                required: true
             }
         ]
     }).then(aroundList => {
@@ -75,12 +70,7 @@ exports.allAround = async (req, res) => {
             {
                 model: Mountain,
                 as: 'mountain',
-                required: true,
-                where: {
-                    name: {
-                        [Op.like]: "%" + searchWord + "%"
-                    }
-                }
+                required: true
             }
         ]
     }).then(aroundList => {
