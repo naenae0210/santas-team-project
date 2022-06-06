@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <h2 class="center">Write your post</h2>
+  <div class="data-form">
+    <form class="form-post" action="/posts/create" method="post">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" value="" class="form-control" placeholder="Title">
+      </div>
+
+      <div class="form-group">
+        <label for="detail">Detail</label>
+        <textarea id="detail" name="detail" class="form-control" placeholder="Detail"></textarea>
+      </div>
+
+      <div>
+        <a class="btn btn-outline-success" href="/posts/index">Back</a>
+        <button type="submit" class="btn btn-outline-success">Create</button>
+      </div>
+
+    </form>
+  </div>
+</div>

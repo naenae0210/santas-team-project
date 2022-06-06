@@ -1,22 +1,16 @@
-const db = require("./models/index.js");
-
-process.setMaxListeners(15);
-
-db.sequelize.sync().then( () => {
-    console.log(" DB 연결 성공");
-}).catch(err => {
-    console.log("연결 실패");
-    console.log(err);
-})
-
-
 const express = require("express"),
   app = express(),
+  router = express.Router(),
+  path = require('path'),
   homeController = require("./controllers/homeController"),
   errorController = require("./controllers/errorController"),
   mountainController = require("./controllers/mountainController"),
   bookmarkController = require("./controllers/bookmarkController"),
   aroundController = require("./controllers/arouundController"),
+  userController = require("./controllers/userController"),
+  postController = require("./controllers/postController"),
+  db = require("./models/index"),
+  models = require("./models/index.js"),
   layouts = require("express-ejs-layouts"),
   mountainInfoController = require("./controllers/mountainInfoController"),
   imgController = require("./controllers/imgController"),
@@ -24,6 +18,9 @@ const express = require("express"),
   session = require('express-session');
 
 db.sequelize.sync();
+
+const User = db.user;
+const Post = db.post;
 
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 80);
@@ -63,6 +60,34 @@ app.post("/signUp", homeController.postedSignUpForm);
 app.post("/bookmark/:mountainNum/create", bookmarkController.create);
 app.post("/bookmark/:mountainNum/delete", bookmarkController.delete);
 app.post("/around", aroundController.searchAroundByName);
+
+
+router.get("/posts", postController.index, postController.indexView);
+router.get("/posts/new", postController.new);
+router.post("/posts/create", postController.create, postController.redirectView);
+router.get("/posts/:id/edit", postController.edit);
+router.post("/posts/:id/update", postController.update, postController.redirectView);
+router.get("/posts/:id", postController.show, postController.showView);
+router.post("/posts/:id/delete", postController.delete, postController.redirectView);
+
+router.get("/users", userController.index, userController.indexView);
+router.get("/users/new", userController.new);
+router.post("/users/create", userController.create, userController.redirectView);
+router.get("/users/:id/edit", userController.edit);
+router.post("/users/:id/update", userController.update, userController.redirectView);
+router.get("/users/:id", userController.show, userController.showView);
+router.post("/users/:id/delete", userController.delete, userController.redirectView);
+
+
+
+router.use(errorController.pageNotFoundError);
+router.use(errorController.internalServerError);
+
+app.use("/", router);
+
+
+
+
 
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
