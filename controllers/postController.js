@@ -11,6 +11,7 @@ const db = require("../models/index"),
 module.exports = {
     index: async (req, res, next) => {
         try {
+            console.log(Post);
             let posts = await Post.findAll();
             console.log(posts);
             res.locals.posts = posts;
