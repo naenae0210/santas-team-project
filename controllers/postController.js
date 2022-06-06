@@ -1,5 +1,5 @@
 const db = require("../models/index"),
-    Post = db.post,
+    Post = require("../models/post")
     getPostParams = body => {
         return {
             id: body.id,
@@ -11,7 +11,7 @@ const db = require("../models/index"),
 module.exports = {
     index: async (req, res, next) => {
         try {
-            console.log(Post.id);
+            console.log(Post);
             let posts = await Post.findAll();
             res.locals.posts = posts;
             next();

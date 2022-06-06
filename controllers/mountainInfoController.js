@@ -1,5 +1,3 @@
-const around = require("../models/around");
-
 const mysql = require("../models/index"),
     Mountain = mysql.Mountain,
     Around = mysql.Around;
@@ -8,7 +6,6 @@ const request = require("request");
 
 exports.showMountainInfo = async(req, res, next) => {
 	const mountainNum = req.params.number;
-	console.log(mountainNum);
 	
 	Mountain.findOne({
 		where: {
