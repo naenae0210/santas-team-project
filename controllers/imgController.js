@@ -8,11 +8,6 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoI
 
 exports.getImage = async (req, res) => {
 
-    fetch('/mountain/image/:number', {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
     const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (error, resp, body) => {
