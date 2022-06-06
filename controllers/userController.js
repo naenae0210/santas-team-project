@@ -1,5 +1,5 @@
 const db = require("../models/index"),
-    User = db.user,
+    User = db.User,
     getUserParams = body => {
         return {
             id: body.id,
