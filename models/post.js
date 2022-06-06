@@ -36,7 +36,7 @@ module.exports = (sequelize, Sequelize) => {
 			};
 
 			Post.init({
-					postNum: { //postNum
+					id: { //postNum
 							type: Sequelize.INTEGER,
 							allowNull: false,
 							autoIncrement: true,
