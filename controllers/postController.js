@@ -1,5 +1,5 @@
 const db = require("../models/index"),
-    Post = require("../models/post")
+    Post = require("../models/post")(sequelize, Sequelize),
     getPostParams = body => {
         return {
             id: body.id,
