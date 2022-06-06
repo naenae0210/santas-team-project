@@ -62,18 +62,21 @@ exports.allAround = async (req, res) => {
             {
                 model: Mountain,
                 as: 'mountain',
-                required: true,
-                where: {
-                    mountainNum: 'mountain'.number
-                }
+                required: true
             }
         ]
     }).then(aroundList => {
-        res.render('around', {arounds: aroundList,
-        mountain: {
-            name: 'mountain'.name
-        }
-    });
+        Mountain.findOne({
+            where: {
+                number: aroundList.mountainNum
+            }
+        }).then(mountain =>
+            res.render('around', {arounds: aroundList,
+                mName: {
+                    name: mountain.name
+                }
+            })
+        )
     }).catch(err => {
         res.status(500).send({
             message: err.message
