@@ -64,7 +64,7 @@ exports.allAround = async (req, res) => {
                 as: 'mountain',
                 required: true,
                 where: {
-                    number: Around.mountainNum
+                    mountainNum: 'mountain'.number
                 }
             }
         ]
