@@ -62,11 +62,14 @@ exports.allAround = async (req, res) => {
             {
                 model: Mountain,
                 as: 'mountain',
-                required: true
+                required: true,
+                attributes: ['name']
             }
         ]
     }).then(aroundList => {
-        res.render('around', {arounds: aroundList});
+        res.render('around', {arounds: aroundList,
+        mountain: 'mountain'.name
+    });
     }).catch(err => {
         res.status(500).send({
             message: err.message
