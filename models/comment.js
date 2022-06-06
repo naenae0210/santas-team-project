@@ -1,3 +1,4 @@
+/*
 const Post = require('./post');
 const User = require('./user');
 
@@ -37,4 +38,4 @@ module.exports = (sequelize, Sequelize) => {
     }
   });
   return comment;
-}
+}*/

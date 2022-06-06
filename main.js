@@ -19,9 +19,6 @@ const express = require("express"),
 
 db.sequelize.sync();
 
-const User = db.user;
-const Post = db.post;
-
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 80);
 app.use(layouts);
@@ -37,10 +34,12 @@ app.use(
 app.use(express.json());
 //app.use(session());
 
+
 app.get("/", homeController.showHome);
 app.get("/around", aroundController.allAround);
 app.get("/around/:region", aroundController.searchAroundByAdd);
 app.get("/bookmark", bookmarkController.allBookmark);
+
 app.get("/community", homeController.showCommunity);
 app.get("/delPost", homeController.showMyPost);
 app.get("/myProfile", homeController.showMyProfile);
@@ -60,7 +59,6 @@ app.post("/signUp", homeController.postedSignUpForm);
 app.post("/bookmark/:mountainNum/create", bookmarkController.create);
 app.post("/bookmark/:mountainNum/delete", bookmarkController.delete);
 app.post("/around", aroundController.searchAroundByName);
-
 
 router.get("/posts", postController.index, postController.indexView);
 router.get("/posts/new", postController.new);
