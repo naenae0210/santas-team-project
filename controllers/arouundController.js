@@ -22,11 +22,7 @@ exports.searchAroundByAdd = async(req, res) => {
             }
         ]
     }).then(aroundList => {
-        res.render('around', {arounds: aroundList,
-            mountain: {
-                name: Mountain.name
-            }
-        })
+        res.render('around', {arounds: aroundList})
     }).catch(err => {
         res.status(500).send({
             message: err.message
@@ -52,11 +48,7 @@ exports.searchAroundByName = async (req, res) => {
             }
         ]
     }).then((aroundList) => {
-        res.render('around', {arounds: aroundList,
-        mountain: {
-            name: Mountain.name
-        }
-        });
+        res.render('around', {arounds: aroundList});
     }).catch(err => {
         res.status(500).send({
             message: err.message
@@ -74,11 +66,7 @@ exports.allAround = async (req, res) => {
             }
         ]
     }).then(aroundList => {
-        res.render('around', {arounds: aroundList,
-            mountain: {
-                name: Mountain.name
-            }
-            });
+        res.render('around', {arounds: aroundList});
     }).catch(err => {
         res.status(500).send({
             message: err.message
