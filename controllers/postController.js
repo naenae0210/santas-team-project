@@ -13,7 +13,6 @@ module.exports = {
         try {
             console.log(Post);
             let posts = await Post.findAll();
-            console.log(posts);
             res.locals.posts = posts;
             next();
         } catch (error) {
