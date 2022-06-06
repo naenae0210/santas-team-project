@@ -66,6 +66,7 @@ exports.allAround = async (req, res) => {
             }
         ]
     }).then(aroundList => {
+        console.log(aroundList);
         res.render('around', {arounds: aroundList});
     }).catch(err => {
         res.status(500).send({
