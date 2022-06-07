@@ -86,7 +86,7 @@ exports.searchMountainByAdd = async (req, res) => {
 function switchWord(searchWord) {
     let sW = "";
     switch (searchWord) {
-        case "서울특별시":
+        case '서울특별시':
             sW = "서울";
             break;
         case "인천광역시":
