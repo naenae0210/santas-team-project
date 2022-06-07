@@ -44,8 +44,8 @@ exports.searchMountain = async (req, res) => {
 }
 
 exports.searchMountainByAdd = async (req, res) => {
-    const searchWord = switchWord(req.body.searchWord);
-    console.log(searchWord);
+    const searchword = switchWord(req.body.searchWord);
+    console.log(searchword);
     
     Mountain.findAll({
         where: {
