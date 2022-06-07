@@ -163,6 +163,9 @@ function switchWord(searchWord) {
         case "경상도":
             sW = "경상";
             break;
+        default:
+            sW = sW;
+            break;
     }
 
     return sW;
