@@ -120,7 +120,7 @@ function switchWord(searchWord) {
             sW = "경상";
             break;
         default:
-            ;
+            break;
     }
 
     return sW;
