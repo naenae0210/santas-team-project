@@ -9,11 +9,55 @@ exports.searchMountain = async (req, res) => {
     
     Mountain.findAll({
         where: {
+            [Op.or] : {
+            name: {
+                [Op.like]: "%" + searchWord + "%",
+            },
+            address: {
+                [Op.like]: "%" + swtichWord(searchWord) + "%",
+            }
+        }
+        }
+
+    }).then((mountainList) => {
+        res.render('search', {mountains: mountainList});
+        /*
+        const userId = req.session.id;
+    
+        Bookmark.findAll({
+            where: {
+                id : userId
+            },
+            include: [
+                {
+                    model: Mountain,
+                   as: 'mountain',
+                   required: true
+               }
+            ]
+        }).then((bookmarkList) => {
+            res.render('search', {
+                mountains: mountainList,
+                bookmarks: bookmarkList
+            })
+        }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
+        */
+    })
+}
+
+exports.searchMountainByName = async (req, res) => {
+    const searchWord = req.body.searchWord;
+    console.log(searchWord);
+    
+    Mountain.findAll({
+        where: {
             name: {
                 [Op.like]: "%" + searchWord + "%"
             }
         }
-
     }).then((mountainList) => {
         res.render('search', {mountains: mountainList});
         /*
