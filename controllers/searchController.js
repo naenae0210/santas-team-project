@@ -4,7 +4,7 @@ const mysql = require('../models/index'),
     Op = sequelize.Op;
 
 exports.searchMountain = async (req, res) => {
-    const searchWord = req.body.searchWord;
+    const searchWord = req.body.searchWord.substr(0, 2);
     console.log(searchWord);
     
     Mountain.findAll({
@@ -49,7 +49,7 @@ exports.searchMountain = async (req, res) => {
 }
 
 exports.searchMountainByName = async (req, res) => {
-    const searchWord = req.body.searchWord;
+    const searchWord = req.body.searchWord.substr(0, 2);
     console.log(searchWord);
     
     Mountain.findAll({
@@ -88,7 +88,7 @@ exports.searchMountainByName = async (req, res) => {
 }
 
 exports.searchMountainByAdd = async (req, res) => {
-    const searchWord = switchWord(req.body.searchWord);
+    const searchWord = req.body.searchWord.substr(0, 2);
     console.log(searchWord);
     
     Mountain.findAll({
