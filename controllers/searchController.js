@@ -14,7 +14,7 @@ exports.searchMountain = async (req, res) => {
                 [Op.like]: "%" + searchWord + "%",
             },
             address: {
-                [Op.like]: "%" + swtichWord(searchWord) + "%",
+                [Op.like]: "%" + switchWord(searchWord) + "%",
             }
         }
         }
