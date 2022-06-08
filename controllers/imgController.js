@@ -1,30 +1,33 @@
-const request = require("request");
+const request = require("request"),
+    xml2js = require('xml2js'),
+    parser = new xml2js.Parser();
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
 
 const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?mntiListNo='
     add2 = 'ServiceKey=',
-    add3 = '<response>&_type=json';
+    add3 = '<response>';
+
 
 exports.getImage = async (req, res) => {
 
     const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (error, resp, body) => {
-        const json = JSON.parse(body);
+        parser.parseString(body, function(err, image) {
+            let image = json.response.body.items.item;
 
-        let image = json.response.body.items.item;
-
-        if (!Array.isArray(image)) {
-            image = new Array(image);
-        }
-
-        if (image[0] != undefined) {
-            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0]['imgfilename']);
-        }
-        else {
-            res.redirect("../../images/noimage.png");
-        }
+            if (!Array.isArray(image)) {
+                image = new Array(image);
+            }
+    
+            if (image[0] != undefined) {
+                res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0]['imgfilename']);
+            }
+            else {
+                res.redirect("../../images/noimage.png");
+            }
+        })
     })
 };
 
