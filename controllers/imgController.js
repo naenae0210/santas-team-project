@@ -5,7 +5,7 @@ const key = 'JsYDcymAO%2BdqZ2KscehCHVe%2B83DUZExkHQdWA5S1eVJaBHVHjkaHVELfhZ3xX5p
 
 const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?mntiListNo='
     add2 = '&ServiceKey=',
-    add3 = '<response>';
+    add3 = '&numOfRows=10&pageNo=1&examdate=2017-12-27&_type=json';
 
 exports.getImage = async (req, res) => {
 
