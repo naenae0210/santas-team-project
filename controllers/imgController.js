@@ -12,7 +12,7 @@ exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (error, resp, body) => {
-        const xml = xmljs.xml2json(result, {compact: true, spaces: 4});
+        const xml = xmljs.xml2json(body, {compact: true, spaces: 4});
         const json = JSON.parse(xml);
 
         let image = json.response.body.items.item;
