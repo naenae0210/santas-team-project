@@ -1,5 +1,5 @@
 const request = require("request"),
-    converter = require("xml-js");
+    parseString = require('xml2js').parseString;
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
 
@@ -12,12 +12,9 @@ exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key;
 
     request.get(address, (error, resp, body) => {
-        console.log(body);
-        const xmlToJson = converter.xml2json(body);
-
-        const json = JSON.parse(xmlToJson);
-        
-        let image = json.response.body.items.item;
+        parseString(body, function (err, result) {
+            const image = result.reponse.body.items.item;
+        })
 
         if (!Array.isArray(image)) {
             image = new Array(image);
