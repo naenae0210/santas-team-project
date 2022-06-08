@@ -14,8 +14,8 @@ exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (error, resp, body) => {
-        parser.parseString(body, function(err, image) {
-            let image = json.response.body.items.item;
+        parser.parseString(body, function(err, result) {
+            let image = result.response.body.items.item;
 
             if (!Array.isArray(image)) {
                 image = new Array(image);
