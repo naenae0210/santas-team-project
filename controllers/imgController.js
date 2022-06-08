@@ -14,15 +14,10 @@ exports.getImage = async (req, res) => {
 
     request.get(address, async (error, resp, body) => {
         console.log(body);
-        let parsedData;
 
-        parseString(body, function (err, result) {
-            parsedData = result;
-        })
+        const js = JSON.parse(body);
 
-        console.log(parsedData);
-
-        let image = await parsedData.body.items.item[0];
+        let image = await js.response.body.items.item[0];
 
         if (!Array.isArray(image)) {
             image = new Array(image);
