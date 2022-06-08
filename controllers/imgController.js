@@ -13,7 +13,8 @@ exports.getImage = async (req, res) => {
 
     request.get(address, (error, resp, body) => {
         parseString(body, function (err, result) {
-            const image = result.reponse.body.items.item;
+            console.log(result);
+            const image = result.reponse.$.body.items.item;
         })
 
         if (!Array.isArray(image)) {
