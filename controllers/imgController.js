@@ -4,7 +4,7 @@ const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DG
 
 const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?mntiListNo='
     add2 = 'ServiceKey=',
-    add3 = '&_type=json<response>';
+    add3 = '&_type=json';
 
 exports.getImage = async (req, res) => {
 
@@ -13,7 +13,7 @@ exports.getImage = async (req, res) => {
     request.get(address, (error, resp, body) => {
         const json = JSON.parse(body);
 
-        let image = json.body.items.item;
+        let image = json.reponse.body.items.item;
 
         if (!Array.isArray(image)) {
             image = new Array(image);
