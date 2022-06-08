@@ -14,7 +14,7 @@ exports.getImage = async (req, res) => {
 
     request.get(address, (error, resp, body) => {
         parseString(body, function(err, result) {
-            const parsedData = refult;
+            const parsedData = result;
         })
         console.log(parsedData);
         const json = JSON.parse(parsedData);
