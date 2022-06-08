@@ -12,14 +12,14 @@ exports.getImage = async (req, res) => {
 
     const address = add1 + req.params.number + add2 + key + add3;
 
-    request.get(address, (error, resp, body) => {
+    request.get(address, async (error, resp, body) => {
         let parsedData;
-        
-        parseString(body, function(err, result) {
+
+        parseString(body, function (err, result) {
             parsedData = result;
         })
-        console.log(parsedData);
-        const json = JSON.parse(parsedData);
+        
+        const json = await JSON.parse(parsedData);
 
         let image = json.reponse.body.items.item;
 
