@@ -18,17 +18,17 @@ exports.getImage = async (req, res) => {
         parseString(body, function (err, result) {
             parsedData = result;
         })
-        
-        const json = await JSON.parse(parsedData);
 
-        let image = json.reponse.body.items.item;
+        console.log(parsedData);
+
+        let image = parsedData.response.body[0].items[0].item[0];
 
         if (!Array.isArray(image)) {
             image = new Array(image);
         }
 
-        if (image[0] != undefined) {
-            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0]['imgfilename']);
+        if (image != undefined) {
+            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image.imgfilename);
         }
         else {
             res.redirect("../../images/noimage.png");
