@@ -13,6 +13,7 @@ exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, async (error, resp, body) => {
+        console.log(body);
         let parsedData;
 
         parseString(body, function (err, result) {
