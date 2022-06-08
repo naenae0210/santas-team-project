@@ -17,13 +17,15 @@ exports.getImage = async (req, res) => {
 
         const js = JSON.parse(body);
 
-        let image = await js.response.body.items.item[0];
+        let image = await js.response.body.items.item;
+
+        console.log(image);
 
         if (!Array.isArray(image)) {
             image = new Array(image);
         }
 
-        if (image != undefined) {
+        if (image[0] != undefined) {
             res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image.imgfilename);
         }
         else {
