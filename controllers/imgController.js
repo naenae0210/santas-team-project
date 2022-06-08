@@ -1,21 +1,19 @@
-const request = require("request"),
-    parseString = require('xml2js').parseString;
+const request = require("request");
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
 
 const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?mntiListNo='
     add2 = 'ServiceKey=',
-    add3 = '<response>';
+    add3 = '&_type=json<response>';
 
 exports.getImage = async (req, res) => {
 
-    const address = add1 + req.params.number + add2 + key;
+    const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (error, resp, body) => {
-        parseString(body, function (err, result) {
-            console.log(result);
-            const image = result.reponse.$.body.items.item;
-        })
+        const json = JSON.parse(body);
+
+        let image = json.body.items.item;
 
         if (!Array.isArray(image)) {
             image = new Array(image);
