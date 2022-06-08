@@ -12,6 +12,7 @@ exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (error, resp, body) => {
+        console.log(body);
         const xmlToJson = converter.xml2json(body);
 
         const json = JSON.parse(xmlToJson);
