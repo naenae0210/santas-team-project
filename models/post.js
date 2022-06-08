@@ -1,7 +1,7 @@
-const User = require('./user');
+/*const User = require('./user');*/
 
 module.exports = (sequelize, Sequelize) => {
-        const User = require('./user')(sequelize, Sequelize);
+       /* const User = require('./user')(sequelize, Sequelize);*/
         class Post extends Sequelize.Model {
                 static async findByPkAndUpdate(id, params) {
                         try {
@@ -35,7 +35,8 @@ module.exports = (sequelize, Sequelize) => {
                 }
 			};
 
-			Post.init({
+
+    				Post.init( {
 					id: { //postNum
 							type: Sequelize.INTEGER,
 							allowNull: false,

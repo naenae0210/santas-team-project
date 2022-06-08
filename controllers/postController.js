@@ -11,7 +11,6 @@ const db = require("../models/index"),
 module.exports = {
     index: async (req, res, next) => {
         try {
-            console.log(Post);
             let posts = await Post.findAll();
             res.locals.posts = posts;
             next();
@@ -32,6 +31,7 @@ module.exports = {
     create: async (req, res, next) => {
         let postParams = getPostParams(req.body);
         try {
+	    let postParams = getPostParams(req.body);
             let post = await Post.create(postParams);
             res.locals.redirect = "/posts";
             res.locals.post = post;
