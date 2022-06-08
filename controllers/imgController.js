@@ -21,7 +21,7 @@ exports.getImage = async (req, res) => {
 
         console.log(parsedData);
 
-        let image = parsedData.response.body[0].items[0].item[0];
+        let image = await parsedData.body[0].items[0].item[0];
 
         if (!Array.isArray(image)) {
             image = new Array(image);
