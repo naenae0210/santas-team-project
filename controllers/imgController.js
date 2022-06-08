@@ -1,5 +1,5 @@
 const request = require("request"),
-    xmljs = require("xml-js");
+    xmljs = require("xml2js");
 
 const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
 
@@ -9,7 +9,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoI
 
 exports.getImage = async (req, res) => {
 
-    const address = add1 + req.params.number + add2 + key;
+    const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, (error, resp, body) => {
         const xml = xmljs.xml2json(body);
