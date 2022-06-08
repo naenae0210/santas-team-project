@@ -5,12 +5,29 @@ const key = 'JsYDcymAO%2BdqZ2KscehCHVe%2B83DUZExkHQdWA5S1eVJaBHVHjkaHVELfhZ3xX5p
 
 const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?mntiListNo='
     add2 = '&ServiceKey=',
-    add3 = '&numOfRows=10&pageNo=1&examdate=2017-12-27&_type=json';
+    add3 = '<response>&_type=json';
 
 exports.getImage = async (req, res) => {
 
     const address = add1 + req.params.number + add2 + key + add3;
 
+    fetch(address).then(reponse => {
+        const json = JSON.parse(reponse);
+
+        let image = json.reponse.body.items.item;
+
+        if (!Array.isArray(image)) {
+            image = new Array(image);
+        }
+
+        if (image[0] != undefined) {
+            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0]['imgfilename']);
+        }
+        else {
+            res.redirect("../../images/noimage.png");
+        }
+    })
+    /*
     request.get(address, (error, resp, body) => {
         console.log(body);
         const json = JSON.parse(body);
@@ -28,6 +45,7 @@ exports.getImage = async (req, res) => {
             res.redirect("../../images/noimage.png");
         }
     })
+    */
 };
 
 exports.getImages = async (req, res) => {
