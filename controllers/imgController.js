@@ -26,7 +26,7 @@ exports.getImage = async (req, res) => {
         }
 
         if (image[0] != undefined) {
-            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image.imgfilename);
+            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
         }
         else {
             res.redirect("../../images/noimage.png");
