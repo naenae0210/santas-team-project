@@ -13,13 +13,10 @@ exports.getImage = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
 
     request.get(address, async (error, resp, body) => {
-        console.log(body);
 
         const js = JSON.parse(body);
 
         let image = await js.response.body.items.item;
-
-        console.log(image);
 
         if (!Array.isArray(image)) {
             image = new Array(image);
@@ -41,14 +38,14 @@ exports.getImages = async (req, res) => {
     request.get(address, (error, resp, body) => {
         const json = JSON.parse(body);
 
-        let image = json.response.body.items.item;
+        let image = await json.response.body.items.item;
 
         if (!Array.isArray(image)) {
             image = new Array(image);
         }
 
         if (image[0] != undefined && image[imgNum] != null) {
-            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[imgNum]['imgfilename']);
+            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[imgNum].imgfilename);
         }
         else {
             res.redirect("../../images/noimage.png");
