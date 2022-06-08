@@ -13,7 +13,7 @@ exports.getImage = async (req, res) => {
     request.get(address, (error, resp, body) => {
         const json = JSON.parse(body);
 
-        let image = json.reponse.body.items.item;
+        let image = json.body.items.item;
 
         if (!Array.isArray(image)) {
             image = new Array(image);
