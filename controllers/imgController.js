@@ -1,4 +1,4 @@
-const request = require("request"),
+const request = require("request");
 
 
 const key = 'JsYDcymAO%2BdqZ2KscehCHVe%2B83DUZExkHQdWA5S1eVJaBHVHjkaHVELfhZ3xX5pGknpwTb6wRVIg4fbsQOV%2Fnw%3D%3D';
