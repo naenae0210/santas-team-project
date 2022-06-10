@@ -26,13 +26,13 @@ exports.getImage = async (req, res) => {
         }
 
         if (image[0] != undefined) {
-            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
+            return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
         }
         else {
-            res.redirect("../../images/noimage.png");
+            return res.redirect("../../images/noimage.png");
         }
     }).catch(err => {
-        res.status(500).send({
+        return res.status(500).send({
             message: err.message
         })
     })
