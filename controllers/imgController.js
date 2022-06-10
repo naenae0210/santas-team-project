@@ -14,7 +14,7 @@ exports.getImage = async (req, res) => {
 
     request.get(address, (error, resp, body) => {
 
-        if (body == undefined) {
+        if (!isJson(body)) {
             return res.redirect("../../images/noimage.png");
         }
         const js = JSON.parse(body);
@@ -62,4 +62,13 @@ exports.getImages = async (req, res) => {
             message: err.message
         })
     })
+}
+
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
