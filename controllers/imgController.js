@@ -32,7 +32,7 @@ exports.getImage = async (req, res) => {
             return res.redirect("../../images/noimage.png");
         }
     }).catch(err => {
-        return res.status(500).send({
+        res.status(500).send({
             message: err.message
         })
     })
