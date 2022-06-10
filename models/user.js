@@ -110,6 +110,12 @@ module.exports = (sequelize, Sequelize) => {
     saltField: 'mysalt'
   });
 
+  User.associate = function(models) {
+    User.hasMany(models.Bookmark, {
+      foreignKey: "id",
+      sourceKey: "id"
+    });
+  }
 
   return User;
 };
