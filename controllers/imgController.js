@@ -14,7 +14,8 @@ exports.getImage = async (req, res) => {
 
     request.get(address, (error, resp, body) => {
 
-        console.log(body);
+        if (body == null)
+            res.redirect("../../images/noimage.png");
         const js = JSON.parse(body);
 
         let image = await js.response.body.items.item;
