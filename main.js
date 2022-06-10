@@ -71,9 +71,9 @@ router.get("/bookmark", bookmarkController.allBookmark);
 router.get("/community", homeController.showCommunity);
 router.get("/delPost", homeController.showMyPost);
 router.get("/myProfile", homeController.showMyProfile);
-router.get("/mountain", mountainController.allMountain);
-router.get("/mountain/:region", mountainController.searchMountainByAdd);
-router.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
+router.get("/mountain", mountainController.allMountain, bookmarkController.allBookmark);
+router.get("/mountain/:region", mountainController.searchMountainByAdd, bookmarkController.allBookmark);
+router.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty, bookmarkController.allBookmark);
 router.get("/mountain/image/:number", imgController.getImage);
 router.get("/mountainInfo", mountainInfoController.showMountainInfo); // test용
 router.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);

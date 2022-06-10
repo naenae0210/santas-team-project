@@ -6,7 +6,6 @@ const mysql = require('../models/index'),
 
 exports.searchAroundByAdd = async(req, res) => {
     const searchWord = switchToKorean(req.params.region);
-    console.log(searchWord);
     
     Around.findAll({
         where: {
@@ -32,7 +31,6 @@ exports.searchAroundByAdd = async(req, res) => {
 
 exports.searchAroundByName = async (req, res) => {
     const searchWord = req.body.searchWord;
-    console.log(searchWord);
     
     Around.findAll({
         include: [
@@ -66,7 +64,6 @@ exports.allAround = async (req, res) => {
             }
         ]
     }).then(aroundList => {
-        console.log(aroundList);
         res.render('around', {arounds: aroundList});
     }).catch(err => {
         res.status(500).send({

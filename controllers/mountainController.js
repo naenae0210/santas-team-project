@@ -1,36 +1,15 @@
+const { nextTick } = require('process');
+
 const mysql = require('../models/index'),
     Mountain = mysql.Mountain,
     Bookmark = mysql.Bookmark,
     sequelize = require("sequelize"),
     Op = sequelize.Op;
 
-exports.allMountain = async (req, res) => {
+exports.allMountain = async (req, res, next) => {
     Mountain.findAll().then(mountainList => {
-        res.render('mountain', {mountains : mountainList});
-        /*
-        const userId = req.session.id;
-    
-        Bookmark.findAll({
-            where: {
-                id : userId
-            },
-            include: [
-                {
-                    model: Mountain,
-                   as: 'mountain',
-                   required: true
-               }
-            ]
-        }).then((bookmarkList) => {
-            res.render('mountain', {
-                mountains: mountainList,
-                bookmarks: bookmarkList
-            })
-        }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        })
-        */
+        res.locals.mountains = mountainList;
+        next();
     }).catch(err => {
         res.status(500).send({
             message: err.message
@@ -47,9 +26,8 @@ exports.getMountainParams = body => {
     }
 }
 
-exports.searchMountainByAdd = async(req, res) => {
+exports.searchMountainByAdd = async(req, res, next) => {
     const searchWord = switchToKorean(req.params.region);
-    console.log(searchWord);
 
     Mountain.findAll({
         where: {
@@ -58,7 +36,8 @@ exports.searchMountainByAdd = async(req, res) => {
             }
         }
     }).then(mountainList => {
-        res.render('mountain', {mountains : mountainList});
+        res.locals.mountains = mountainList;
+        next();
     }).catch(err => {
         res.status(500).send({
             message: err.message
@@ -66,16 +45,16 @@ exports.searchMountainByAdd = async(req, res) => {
     })
 }
 
-exports.searchMountainByDifficulty = async (req, res) => {
+exports.searchMountainByDifficulty = async (req, res, next) => {
     const searchWord = req.params.difficulty;
-    console.log(searchWord);
 
     Mountain.findAll({
         where: {
             difficulty: searchWord
         }
     }).then(mountainList => {
-        res.render('mountain', {mountains : mountainList});
+        res.locals.mountains = mountainList;
+        next();
     }).catch(err => {
         res.status(500).send({
             message: err.message

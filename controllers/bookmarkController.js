@@ -29,26 +29,12 @@ exports.delete = async (req, res) => {
         }
     }).then(result => {
         res.redirect("mountain");
-    }).catch(error => {
-        console.log(`Error deleting bookmark: ${error.message}`);
-    });
-};
-
-exports.getBookMark = async (req, res) => {
-    const userId = req.session.id;
-
-    Bookmark.count({
-        where : {
-            id: userId,
-            mountainNum: req.body.mountainNum
-        }
-    }
-    ).then(c => {
-        if (c == 1) {
-
-        }
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
     })
-}
+};
 
 exports.allBookmark = async (req, res) => {    
     const userId = req.session.id;
@@ -65,13 +51,12 @@ exports.allBookmark = async (req, res) => {
             }
         ]
     }).then((bookmarkList) => {
-        const bookmarks = {
-            number: bookmarkList.mountainNum,
-            name: Mountain.name,
-            address: Mountain.address
-        }
-        res.render('bookmark', { bookmarks
+        res.render('bookmark', { bookmarks : bookmarkList
         });
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
     })
 }
 
@@ -84,5 +69,9 @@ exports.markBookmark = async (req, res) => {
         }
     }).then((bookmarkList) => {
         req.render("mountain", {bookmarks: bookmarkList})
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
     })
 }
