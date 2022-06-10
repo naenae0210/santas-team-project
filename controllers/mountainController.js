@@ -1,4 +1,3 @@
-const { nextTick } = require('process');
 
 const mysql = require('../models/index'),
     Mountain = mysql.Mountain,
@@ -46,7 +45,19 @@ exports.searchMountainByAdd = async(req, res, next) => {
 }
 
 exports.searchMountainByDifficulty = async (req, res, next) => {
-    const searchWord = req.params.difficulty;
+    let searchWord = req.params.difficulty;
+
+    switch (searchWord) {
+        case "high":
+            searchWord = "상";
+            break;
+        case "mid":
+            searchWord = "중";
+            break;
+        case "low":
+            searchWord = "하";
+            break;
+    }
 
     Mountain.findAll({
         where: {
