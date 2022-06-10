@@ -80,7 +80,7 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true
     },
     password: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(1024),
       allowNull: false
     },
     name: {
@@ -93,9 +93,6 @@ module.exports = (sequelize, Sequelize) => {
     nickname: {
       type: Sequelize.STRING,
     },
-    myhash: {
-      type: Sequelize.STRING(1024)
-    },
     mysalt: {
       type: Sequelize.STRING
     }
@@ -106,7 +103,7 @@ module.exports = (sequelize, Sequelize) => {
  
   passportLocalSequelize.attachToUser(User, {
     usernameField: 'id',
-    hashField: 'myhash',
+    hashField: 'password',
     saltField: 'mysalt'
   });
 

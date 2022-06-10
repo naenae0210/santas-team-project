@@ -2,7 +2,7 @@
 
     <h3 class="contentBoxTop"> 회원정보</h3>
 
-    <form class="user-form" action="/users" method="post">
+    <form class="user-form" action="<%= `/user/${user.id}` %>" method="post">
         <fieldset disabled>
             <div class="form-group row">
                 <label for="name" class="col-sm-3 col-form-label">ID</label>
@@ -31,9 +31,9 @@
         </fieldset>
     </form>
     
-    <div class="center">
-      <a class="button" herf="<%= `/user/${user.id}/edit` %>">Edit Profile</a>
+    <div class>
+        <a class="btn btn-outline-success" herf="<%= `/user/${user.id}/edit` %>">Edit Profile</a>
     </div>
     <div>
-        <a class="btn btn-outline-success" href="/users">Back</a>
+        <a class="btn btn-outline-success" href="/">Back</a>
     </div>

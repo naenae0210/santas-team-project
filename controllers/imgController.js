@@ -63,6 +63,7 @@ exports.getImages = async (req, res) => {
         })
     })
 }
+<<<<<<< Updated upstream
 
 function isJson(str) {
     try {
@@ -72,3 +73,5 @@ function isJson(str) {
     }
     return true;
 }
+=======
+>>>>>>> Stashed changes
