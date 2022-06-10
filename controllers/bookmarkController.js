@@ -37,8 +37,9 @@ exports.delete = async (req, res) => {
 };
 
 exports.allBookmark = async (req, res) => {
+    let userId;
     if (res.locals.user) {
-        const userId = res.locals.user.id;
+        userId = res.locals.user.id;
     }
     else {
         res.render('mountain');
