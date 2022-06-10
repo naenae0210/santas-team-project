@@ -39,11 +39,12 @@ exports.getImages = async (req, res) => {
     const imgNum = req.params.imgNum;
 
     request.get(address, (error, resp, body) => {
-        const json = JSON.parse(body);
 
         if (!isJson(body)) {
             return res.redirect("../../images/cantload.png");
         }
+
+        const json = JSON.parse(body);
         let image = json.response.body.items.item;
 
         if (!Array.isArray(image)) {
