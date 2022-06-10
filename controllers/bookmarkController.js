@@ -37,7 +37,7 @@ exports.delete = async (req, res) => {
 };
 
 exports.allBookmark = async (req, res) => {
-    if (res.locals.user.id) {
+    if (res.locals.user) {
         const userId = res.locals.user.id;
     }
     else {
