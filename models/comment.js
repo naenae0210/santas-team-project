@@ -1,4 +1,3 @@
-/*
 const Post = require('./post');
 const User = require('./user');
 
@@ -10,32 +9,26 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
       primaryKey: true
     },
-    postNum: {
+    postId: {
       type: Sequelize.INTEGER,
+      allowNull: false,
       references: {
-	      model: 'posts',
-	      key: 'postNum',
-	      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+        model: 'posts',
+        key: 'id',
+        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
       }
     },
-   commentDetail : {
+    commentDetail: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    commentDate: {
-      type: Sequelize.DATEONLY,
-      allowNull: false
-    },
-    id: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
-      references: {
-          model: 'users',
-          key: 'id',
-          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-     }
-    }
+
   });
+
+  comment.associate = function (models) {
+    comment.belongsTo(models.post, {
+      foreignKey: "postId"
+    })
+  };
   return comment;
-}*/
+}
