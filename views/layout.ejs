@@ -42,18 +42,24 @@
                         </li>
                     </ul>
                     <% if (loggedIn) { %><!-- 로그인 시 나타남 -->
-                    <a class="nav-link dropdown-toggle link-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= currentUser.nickame%> 님</a>
+                        <li class="nav-item">
+                            <%= currentUser.name %> 님
+                        </li>
                     <ul class="login nav">
-                      <li class="nav-item dropdown">
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
-		                        <li class="nav-item"><a href="<%=`/bookmark/${currentUser.getDataValue('id')}`%>" class="nav-link link-light px-2">북마크</a></li>
-                                 <li class="nav-item"><a href="<%=`/post/${currentUser.getDataValue('id')}`%>" class="nav-link link-light px-2">내 글</a></li>
-		                            <li class="nav-item"><a href="<%=`/users/${currentUser.getDataValue('id')}`%>" class="nav-link link-light px-2">내 정보</a></li>
-                                    <li class="nav-item"><a href="/users/logout" class="nav-link link-light px-2">로그아웃</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle link-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                마이 페이지
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
+		                        <a href="<%=`/bookmark/${currentUser.getDataValue('id')}`%>" class="dropdown-item">북마크</a>
+                                <a href="<%=`/post/${currentUser.getDataValue('id')}`%>" class="dropdown-item">내 글</a>
+		                        <a href="<%=`/users/${currentUser.getDataValue('id')}`%>" class="dropdown-item">정보 수정</a>
+                                <a href="/users/logout" class="dropdown-item">로그아웃</a>
                             </div>
-                  </ul>
-                  <%} else {%> <!-- 로그인 안 했을 때 -->
-                  <li class="nav-item"><a href="/users/login" class="nav-link link-light px-2">로그인</a></li>
+                        </li>
+                    </ul>
+                    <%} else {%> <!-- 로그인 안 했을 때 -->
+                    <li class="nav-item"><a href="/users/login" class="nav-link link-light px-2">로그인</a></li>
                         <li class="nav-item"><a href="/users/new" class="nav-link link-light px-2">회원가입</a></li>
                         <% } %>
                 </div>
