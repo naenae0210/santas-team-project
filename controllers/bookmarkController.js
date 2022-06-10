@@ -67,7 +67,7 @@ exports.isBookmark = async (req, res) => {
         userId = req.user.id;
     }
     else {
-        return res.render('mountain', { bookmarks: []});
+        // return res.render('mountain', { bookmarks: []});
     }
 
     Bookmark.findAll({
