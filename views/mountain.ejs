@@ -77,12 +77,12 @@
                                                 <% if (b.mountainNum == m.number) { %>
                                                     <% i = 1; %>
                                                 <% }})}; %>
-                                        <% if (i == 0) { %> -->
+                                        <% if (i == 0) { %>
                                             <form action="/bookmark/<%= m.number %>/<%= user.id %>/create" method="post" onsubmit="switchHeart(this.id, 0)">
                                                 <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
                                             </form>
                                         <% } %> 
-                                        <% else if (i == 1) { */ %> 
+                                        <% else if (i == 1) { %> 
                                             <form action="/bookmark/<%= m.number %>/<%= user.id %>/delete" method="post" onsubmit="switchHeart(this.id, 1)">
                                                 <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
                                             </form>
