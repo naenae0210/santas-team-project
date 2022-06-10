@@ -28,6 +28,10 @@ exports.getImage = async (req, res) => {
         else {
             res.redirect("../../images/noimage.png");
         }
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
     })
 };
 
@@ -50,5 +54,9 @@ exports.getImages = async (req, res) => {
         else {
             res.redirect("../../images/noimage.png");
         }
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
     })
 }
