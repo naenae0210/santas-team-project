@@ -51,7 +51,7 @@
                             <a class="nav-link dropdown-toggle link-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 마이 페이지
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		                        <a href="<%=`/bookmark/${currentUser.getDataValue('id')}`%>" class="dropdown-item">북마크</a>
                                 <a href="<%=`/post/${currentUser.getDataValue('id')}`%>" class="dropdown-item">내 글</a>
 		                        <a href="<%=`/users/${currentUser.getDataValue('id')}`%>" class="dropdown-item">정보 수정</a>
