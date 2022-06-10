@@ -66,9 +66,11 @@ module.exports = (sequelize, Sequelize) => {
 		modelName: 'post'
 	});
 
-	Post.associate = function (models) {
-		Post.hasMany(models.comment);
-	};
+/*	Post.associate = function (models) {
+		Post.hasMany(models.comment, {
+		foreignKey: "postId"
+		})
+	};*/
 
 	return Post;
 };

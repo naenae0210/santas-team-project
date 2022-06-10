@@ -12,6 +12,7 @@ module.exports = (sequelize, Sequelize) => {
     postId: {
       type: Sequelize.INTEGER,
       allowNull: false,
+      primaryKey: true,
       references: {
         model: 'posts',
         key: 'id',
@@ -24,11 +25,11 @@ module.exports = (sequelize, Sequelize) => {
     },
 
   });
-
+/*
   comment.associate = function (models) {
     comment.belongsTo(models.post, {
       foreignKey: "postId"
     })
-  };
+  };*/
   return comment;
 }
