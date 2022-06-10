@@ -71,11 +71,12 @@
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/mountainInfo/<%= m.number %>">View</a></button>
                                         </div>
-                                        <% let i = 0 %>
-                                        <% bookmarks.forEach(b => { %>
-                                            <% if (b.mountainNum == m.number) { %>
-                                                <% i = 1 %>
-                                            <% }}) %>
+                                        <% let i = 0; %>
+                                        <% if (bookmarks.length != 0) { %>
+                                            <% bookmarks.forEach(b => { %>
+                                                <% if (b.mountainNum == m.number) { %>
+                                                    <% i = 1; %>
+                                                <% }})}; %>
                                         <% if (i == 0) { %> -->
                                             <form action="/bookmark/<%= m.number %>/<%= user.id %>/create" method="post" onsubmit="switchHeart(this.id, 0)">
                                                 <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
