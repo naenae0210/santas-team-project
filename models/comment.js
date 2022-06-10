@@ -25,11 +25,11 @@ module.exports = (sequelize, Sequelize) => {
     },
 
   });
-/*
+
   comment.associate = function (models) {
     comment.belongsTo(models.post, {
       foreignKey: "postId"
     })
-  };*/
+  };
   return comment;
 }
