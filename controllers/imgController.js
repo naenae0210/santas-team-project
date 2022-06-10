@@ -19,7 +19,7 @@ exports.getImage = async (req, res) => {
         }
         const js = JSON.parse(body);
 
-        let image = await js.response.body.items.item;
+        let image = js.response.body.items.item;
 
         if (!Array.isArray(image)) {
             image = new Array(image);
@@ -45,7 +45,7 @@ exports.getImages = async (req, res) => {
     request.get(address, (error, resp, body) => {
         const json = JSON.parse(body);
 
-        let image = await json.response.body.items.item;
+        let image = json.response.body.items.item;
 
         if (!Array.isArray(image)) {
             image = new Array(image);
