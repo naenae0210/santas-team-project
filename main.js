@@ -66,7 +66,7 @@ router.use((req, res, next) => {
 router.get("/", homeController.showHome);
 router.get("/around", aroundController.allAround);
 router.get("/around/:region", aroundController.searchAroundByAdd);
-router.get("/bookmark", bookmarkController.allBookmark);
+router.get("/bookmark/:id", bookmarkController.allBookmark);
 
 router.get("/community", homeController.showCommunity);
 router.get("/delPost", homeController.showMyPost);
@@ -85,8 +85,8 @@ router.post("/search/region", searchController.searchMountainByAdd);
 //app.get("/signIn", homeController.showSignIn);
 //app.get("/signUp", homeController.showSignUp);
 //app.post("/signUp", homeController.postedSignUpForm);
-router.post("/bookmark/:mountainNum/create", bookmarkController.create);
-router.post("/bookmark/:mountainNum/delete", bookmarkController.delete);
+router.post("/bookmark/:mountainNum/:id/create", bookmarkController.create);
+router.post("/bookmark/:mountainNum/:id/delete", bookmarkController.delete);
 router.post("/around", aroundController.searchAroundByName);
 
 router.get("/posts", postController.index, postController.indexView);

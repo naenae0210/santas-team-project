@@ -62,23 +62,21 @@
                     <% bookmarks.forEach(b => { %>
                         <div class="col">
                             <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <img src="./img/seongmigarden.jfif" alt="">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#cae3cc" />
-                                </svg>
+                                <img src="/mountain/image/<%= b.mountain.number %>" alt="" style="width: 100%; height: 300px; object-fit: cover;" />
 
                                 <div class="card-body">
                                     <p class="card-text">
-                                        <%= b.name %>
+                                        <%= b.mountain.name %>
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <!--<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/mountainInfo/<%= b.mountain.number %>">View</a></button>
                                         </div>
-                                        <i class="fa-regular fa-heart" id="seongmi" onclick="switchHeart(this.id)"></i>
-                                        <!--하트 누르면 db에 저장되도록 해야 할듯?-->
+                                        <form action="/bookmark/<%= b.mountain.number %>/<%= user.id %>/delete" method="post" onsubmit="switchHeart(this.id)">
+                                            <input type="submit" id="<%= b.mountain.number %>" class="btn fa-input" value="&#xf004" />
+                                        </form>
+                                        <% const heart = document.getElementById(b.mountain.number); %>
+                                        <% heart.style.color = "red"; %>
                                      </div>
                                 </div>
                             </div>
@@ -97,13 +95,6 @@
     function switchHeart(clickedId) {
         var defaultHeart = document.getElementById(clickedId);
         
-        if (defaultHeart.classList.contains('fa-regular')) {
-            defaultHeart.classList.replace('fa-regular', 'fa-solid');
-            defaultHeart.style.color = "red";
-        }
-        else {
-            defaultHeart.classList.replace('fa-solid', 'fa-regular');
-            defaultHeart.style.color = "black";
-        }
+        defaultHeart.style.color = "black";
     }
 </script>

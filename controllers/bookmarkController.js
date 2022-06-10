@@ -37,12 +37,37 @@ exports.delete = async (req, res) => {
 };
 
 exports.allBookmark = async (req, res) => {
+    let userId = req.parmas.id;
+
+
+    Bookmark.findAll({
+        where: {
+            id : userId
+        },
+        include: [
+            {
+                model: Mountain,
+                as: 'mountain',
+                required: true
+            }
+        ]
+    }).then((bookmarkList) => {
+        res.render('bookmark', { bookmarks : bookmarkList
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        })
+    })
+}
+
+exports.isBookmark = async (req, res) => {
     let userId;
-    if (res.locals.user) {
-        userId = res.locals.user.id;
+    if (req.body.id) {
+        userId = req.user.id;
     }
     else {
-        res.render('mountain');
+        res.render('mountain', { bookmarks: []});
     }
 
     Bookmark.findAll({
@@ -57,24 +82,8 @@ exports.allBookmark = async (req, res) => {
             }
         ]
     }).then((bookmarkList) => {
-        res.render('mountain', { bookmarks : bookmarkList
+        res.render('bookmark', { bookmarks : bookmarkList
         });
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        })
-    })
-}
-
-exports.markBookmark = async (req, res) => {
-    const userId = res.locals.user.id;
-    
-    Bookmark.findAll({
-        where: {
-            id : userId
-        }
-    }).then((bookmarkList) => {
-        req.render("mountain", {bookmarks: bookmarkList})
     }).catch(err => {
         res.status(500).send({
             message: err.message
