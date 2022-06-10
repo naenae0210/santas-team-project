@@ -61,7 +61,7 @@ exports.allBookmark = async (req, res) => {
 }
 
 exports.markBookmark = async (req, res) => {
-    const userId = req.session.id;
+    const userId = res.locals.users.id;
     
     Bookmark.findAll({
         where: {
