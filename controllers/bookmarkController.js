@@ -63,7 +63,7 @@ exports.allBookmark = async (req, res) => {
 
 exports.isBookmark = async (req, res) => {
     let userId;
-    if (req.user) {
+    if (req.user.id != null) {
         userId = req.user.id;
 
         Bookmark.findAll({
@@ -78,10 +78,10 @@ exports.isBookmark = async (req, res) => {
                 }
             ]
         }).then((bookmarkList) => {
-            res.render('bookmark', { bookmarks : bookmarkList
+            return res.render('bookmark', { bookmarks : bookmarkList
             });
         }).catch(err => {
-            res.status(500).send({
+            return res.status(500).send({
                 message: err.message
             })
         })
