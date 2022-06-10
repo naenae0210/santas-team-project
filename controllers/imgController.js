@@ -15,7 +15,7 @@ exports.getImage = async (req, res) => {
     request.get(address, (error, resp, body) => {
 
         if (!isJson(body)) {
-            return res.redirect("../../images/noimage.png");
+            return res.redirect("../../images/cantload.png");
         }
         const js = JSON.parse(body);
 
@@ -31,10 +31,6 @@ exports.getImage = async (req, res) => {
         else {
             return res.redirect("../../images/noimage.png");
         }
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        })
     })
 };
 
@@ -45,6 +41,9 @@ exports.getImages = async (req, res) => {
     request.get(address, (error, resp, body) => {
         const json = JSON.parse(body);
 
+        if (!isJson(body)) {
+            return res.redirect("../../images/cantload.png");
+        }
         let image = json.response.body.items.item;
 
         if (!Array.isArray(image)) {
@@ -57,10 +56,6 @@ exports.getImages = async (req, res) => {
         else {
             res.redirect("../../images/noimage.png");
         }
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        })
     })
 }
 
