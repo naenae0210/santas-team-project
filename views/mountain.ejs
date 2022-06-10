@@ -83,9 +83,7 @@
                                                     <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
                                                 </form>
                                             <% } else { %>
-                                                <form action="/mountain" method="get" onsubmit="switchHeart(this.id, 0)">
-                                                    <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
-                                                </form>
+                                                <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
                                             <% } %>
                                         <% } else { %> 
                                             <form action="/bookmark/<%= m.number %>/<%= currentUser.id %>/delete" method="post" onsubmit="switchHeart(this.id, 1)">
