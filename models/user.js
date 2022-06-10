@@ -34,6 +34,7 @@
 
   return user;
 }*/
+const passportLocalSequelize = require('passport-local-sequelize');
 
 module.exports = (sequelize, Sequelize) => {
   //const Post = require("./post")(sequelize, Sequelize);
@@ -91,10 +92,22 @@ module.exports = (sequelize, Sequelize) => {
     },
     nickname: {
       type: Sequelize.STRING,
+    },
+    myhash: {
+      type: Sequelize.STRING(1024)
+    },
+    mysalt: {
+      type: Sequelize.STRING
     }
   }, {
     sequelize,
     modelName: 'user'
+  });
+ 
+  passportLocalSequelize.attachToUser(User, {
+    usernameField: 'id',
+    hashField: 'myhash',
+    saltField: 'mysalt'
   });
 
 

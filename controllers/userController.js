@@ -1,4 +1,5 @@
 const db = require("../models/index"),
+    passport = require("passport"),	
     User = db.User,
     getUserParams = body => {
         return {
@@ -10,6 +11,25 @@ const db = require("../models/index"),
         };
     };
 module.exports = {
+    login: (req, res) => {
+      res.render("users/login");
+    },
+
+    logout: (req, res, next) => {
+      req.logout((err) => {
+        req.flash("success", "You have been logged out!");
+        res.locals.redirect = "/";
+        next();
+      });
+    },
+
+    authenticate: passport.authenticate("local", {
+      failureRedirect: "/users/login",
+      failureFlash: "Failed to Sign In.",
+      successRedirect: "/",
+      successFlash: "Logged In!"
+    }),
+
     index: async (req, res, next) => {
         try {
             let users = await User.findAll();
@@ -30,17 +50,30 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
-        let userParams = getUserParams(req.body);
-        try {
-            let user = await User.create(userParams);
-            res.locals.redirect = "/users";
-            res.locals.user = user;
-            next();
-        } catch (error) {
-            console.log(`Error saving users: ${error.messgae}`);
-            next(error);
-        };
-    },
+     //if (req.skip) next();
+     let userParams = getUserParams(req.body);
+     try{
+       let user = new User(userParams);
+       User.register(user, req.body.password, (error, user) => {
+         if(user) {
+           req.flash("success", `${user.name}'s account created successfully!`);
+           res.locals.redirect = "/users/login";
+           res.locals.user = user;
+           next();
+         }else{
+           console.log(`Error saving user: ${error.message}`);
+           res.local.redirect = "/users/new"
+           req.flash("error", `Failed to create user account because: ${error.message}.`);
+           next(error);
+         }
+       });
+     } catch(error) {
+       console.log(`Error saving user: ${error.message}`);
+       res.local.redirect = "/users/new";
+       req.flash("error", `Failed to create user account because: ${error.message}.`);
+       next(error);
+     };
+   },
 
     redirectView: (req, res, next) => {
         let redirectPath = res.locals.redirect;
@@ -97,7 +130,7 @@ module.exports = {
         let userId = req.params.id;
         try {
             let user = await User.findByPkAndRemove(userId);
-            res.locals.redirect = "/users";
+            res.locals.redirect = "/";
             next();
         } catch (error) {
             console.log(`Error deleting user by ID: ${error.messgae}`);

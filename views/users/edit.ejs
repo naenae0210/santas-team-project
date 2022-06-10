@@ -1,19 +1,19 @@
-<div class="container-fluid">
-    <h2 class="center">회원 정보 수정</h2>
+<div class="container-fluid">   
+ <h2 class="center">회원 정보 수정</h2>
     <div class="data-form">
         <form class="form-post" action="<%=`/users/${user.id}/update`%>" method="post">
 
 
             <div class="form-group row">
-                <label for="id" class="col-sm-3 col-form-label">ID*</label>
+                <label for="id" class="col-sm-3 col-form-label">ID</label>
                 <div class="col-sm-9">
                     <input type="text" id="id" name="id" value="<%= user.id %>" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="name" class="col-sm-3 col-form-label">Password*</label>
+                <label for="name" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
-                    <input type="password" id="password" name="password" value="" class="form-control">
+                    <input type="password" id="password" name="password" value="<%= user.password %>" class="form-control">
                 </div>
             </div>
             <div class="form-group row">

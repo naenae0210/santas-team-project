@@ -41,24 +41,23 @@
                             <a class="nav-link" href="/posts">커뮤니티</a>
                         </li>
                     </ul>
-                    <ul class="nav">
-                        <li class="nav-item"><a href="/signIn" class="nav-link link-light px-2">로그인</a></li>
-                        <li class="nav-item"><a href="/signUp" class="nav-link link-light px-2">회원가입</a></li>
-                        <!-- 로그인 시 나타남
-                        <li class="nav-item userInfo"><%= // users.nickname %> 님</li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle link-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                내 정보
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="./bookmark">북마크</a>
-                                <a class="dropdown-item" href="./delPost">내가 쓴 글</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="./myProfile">계정 정보</a>
-                            </div>
-                        </li>
-                        로그인 시 나타남-->
-                    </ul>
+                    <ul class="login">
+                    <% if (loggedIn) { %><!-- 로그인 시 나타남 -->
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle link-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= currentUser.nickame님%></a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="<%=`/bookmark/${currentUser.getDataValue('id')}`%>">Bookmark</a>
+                              <a class="dropdown-item" href="<%=`/post/${currentUser.getDataValue('id')}`%>">My Post</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="<%=`/users/${currentUser.getDataValue('id')}`%>">My Profile</a>
+                              <a class="dropdown-item" href="/users/logout">Log out</a>
+                          </div>
+                      </li>
+                      <%} else {%> <!-- 로그인 안했을때 -->
+                        <li class="nav-item"><a href="users/login" class="nav-link link-light px-2">Login</a></li>
+                        <li class="nav-item"><a href="users/new" class="nav-link link-light px-2">Sign Up</a></li>
+                        <% } %>
+                  </ul>
                 </div>
 
             </div>

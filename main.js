@@ -14,52 +14,81 @@ const express = require("express"),
   layouts = require("express-ejs-layouts"),
   mountainInfoController = require("./controllers/mountainInfoController"),
   imgController = require("./controllers/imgController"),
-  searchController = require("./controllers/searchController"),
-  session = require('express-session');
+  searchController = require("./controllers/searchController");
+
+const passport = require("passport");
+const session = require("express-session"),
+    flash = require("connect-flash");
 
 db.sequelize.sync();
 
+const User = db.User;
+
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 80);
-app.use(layouts);
+router.use(layouts);
 app.set("layout extractScripts", true);
 app.set("layout extractStyles", true);
 
-app.use(express.static("public"));
-app.use(
+router.use(express.static("public"));
+router.use(
   express.urlencoded({
     extended: false
   })
 );
-app.use(express.json());
-//app.use(session());
+router.use(express.json());
 
+router.use(
+  session({
+    secret: "secretKey",
+    cookie: {
+      maxAge: 4000000
+    },
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
-app.get("/", homeController.showHome);
-app.get("/around", aroundController.allAround);
-app.get("/around/:region", aroundController.searchAroundByAdd);
-app.get("/bookmark", bookmarkController.allBookmark);
+router.use(flash());
 
-app.get("/community", homeController.showCommunity);
-app.get("/delPost", homeController.showMyPost);
-app.get("/myProfile", homeController.showMyProfile);
-app.get("/mountain", mountainController.allMountain);
-app.get("/mountain/:region", mountainController.searchMountainByAdd);
-app.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
-app.get("/mountain/image/:number", imgController.getImage);
-app.get("/mountainInfo", mountainInfoController.showMountainInfo); // test용
-app.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);
-app.get("/mountainInfo/:number/:imgNum", imgController.getImages);
-app.get("/search", homeController.showSearchBar);
-app.post("/search", searchController.searchMountain);
-app.post("/search/name", searchController.searchMountainByName);
-app.post("/search/region", searchController.searchMountainByAdd);
-app.get("/signIn", homeController.showSignIn);
-app.get("/signUp", homeController.showSignUp);
-app.post("/signUp", homeController.postedSignUpForm);
-app.post("/bookmark/:mountainNum/create", bookmarkController.create);
-app.post("/bookmark/:mountainNum/delete", bookmarkController.delete);
-app.post("/around", aroundController.searchAroundByName);
+router.use(passport.initialize());
+router.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+router.use((req, res, next) => {
+  res.locals.loggedIn = req.isAuthenticated();
+  res.locals.currentUser = req.user;
+  res.locals.flashMessages = req.flash();
+  next();
+});
+
+router.get("/", homeController.showHome);
+router.get("/around", aroundController.allAround);
+router.get("/around/:region", aroundController.searchAroundByAdd);
+router.get("/bookmark", bookmarkController.allBookmark);
+
+router.get("/community", homeController.showCommunity);
+router.get("/delPost", homeController.showMyPost);
+router.get("/myProfile", homeController.showMyProfile);
+router.get("/mountain", mountainController.allMountain);
+router.get("/mountain/:region", mountainController.searchMountainByAdd);
+router.get("/mountain/difficulty/:difficulty", mountainController.searchMountainByDifficulty);
+router.get("/mountain/image/:number", imgController.getImage);
+router.get("/mountainInfo", mountainInfoController.showMountainInfo); // test용
+router.get("/mountainInfo/:number", mountainInfoController.showMountainInfo);
+router.get("/mountainInfo/:number/:imgNum", imgController.getImages);
+router.get("/search", homeController.showSearchBar);
+router.post("/search", searchController.searchMountain);
+router.post("/search/name", searchController.searchMountainByName);
+router.post("/search/region", searchController.searchMountainByAdd);
+//app.get("/signIn", homeController.showSignIn);
+//app.get("/signUp", homeController.showSignUp);
+//app.post("/signUp", homeController.postedSignUpForm);
+router.post("/bookmark/:mountainNum/create", bookmarkController.create);
+router.post("/bookmark/:mountainNum/delete", bookmarkController.delete);
+router.post("/around", aroundController.searchAroundByName);
 
 router.get("/posts", postController.index, postController.indexView);
 router.get("/posts/new", postController.new);
@@ -69,14 +98,16 @@ router.post("/posts/:id/update", postController.update, postController.redirectV
 router.get("/posts/:id", postController.show, postController.showView);
 router.post("/posts/:id/delete", postController.delete, postController.redirectView);
 
-router.get("/users", userController.index, userController.indexView);
+router.get("/users/login", userController.login);
+router.post("/users/login", userController.authenticate);
+router.get("/users/logout", userController.logout, userController.redirectView);
+//router.get("/users", userController.index, userController.indexView);
 router.get("/users/new", userController.new);
 router.post("/users/create", userController.create, userController.redirectView);
 router.get("/users/:id/edit", userController.edit);
 router.post("/users/:id/update", userController.update, userController.redirectView);
 router.get("/users/:id", userController.show, userController.showView);
 router.post("/users/:id/delete", userController.delete, userController.redirectView);
-
 
 
 router.use(errorController.pageNotFoundError);
