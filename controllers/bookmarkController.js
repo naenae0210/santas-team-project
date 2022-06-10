@@ -65,28 +65,29 @@ exports.isBookmark = async (req, res) => {
     let userId;
     if (req.user) {
         userId = req.user.id;
+
+        Bookmark.findAll({
+            where: {
+                id : userId
+            },
+            include: [
+                {
+                    model: Mountain,
+                    as: 'mountain',
+                    required: true
+                }
+            ]
+        }).then((bookmarkList) => {
+            res.render('bookmark', { bookmarks : bookmarkList
+            });
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message
+            })
+        })
+
     }
     else {
-        // return res.render('mountain', { bookmarks: []});
+        return res.render('mountain', { bookmarks: []});
     }
-
-    Bookmark.findAll({
-        where: {
-            id : userId
-        },
-        include: [
-            {
-                model: Mountain,
-                as: 'mountain',
-                required: true
-            }
-        ]
-    }).then((bookmarkList) => {
-        res.render('bookmark', { bookmarks : bookmarkList
-        });
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        })
-    })
 };
