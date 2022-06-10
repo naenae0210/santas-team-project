@@ -63,7 +63,7 @@ exports.allBookmark = async (req, res) => {
 
 exports.isBookmark = async (req, res) => {
     let userId;
-    if (req.user) {
+    if (req.isAuthenticated()) {
         userId = req.user.id;
 
         Bookmark.findAll({
