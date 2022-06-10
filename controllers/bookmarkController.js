@@ -36,8 +36,13 @@ exports.delete = async (req, res) => {
     })
 };
 
-exports.allBookmark = async (req, res) => {    
-    const userId = res.locals.users.id;
+exports.allBookmark = async (req, res) => {
+    if (res.locals.user.id) {
+        const userId = res.locals.user.id;
+    }
+    else {
+        res.render('mountain');
+    }
 
     Bookmark.findAll({
         where: {
@@ -61,7 +66,7 @@ exports.allBookmark = async (req, res) => {
 }
 
 exports.markBookmark = async (req, res) => {
-    const userId = res.locals.users.id;
+    const userId = res.locals.user.id;
     
     Bookmark.findAll({
         where: {
