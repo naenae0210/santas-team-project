@@ -51,7 +51,7 @@ exports.allBookmark = async (req, res) => {
             }
         ]
     }).then((bookmarkList) => {
-        res.render('bookmark', { bookmarks : bookmarkList
+        res.render('mountain', { bookmarks : bookmarkList
         });
     }).catch(err => {
         res.status(500).send({
