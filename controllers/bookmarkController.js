@@ -59,7 +59,7 @@ exports.allBookmark = async (req, res) => {
             message: err.message
         })
     })
-}
+};
 
 exports.isBookmark = async (req, res) => {
     let userId;
@@ -89,4 +89,4 @@ exports.isBookmark = async (req, res) => {
             message: err.message
         })
     })
-}
+};
