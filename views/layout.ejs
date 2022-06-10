@@ -59,9 +59,11 @@
                         </li>
                     </ul>
                     <%} else {%> <!-- 로그인 안 했을 때 -->
-                    <li class="nav-item"><a href="/users/login" class="nav-link link-light px-2">로그인</a></li>
-                        <li class="nav-item"><a href="/users/new" class="nav-link link-light px-2">회원가입</a></li>
-                        <% } %>
+                        <ul class="nav">
+                            <li class="nav-item"><a href="/users/login" class="nav-link link-light px-2">로그인</a></li>
+                            <li class="nav-item"><a href="/users/new" class="nav-link link-light px-2">회원가입</a></li>
+                        </ul>
+                    <% } %>
                 </div>
 
             </div>
