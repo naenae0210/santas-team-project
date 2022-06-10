@@ -104,7 +104,7 @@ router.get("/users/logout", userController.logout, userController.redirectView);
 router.get("/users/new", userController.new);
 router.post("/users/create", userController.create, userController.redirectView);
 router.get("/users/:id/edit", userController.edit);
-router.post("/users/:id/update", userController.update, userController.redirectView);
+router.post("/users/:id/edit", userController.update, userController.redirectView);
 router.get("/users/:id", userController.show, userController.showView);
 router.post("/users/:id/delete", userController.delete, userController.redirectView);
 

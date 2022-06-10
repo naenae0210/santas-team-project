@@ -50,7 +50,7 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
-     //if (req.skip) next();
+     if (req.skip) next();
      let userParams = getUserParams(req.body);
      try{
        let user = new User(userParams);
@@ -62,14 +62,14 @@ module.exports = {
            next();
          }else{
            console.log(`Error saving user: ${error.message}`);
-           res.local.redirect = "/users/new"
+           res.locals.redirect = "/users/new"
            req.flash("error", `Failed to create user account because: ${error.message}.`);
            next(error);
          }
        });
      } catch(error) {
        console.log(`Error saving user: ${error.message}`);
-       res.local.redirect = "/users/new";
+       res.locals.redirect = "/users/new";
        req.flash("error", `Failed to create user account because: ${error.message}.`);
        next(error);
      };
@@ -117,7 +117,7 @@ module.exports = {
             userParams = getUserParams(req.body);
         try {
             let user = await User.findByPkAndUpdate(userId, userParams);
-            res.locals.redirect = `/users/${userId}`;
+            res.locals.redirect = `/`;
             res.locals.user = user;
             next();
         } catch (error) {

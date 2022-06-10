@@ -1,7 +1,7 @@
 <div class="container-fluid">   
  <h2 class="center">회원 정보 수정</h2>
     <div class="data-form">
-        <form class="form-post" action="<%=`/users/${user.id}/update`%>" method="post">
+        <form class="form-post" action="<%=`/users/${user.id}/edit`%>" method="post">
 
 
             <div class="form-group row">
@@ -17,13 +17,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="name" class="col-sm-3 col-form-label">Name*</label>
+                <label for="name" class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-9">
                     <input type="text" id="name" name="name" value="<%= user.name %>" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="birth" class="col-sm-3 col-form-label">Birth*</label>
+                <label for="birth" class="col-sm-3 col-form-label">Birth</label>
                 <div class="col-sm-9">
                     <input type="date" id="birth" name="birth" value="<%= user.birth %>" class="form-control">
                 </div>
