@@ -78,7 +78,7 @@
                                                     <% i = 1; %>
                                                 <% }})}; %>
                                         <% if (i == 0) { %>
-                                            <form action="/bookmark/<%= m.number %>/<%= currentUser.id %>/create" method="post" onsubmit="switchHeart(this.id, 0)">
+                                            <form action="/bookmark/<%= m.number %>/<%= currentUser.getDataValue('id') %>/create" method="post" onsubmit="switchHeart(this.id, 0)">
                                                 <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
                                             </form>
                                         <% } else { %> 
