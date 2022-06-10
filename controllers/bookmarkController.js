@@ -63,7 +63,7 @@ exports.allBookmark = async (req, res) => {
 
 exports.isBookmark = async (req, res) => {
     let userId;
-    if (req.body.id) {
+    if (req.user) {
         userId = req.user.id;
     }
     else {
