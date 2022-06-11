@@ -1,22 +1,22 @@
 const mysql = require('../models/index'),
     Bookmark = mysql.Bookmark,
-    Mountain = mysql.Mountain,
-    session = require('express-session');
+    Mountain = mysql.Mountain;
 
 exports.create = async (req, res) => {
     const userId = req.user.id;
     
-    try {
-        const bookmarkParams = {
-            id: userId,
-            mountainNum: req.params.mountainNum
-        }
-        const bookmark = await Bookmark.create(bookmarkParams);
-        res.locals.bookmarks.push(bookmark);
+    const bookmarkParams = {
+        id: userId,
+        mountainNum: req.params.mountainNum
+    }
+    
+    Bookmark.create(bookmarkParams)
+    .then(result => {
+        res.locals.bookmarks.push(result);
         res.redirect("/mountain");
-    } catch(error) {
-        console.log(`Error saving bookmark: ${error.message}`);
-    };
+    }).catch(err => {
+        console.log(`Error saving bookmark: ${err.message}`);
+    });
 };
 
 exports.delete = async (req, res) => {
