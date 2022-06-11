@@ -21,7 +21,7 @@ module.exports = {
             console.log(comment);
             res.json(comment);
             res.locals.redirect = `/posts/${postId}`;
-            res.locals.comments = comments;
+            res.locals.comments = comment;
             next();
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
@@ -54,7 +54,7 @@ module.exports = {
             });
             res.json(comment);
             res.locals.redirect = `/posts/${postId}`;
-            res.locals.comments = comments;
+            res.locals.comments = comment;
             next();
 
         } catch {
