@@ -10,6 +10,7 @@ exports.create = async (req, res) => {
         mountainNum: req.params.mountainNum
     })
     .then(result => {
+        console.log("create!!");
         res.locals.bookmarks.push(result);
         res.redirect("/mountain");
     }).catch(err => {
