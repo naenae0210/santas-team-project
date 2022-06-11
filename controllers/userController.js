@@ -117,7 +117,7 @@ module.exports = {
             userParams = getUserParams(req.body);
         try {
             let user = await User.findByPkAndUpdate(userId, userParams);
-            res.locals.redirect = `/`;
+            res.locals.redirect = "/users/login";
             res.locals.user = user;
             next();
         } catch (error) {

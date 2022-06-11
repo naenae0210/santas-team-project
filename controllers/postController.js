@@ -104,5 +104,5 @@ module.exports = {
             console.log(`Error deleting post by ID: ${error.messgae}`);
             next();
         };
-    }
+    },
 };

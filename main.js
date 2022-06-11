@@ -9,6 +9,7 @@ const express = require("express"),
   aroundController = require("./controllers/arouundController"),
   userController = require("./controllers/userController"),
   postController = require("./controllers/postController"),
+  commentController = require("./controllers/commentController"),
   db = require("./models/index"),
   layouts = require("express-ejs-layouts"),
   mountainInfoController = require("./controllers/mountainInfoController"),
@@ -96,6 +97,13 @@ router.get("/posts/:id/edit", postController.edit);
 router.post("/posts/:id/update", postController.update, postController.redirectView);
 router.get("/posts/:id", postController.show, postController.showView);
 router.post("/posts/:id/delete", postController.delete, postController.redirectView);
+
+router.post("/comments/:postId/create", commentController.create, commentController.redirectView);
+router.post("/comments/:postId/update", commentController.update, commentController.redirectView);
+router.get("/comments/:postId/getComment", commentController.getComment, commentController.redirectView);
+router.post("/comments/:piostId/delete", commentController.delete, commentController.redirectView);
+
+
 
 router.get("/users/login", userController.login);
 router.post("/users/login", userController.authenticate);
