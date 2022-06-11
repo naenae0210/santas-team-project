@@ -1,5 +1,4 @@
-const Mountain = require("./mountain");
-const User = require("./user");
+
 
 module.exports = (sequelize, Sequelize) => {
     const bookmark = sequelize.define('bookmark', {

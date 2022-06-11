@@ -7,13 +7,11 @@ exports.create = async (req, res) => {
 
     await Bookmark.create({
         id: userId,
-        mountainNum: req.params.mountainNum,
-        createdAt: null,
-        updatedAt: null
+        mountainNum: req.params.mountainNum
     })
     .then(result => {
         console.log("create!!");
-        res.locals.bookmarks.push(result);
+        res.locals.bookmark = result;
         res.redirect("/mountain");
     }).catch(err => {
         console.log(`Error saving bookmark: ${err.message}`);
