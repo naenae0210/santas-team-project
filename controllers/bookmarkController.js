@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
 
     Bookmark.create({
         id: userId,
-        mountainNum: req.body.mountainNum
+        mountainNum: req.params.mountainNum
     })
     .then(result => {
         res.locals.bookmarks.push(result);
