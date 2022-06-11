@@ -37,7 +37,7 @@ exports.delete = async (req, res) => {
 };
 
 exports.allBookmark = async (req, res) => {
-    let userId = req.parmas.id;
+    let userId = req.user.id;
 
 
     Bookmark.findAll({

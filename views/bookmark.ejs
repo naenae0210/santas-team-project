@@ -28,37 +28,14 @@
         </section>
 
         <div class="album py-5 bg-light">
-            <div class="buttons">
-                <div class="dropdown region">
-                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">지역</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/mountain/서울">서울</a>
-                        <a class="dropdown-item" href="/mountain/경기">경기도</a>
-                        <a class="dropdown-item" href="/mountain/인천">인천</a>
-                        <a class="dropdown-item" href="/mountain/강원">강원도</a>
-                        <a class="dropdown-item" href="/mountain/충청">충청도</a>
-                        <a class="dropdown-item" href="/mountain/대전">대전</a>
-                        <a class="dropdown-item" href="/mountain/전라">전라도</a>
-                        <a class="dropdown-item" href="/mountain/광주">광주</a>
-                        <a class="dropdown-item" href="/mountain/경상">경상도</a>
-                        <a class="dropdown-item" href="/mountain/대구">대구</a>
-                        <a class="dropdown-item" href="/mountain/울산">울산</a>
-                        <a class="dropdown-item" href="/mountain/부산">부산</a>
-                        <a class="dropdown-item" href="/mountain/제주">제주도</a>
-                    </div>
-                </div>
-                <div class="dropdown hard">
-                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">난이도</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/mountain/difficulty/상">상</a>
-                        <a class="dropdown-item" href="/mountain/difficulty/중">중</a>
-                        <a class="dropdown-item" href="/mountain/difficulty/하">하</a>
-                    </div>
-                </div>
-            </div>
             <div class="container">
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <% if (bookmarks.length == 0) { %>
+                        <div class="center">
+                            <h1>설정한 북마크가 없습니다.</h1>
+                        </div>
+                    <% } %>
                     <% bookmarks.forEach(b => { %>
                         <div class="col">
                             <div class="card shadow-sm">

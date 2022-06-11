@@ -66,7 +66,7 @@ router.use((req, res, next) => {
 router.get("/", homeController.showHome);
 router.get("/around", aroundController.allAround);
 router.get("/around/:region", aroundController.searchAroundByAdd);
-router.get("/bookmark/:id", bookmarkController.allBookmark);
+router.get("/bookmark", bookmarkController.allBookmark);
 
 router.get("/community", homeController.showCommunity);
 router.get("/delPost", homeController.showMyPost);
