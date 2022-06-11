@@ -5,9 +5,11 @@ const mysql = require('../models/index'),
 exports.create = async (req, res) => {
     const userId = req.user.id;
 
-    Bookmark.create({
+    await Bookmark.create({
         id: userId,
-        mountainNum: req.params.mountainNum
+        mountainNum: req.params.mountainNum,
+        createdAt: null,
+        updatedAt: null
     })
     .then(result => {
         console.log("create!!");
@@ -21,7 +23,7 @@ exports.create = async (req, res) => {
 exports.delete = async (req, res) => {
     const userId = req.user.id;
 
-    Bookmark.destroy({
+    await Bookmark.destroy({
         where : {
             id: userId,
             mountainNum: req.params.mountainNum
