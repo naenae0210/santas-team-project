@@ -29,11 +29,18 @@ module.exports = {
         };
     },
 
+    redirectView: (req, res, next) => {
+        let redirectPath = res.locals.redirect;
+        if (redirectPath != undefined) res.redirect(redirectPath);
+        else next();
+    },
+
     getComment: async (req, res, next) => {
         try {
             const post = Post.findOne({});
-            const comment = await post.getComment();
-            console.log(comment);
+            const comments = await post.getComment();
+            console.log(comments);
+            res.locals.redirect = "/posts";
             next();
 
         } catch {
@@ -72,6 +79,7 @@ module.exports = {
                 }
             });
             res.json(comment);
+            res.locals.redirect = "/posts";
             next();
         } catch (error) {
             console.log(`Error deleting comment: ${error.messgae}`);
