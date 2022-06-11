@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
         }
         const bookmark = await Bookmark.create(bookmarkParams);
         res.locals.bookmarks.push(bookmark);
-        return res.render("/mountain");
+        res.redirect("/mountain");
     } catch(error) {
         console.log(`Error saving bookmark: ${error.message}`);
     };
@@ -28,7 +28,7 @@ exports.delete = async (req, res) => {
             mountainNum: req.params.mountainNum
         }
     }).then(result => {
-        res.redirect("mountain");
+        res.redirect("/mountain");
     }).catch(err => {
         res.status(500).send({
             message: err.message

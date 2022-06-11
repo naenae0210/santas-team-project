@@ -50,10 +50,8 @@
                                             <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/mountainInfo/<%= b.mountain.number %>">View</a></button>
                                         </div>
                                         <form action="/bookmark/<%= b.mountain.number %>/delete" method="post" onsubmit="switchHeart(this.id)">
-                                            <input type="submit" id="<%= b.mountain.number %>" class="btn fa-input" value="&#xf004" />
+                                            <input type="submit" id="<%= b.mountain.number %>" class="btn fa-input" value="&#xf004" style="color:red"/>
                                         </form>
-                                        <% const heart = document.getElementById(b.mountain.number); %>
-                                        <% heart.style.color = "red"; %>
                                      </div>
                                 </div>
                             </div>
