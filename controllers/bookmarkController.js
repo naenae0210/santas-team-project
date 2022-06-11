@@ -4,13 +4,11 @@ const mysql = require('../models/index'),
 
 exports.create = async (req, res) => {
     const userId = req.user.id;
-    
-    const bookmarkParams = {
+
+    Bookmark.create({
         id: userId,
-        mountainNum: req.params.mountainNum
-    }
-    
-    Bookmark.create(bookmarkParams)
+        mountainNum: req.body.mountainNum
+    })
     .then(result => {
         res.locals.bookmarks.push(result);
         res.redirect("/mountain");
