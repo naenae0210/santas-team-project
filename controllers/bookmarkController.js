@@ -12,8 +12,8 @@ exports.create = async (req, res) => {
             mountainNum: req.params.mountainNum
         }
         const bookmark = await Bookmark.create(bookmarkParams);
-        res.locals.redirect = "/mountain";
-        res.locals.bookmark = bookmark;
+        res.locals.bookmarks = bookmark;
+        res.redirect("/mountain");
     } catch(error) {
         console.log(`Error saving bookmark: ${error.message}`);
     };
