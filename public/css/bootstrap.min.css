@@ -5512,7 +5512,7 @@ fieldset:disabled .btn {
 .page-link {
     position: relative;
     display: block;
-    color: #003d0a
+    color: #003d0a;
     text-decoration: none;
     background-color: #fff;
     border: 1px solid #dee2e6;
