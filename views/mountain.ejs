@@ -83,7 +83,7 @@
                                                     <input type="submit" id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
                                                 </form>
                                             <% } else { %>
-                                                <input id="<%= m.number %>" class="btn fa-input" value="&#xf004" />
+                                                <input id="<%= m.number %>" class="btn fa-input" value="&#xf004" style="display: inline;" />
                                             <% } %>
                                         <% } else { %> 
                                             <form action="/bookmark/<%= m.number %>/delete" method="post" onsubmit="switchHeart(this.id, 1)">
