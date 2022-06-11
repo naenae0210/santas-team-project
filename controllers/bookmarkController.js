@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
         }
         const bookmark = await Bookmark.create(bookmarkParams);
         res.locals.bookmarks = bookmark;
-        res.redirect("/mountain");
+        res.render("/mountain");
     } catch(error) {
         console.log(`Error saving bookmark: ${error.message}`);
     };
