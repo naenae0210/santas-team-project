@@ -114,10 +114,10 @@ module.exports = {
 
     update: async (req, res, next) => {
         let userId = req.params.id,
-           // userParams = getUserParams(req.body);
+           userParams = getUserParams(req.body);
         try {
             let user = await User.findByPkAndUpdate(userId, userParams);
-            User.register(user, user.password, (error, user) => {
+            User.register(user, req.body.password, (error, user) => {
                 if(user) {
                   req.flash("success", `${user.name}'s account updated successfully!`);
                   res.locals.redirect = "/users/login";
