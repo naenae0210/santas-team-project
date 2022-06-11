@@ -2,11 +2,11 @@ const request = require("request"),
     parseString = require('xml2js').parseString;
 
 
-const key = 'uztp5PFDDh%2BCHj3iQ8dpL9e5QQM3Dn3mIfzDaVG24UwPSyxzuDw3XB9pj6m6mh1DGfT3QuoU5HcE07vLuPPGdw%3D%3D';
+const key = 'HalmOJvtllDf2LtbeFjdxEyAM5e6okRMDLyG9YLH2OQzltWsOAkTxoKyA%2BMOZ0WZ5glQOzqEK8SB0CX3s0zbMQ%3D%3D';
 
 const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?mntiListNo='
     add2 = '&ServiceKey=',
-    add3 = '<response>&_type=json';
+    add3 = '&_type=json';
 
 exports.getImage = async (req, res) => {
 
