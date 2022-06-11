@@ -116,8 +116,8 @@ module.exports = {
         let userId = req.params.id,
            // userParams = getUserParams(req.body);
         try {
-            let user = await User.findByPk(userId);
-            User.register(user, req.body.password, (error, user) => {
+            let user = await User.findByPkAndUpdate(userId, userParams);
+            User.register(user, user.password, (error, user) => {
                 if(user) {
                   req.flash("success", `${user.name}'s account updated successfully!`);
                   res.locals.redirect = "/users/login";
