@@ -11,7 +11,6 @@ exports.create = async (req, res) => {
     })
     .then(result => {
         console.log("create!!");
-        res.locals.bookmarks.push(result);
         res.redirect("/mountain");
     }).catch(err => {
         console.log(`Error saving bookmark: ${err.message}`);
