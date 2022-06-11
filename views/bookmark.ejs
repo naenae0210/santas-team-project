@@ -49,7 +49,7 @@
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/mountainInfo/<%= b.mountain.number %>">View</a></button>
                                         </div>
-                                        <form action="/bookmark/<%= m.number %>/delete" method="post" onsubmit="switchHeart(this.id)">
+                                        <form action="/bookmark/<%= b.mountain.number %>/delete" method="post" onsubmit="switchHeart(this.id)">
                                             <input type="submit" id="<%= b.mountain.number %>" class="btn fa-input" value="&#xf004" />
                                         </form>
                                         <% const heart = document.getElementById(b.mountain.number); %>
