@@ -4,12 +4,12 @@ const mysql = require('../models/index'),
     session = require('express-session');
 
 exports.create = async (req, res) => {
-    const userId = req.session.id;
+    const userId = req.user.id;
     
     try {
         const bookmarkParams = {
             id: userId,
-            mountainNum: req.body.mountainNum
+            mountainNum: req.params.mountainNum
         }
         const bookmark = await Bookmark.create(bookmarkParams);
         res.locals.redirect = "/mountain";
@@ -20,12 +20,12 @@ exports.create = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-    const userId = req.session.id;
+    const userId = req.user.id;
 
     Bookmark.destroy({
         where : {
             id: userId,
-            mountainNum: req.body.mountainNum
+            mountainNum: req.params.mountainNum
         }
     }).then(result => {
         res.redirect("mountain");

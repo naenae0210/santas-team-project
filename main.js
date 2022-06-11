@@ -86,8 +86,8 @@ router.post("/search/region", searchController.searchMountainByAdd);
 //app.get("/signIn", homeController.showSignIn);
 //app.get("/signUp", homeController.showSignUp);
 //app.post("/signUp", homeController.postedSignUpForm);
-router.post("/bookmark/:mountainNum/:id/create", bookmarkController.create);
-router.post("/bookmark/:mountainNum/:id/delete", bookmarkController.delete);
+router.post("/bookmark/:mountainNum/create", bookmarkController.create);
+router.post("/bookmark/:mountainNum/delete", bookmarkController.delete);
 router.post("/around", aroundController.searchAroundByName);
 
 router.get("/posts", postController.index, postController.indexView);
