@@ -21,7 +21,7 @@ module.exports = {
             console.log(comment);
             res.json(comment);
             res.locals.redirect = `/posts/${postId}`;
-            res.locals.comment = comment;
+            res.locals.comments = comments;
             next();
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
@@ -32,8 +32,8 @@ module.exports = {
     getComment: async (req, res, next) => {
         try {
             const post = Post.findOne({});
-            const comments = await post.getComment();
-            console.log(comments);
+            const comment = await post.getComment();
+            console.log(comment);
             next();
 
         } catch {
@@ -54,7 +54,7 @@ module.exports = {
             });
             res.json(comment);
             res.locals.redirect = `/posts/${postId}`;
-            res.locals.comment = comment;
+            res.locals.comments = comments;
             next();
 
         } catch {
