@@ -112,7 +112,7 @@ module.exports = (sequelize, Sequelize) => {
       foreignKey: "id",
       sourceKey: "id"
     });
-    User.hasMany(models.Post, {
+    User.hasMany(models.post, {
       foreignKey: "id",
       sourceKey: "id"
     });
