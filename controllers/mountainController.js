@@ -61,7 +61,9 @@ exports.searchMountainByDifficulty = async (req, res, next) => {
 
     Mountain.findAll({
         where: {
-            difficulty: searchWord
+            difficulty: {
+                [Op.like]: "%" + searchWord + "%"
+            }
         }
     }).then(mountainList => {
         res.locals.mountains = mountainList;
