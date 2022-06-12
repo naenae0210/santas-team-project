@@ -29,6 +29,20 @@
             </tr>
           </thead>
           <tbody>
+            <% posts.forEach(p => { %>
+              <tr>
+                <th scope="row">
+                  <label class="control control--checkbox">
+                    <input type="checkbox"/>
+                    <div class="control__indicator"></div>
+                  </label>
+                </th>
+                <td><%= p.id %></td>
+                <td><%= p.title %>></td>
+                <td><%= p.user.nickname %>></td>
+                <td><%= p.createdAt %></td>
+              </tr>
+            <% }) %>
             <tr>
               <th scope="row">
                 <label class="control control--checkbox">
