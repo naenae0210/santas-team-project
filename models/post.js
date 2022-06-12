@@ -53,7 +53,6 @@ module.exports = (sequelize, Sequelize) => {
 		userId: {
 				type: Sequelize.STRING,
 				allowNull: false,
-				unique: true,
 				references: {
 						model: 'users',
 						key: 'id',
