@@ -102,6 +102,9 @@ body {
     clear: both;
 }
 
+.card-title {
+    font-style: : none;
+}
 
 .region {
     display: inline;
