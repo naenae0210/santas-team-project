@@ -18,7 +18,7 @@ exports.getImage = async (req, res) => {
 
             console.log(body);
 
-            const js = body.json();
+            const js = JSON.parse(body);
 
             let image = js.response.body.items.item;
 
