@@ -102,7 +102,7 @@ body {
     clear: both;
 }
 
-.card-title > a{
+.card-title {
     text-decoration-line: none;
 }
 
