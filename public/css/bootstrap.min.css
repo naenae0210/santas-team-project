@@ -103,7 +103,7 @@ body {
 }
 
 .card-title > a{
-    text-decoration: none;
+    text-decoration-line: none;
 }
 
 .region {
