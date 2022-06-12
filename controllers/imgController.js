@@ -14,28 +14,24 @@ exports.getImage = async (req, res) => {
 
     fetch(address).then(result => {
 
-        fetch(result.url).then(r => {
-            console.log(r);
-        })
+        request.get(result.url, (error, resp, body) => {
 
-        // console.log(result.url);
+            const js = result.json();
 
-        /*
-        const js = result.json();
+            let image = js.response.body.items.item;
 
-        let image = js.response.body.items.item;
+            if (!Array.isArray(image)) {
+                image = new Array(image);
+            }
 
-        if (!Array.isArray(image)) {
-            image = new Array(image);
+            if (image[0] != undefined) {
+                return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
+            }
+            else {
+                return res.redirect("../../images/noimage.png");
+            }
         }
-
-        if (image[0] != undefined) {
-            return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
-        }
-        else {
-            return res.redirect("../../images/noimage.png");
-        }*/
-        }
+        )}
         
     )
 
