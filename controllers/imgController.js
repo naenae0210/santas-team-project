@@ -16,8 +16,9 @@ exports.getImage = async (req, res) => {
 
         request.get(result.url, (error, resp, body) => {
 
-            console.log(body);
-
+            if (!isJson(body)) {
+                return res.redirect("../../images/cantload.png");
+            }
             const js = JSON.parse(body);
 
             let image = js.response.body.items.item;
@@ -36,78 +37,38 @@ exports.getImage = async (req, res) => {
         )}
         
     )
-
- /*
-    request.get(address, (error, resp, body) => {
-        console.log(body);
-
-        if (!isJson(body)) {
-            console.log(body);
-
-            return res.redirect("../../images/cantload.png");
-        }
-        const js = body.json();
-
-        let image = js.response.body.items.item;
-
-        if (!Array.isArray(image)) {
-            image = new Array(image);
-        }
-
-        if (image[0] != undefined) {
-            return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
-        }
-        else {
-            return res.redirect("../../images/noimage.png");
-        }
-    }) */
 };
 
 exports.getImages = async (req, res) => {
-    const address = add1 + req.params.number + add2 + key + add3;
+
     const imgNum = req.params.imgNum;
+    const address = add1 + req.params.number + add2 + key + add3;
 
     fetch(address).then(result => {
 
-        const js = result.json();
+        request.get(result.url, (error, resp, body) => {
 
-        let image = js.response.body.items.item;
+            if (!isJson(body)) {
+                return res.redirect("../../images/cantload.png");
+            }
+            const js = JSON.parse(body);
 
-        if (!Array.isArray(image)) {
-            image = new Array(image);
-        }
+            let image = js.response.body.items.item;
 
-        if (image[0] != undefined) {
-            return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[imgNum].imgfilename);
+            if (!Array.isArray(image)) {
+                image = new Array(image);
+            }
+
+            if (image[0] != undefined) {
+                return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[imgNum].imgfilename);
+            }
+            else {
+                return res.redirect("../../images/noimage.png");
+            }
         }
-        else {
-            return res.redirect("../../images/noimage.png");
-        }
-        }
+        )}
+        
     )
-
-    /*
-    request.get(address, (error, resp, body) => {
-
-        if (!isJson(body)) {
-            console.log(body);
-            return res.redirect("../../images/cantload.png");
-        }
-
-        const json = JSON.parse(body);
-        let image = json.response.body.items.item;
-
-        if (!Array.isArray(image)) {
-            image = new Array(image);
-        }
-
-        if (image[0] != undefined && image[imgNum] != null) {
-            res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[imgNum].imgfilename);
-        }
-        else {
-            res.redirect("../../images/noimage.png");
-        }
-    }) */
 }
 
 function isJson(str) {
