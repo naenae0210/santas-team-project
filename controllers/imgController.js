@@ -12,10 +12,10 @@ exports.getImage = async (req, res) => {
 
     const address = add1 + req.params.number + add2 + key + add3;
 
+    /*
     fetch(address).then(result => {
-        console.log(result);
-        console.log("test");
-        const js = JSON.parse(result);
+
+        const js = result.json();
 
         let image = js.response.body.items.item;
 
@@ -30,14 +30,14 @@ exports.getImage = async (req, res) => {
             return res.redirect("../../images/noimage.png");
         }
         }
-    )
- /*
+    ) */
+ 
     request.get(address, (error, resp, body) => {
 
         if (!isJson(body)) {
             return res.redirect("../../images/cantload.png");
         }
-        const js = JSON.parse(body);
+        const js = body.json();
 
         let image = js.response.body.items.item;
 
@@ -51,7 +51,7 @@ exports.getImage = async (req, res) => {
         else {
             return res.redirect("../../images/noimage.png");
         }
-    }) */
+    }) 
 };
 
 exports.getImages = async (req, res) => {
