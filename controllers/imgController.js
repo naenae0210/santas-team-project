@@ -20,6 +20,7 @@ exports.getImage = async (req, res) => {
 
         // console.log(result.url);
 
+        /*
         const js = result.json();
 
         let image = js.response.body.items.item;
@@ -33,8 +34,9 @@ exports.getImage = async (req, res) => {
         }
         else {
             return res.redirect("../../images/noimage.png");
+        }*/
         }
-        }
+        
     )
 
  /*
