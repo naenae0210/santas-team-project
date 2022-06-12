@@ -1,7 +1,3 @@
-const post = require("./post");
-
-const Around = require("../models/index").Around;
-
 module.exports = (sequelize, Sequelize) => {
     const mountain = sequelize.define('mountain', {
       number: {

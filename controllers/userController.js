@@ -114,29 +114,32 @@ module.exports = {
 
     update: async (req, res, next) => {
         let userId = req.params.id,
-            userParams = getUserParams(req.body);
+           userParams = getUserParams(req.body);
         try {
             let user = await User.findByPkAndUpdate(userId, userParams);
-	    User.register(user, req.body.password, (error, user) => {	
-	    if(user) {
-           req.flash("success", `${user.name}'s account updated  successfully!`);
-	   res.locals.redirect = "/users/login";
-           next();
-         }else{
-           console.log(`Error saving user: ${error.message}`);
-           res.locals.redirect = "/"
-           req.flash("error", `Failed to update user account because: ${error.message}.`);
-           next(error);
-         }
-       });
-    
-        } catch (error) {
+            User.register(user, req.body.password, (error, user) => {
+                if(user) {
+                  req.flash("success", `${user.name}'s account updated successfully!`);
+                  res.locals.redirect = "/users/login";
+                  res.locals.user = user;
+                  next();
+                }else{
+                  console.log(`Error saving user: ${error.message}`);
+                  res.locals.redirect = "/"
+                  req.flash("error", `Failed to update user account because: ${error.message}.`);
+                  next(error);
+                }
+              });
+            //res.locals.redirect = "/user/login";
+            //res.locals.user = user;
+            next();
+        } catch(error) {
             console.log(`Error saving user: ${error.message}`);
-       	    res.locals.redirect = "/";
+            res.locals.redirect = "/";
             req.flash("error", `Failed to update user account because: ${error.message}.`);
-       next(error);
-        };
-    },
+            next(error);
+          };
+        },
 
     delete: async (req, res, next) => {
         let userId = req.params.id;
