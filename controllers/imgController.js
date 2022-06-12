@@ -33,6 +33,7 @@ exports.getImage = async (req, res) => {
     ) */
  
     request.get(address, (error, resp, body) => {
+        console.log(body);
 
         if (!isJson(body)) {
             return res.redirect("../../images/cantload.png");
