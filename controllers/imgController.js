@@ -12,6 +12,24 @@ exports.getImage = async (req, res) => {
 
     const address = add1 + req.params.number + add2 + key + add3;
 
+    fetch(address).then(result => {
+        const js = JSON.parse(result);
+
+        let image = js.response.body.items.item;
+
+        if (!Array.isArray(image)) {
+            image = new Array(image);
+        }
+
+        if (image[0] != undefined) {
+            return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
+        }
+        else {
+            return res.redirect("../../images/noimage.png");
+        }
+        }
+    )
+ /*
     request.get(address, (error, resp, body) => {
 
         if (!isJson(body)) {
@@ -31,7 +49,7 @@ exports.getImage = async (req, res) => {
         else {
             return res.redirect("../../images/noimage.png");
         }
-    })
+    }) */
 };
 
 exports.getImages = async (req, res) => {
