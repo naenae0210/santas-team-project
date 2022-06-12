@@ -6,13 +6,11 @@ const key = 'JsYDcymAO%2BdqZ2KscehCHVe%2B83DUZExkHQdWA5S1eVJaBHVHjkaHVELfhZ3xX5p
 
 const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoImgOpenAPI?mntiListNo='
     add2 = '&ServiceKey=',
-    add3 = '&_type=json';
+    add3 = '&_type=json',
+    address = add1 + req.params.number + add2 + key + add3;
 
 exports.getImage = async (req, res) => {
 
-    const address = add1 + req.params.number + add2 + key + add3;
-
-    
     fetch(address).then(result => {
 
         const js = result.json();
@@ -59,7 +57,7 @@ exports.getImage = async (req, res) => {
 };
 
 exports.getImages = async (req, res) => {
-    const address = add1 + req.params.number + add2 + key + add3;
+
     const imgNum = req.params.imgNum;
 
     fetch(address).then(result => {
