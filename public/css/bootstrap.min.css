@@ -102,7 +102,7 @@ body {
     clear: both;
 }
 
-.card-title {
+.card-title  > a{
     font-style: : none;
 }
 
