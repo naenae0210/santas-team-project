@@ -12,7 +12,7 @@ exports.getImage = async (req, res) => {
 
     const address = add1 + req.params.number + add2 + key + add3;
 
-    /*
+    
     fetch(address).then(result => {
 
         const js = result.json();
@@ -30,8 +30,9 @@ exports.getImage = async (req, res) => {
             return res.redirect("../../images/noimage.png");
         }
         }
-    ) */
- 
+    )
+
+ /*
     request.get(address, (error, resp, body) => {
         console.log(body);
 
@@ -54,13 +55,33 @@ exports.getImage = async (req, res) => {
         else {
             return res.redirect("../../images/noimage.png");
         }
-    }) 
+    }) */
 };
 
 exports.getImages = async (req, res) => {
     const address = add1 + req.params.number + add2 + key + add3;
     const imgNum = req.params.imgNum;
 
+    fetch(address).then(result => {
+
+        const js = result.json();
+
+        let image = js.response.body.items.item;
+
+        if (!Array.isArray(image)) {
+            image = new Array(image);
+        }
+
+        if (image[0] != undefined) {
+            return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[imgNum].imgfilename);
+        }
+        else {
+            return res.redirect("../../images/noimage.png");
+        }
+        }
+    )
+
+    /*
     request.get(address, (error, resp, body) => {
 
         if (!isJson(body)) {
@@ -81,7 +102,7 @@ exports.getImages = async (req, res) => {
         else {
             res.redirect("../../images/noimage.png");
         }
-    })
+    }) */
 }
 
 function isJson(str) {
