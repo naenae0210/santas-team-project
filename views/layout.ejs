@@ -51,7 +51,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		                        <a href="/bookmark" class="dropdown-item">북마크</a>
                                 <a href="<%=`/post/${currentUser.getDataValue('id')}`%>" class="dropdown-item">내 글</a>
-		                        <a href="<%=`/users/${currentUser.getDataValue('id')}`%>" class="dropdown-item">정보 수정</a>
+		                        <a href="<%=`/users/${currentUser.getDataValue('id')}/edit`%>" class="dropdown-item">정보 수정</a>
                                 <a href="/users/logout" class="dropdown-item">로그아웃</a>
                             </div>
                         </li>
@@ -65,8 +65,23 @@
                 </div>
 
             </div>
+	 
         </nav>
+	<div class = "flashes">
+          <% if (flashMessages) { %>
+            <% if (flashMessages.success) { %>
+              <div class = "flash success">
+                <%= flashMessages.success %>
+              </div>
+            <% } else if (flashMessages.error) { %>
+              <div class = "flash error">
+                <%= flashMessages.error %>
+              </div>
+            <% } %>
+          <% } %>
+	</div>
     </header>
+
     <%- body %>
 
     <!-- Bootstrap core JS -->

@@ -117,12 +117,24 @@ module.exports = {
             userParams = getUserParams(req.body);
         try {
             let user = await User.findByPkAndUpdate(userId, userParams);
-            res.locals.redirect = "/users/login";
-            res.locals.user = user;
-            next();
+	    User.register(user, req.body.password, (error, user) => {	
+	    if(user) {
+           req.flash("success", `${user.name}'s account updated  successfully!`);
+	   res.locals.redirect = "/users/login";
+           next();
+         }else{
+           console.log(`Error saving user: ${error.message}`);
+           res.locals.redirect = "/"
+           req.flash("error", `Failed to update user account because: ${error.message}.`);
+           next(error);
+         }
+       });
+    
         } catch (error) {
-            console.log(`Error updating user by ID: ${error.messgae}`);
-            next(error);
+            console.log(`Error saving user: ${error.message}`);
+       	    res.locals.redirect = "/";
+            req.flash("error", `Failed to update user account because: ${error.message}.`);
+       next(error);
         };
     },
 
