@@ -13,6 +13,8 @@ exports.getImage = async (req, res) => {
 
     fetch(address).then(result => {
 
+        console.log(result);
+
         const js = result.json();
 
         let image = js.response.body.items.item;
