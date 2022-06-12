@@ -10,7 +10,7 @@ const add1 = 'http://apis.data.go.kr/1400000/service/cultureInfoService/mntInfoI
 
 exports.getImage = async (req, res) => {
 
-    const address = address = add1 + req.params.number + add2 + key + add3;
+    const address = add1 + req.params.number + add2 + key + add3;
 
     fetch(address).then(result => {
 
@@ -60,7 +60,7 @@ exports.getImage = async (req, res) => {
 };
 
 exports.getImages = async (req, res) => {
-    const address = address = add1 + req.params.number + add2 + key + add3;
+    const address = add1 + req.params.number + add2 + key + add3;
     const imgNum = req.params.imgNum;
 
     fetch(address).then(result => {
