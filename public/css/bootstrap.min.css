@@ -470,6 +470,11 @@ button {
     -webkit-appearance: button
 }
 
+input[type="submit" i] {
+    white-space: pre;
+    align-items: flex-start;
+}
+
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled),
