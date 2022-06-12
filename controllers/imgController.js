@@ -14,6 +14,7 @@ exports.getImage = async (req, res) => {
 
     fetch(address).then(result => {
         console.log(result);
+        console.log("test");
         const js = JSON.parse(result);
 
         let image = js.response.body.items.item;
