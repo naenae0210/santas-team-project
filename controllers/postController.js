@@ -106,27 +106,27 @@ module.exports = {
             next();
         };
     },
-};
 
-exports.postById = async (req, res) => {
-    const userId = req.user.id;
+    postById : async (req, res) => {
+        const userId = req.user.id;
 
-    Post.findAll({
-        include: [
-            {
-                model: User,
-                as: 'user',
-                required: true,
-                where: {
-                    id: userId
+        Post.findAll({
+            include: [
+                {
+                    model: User,
+                    as: 'user',
+                    required: true,
+                    where: {
+                        id: userId
+                    }
                 }
-            }
-        ]
-    }).then(postList => {
-        res.render('delPost', {posts: postList});
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
+            ]
+        }).then(postList => {
+            res.render('delPost', {posts: postList});
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message
+            })
         })
-    })
-}
+    }
+};
