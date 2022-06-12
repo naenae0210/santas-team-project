@@ -69,7 +69,7 @@ module.exports = (sequelize, Sequelize) => {
 		Post.hasMany(models.Comment, {
 		foreignKey: "postId"
 		})
-		Post.hasMany(models.User, {
+		Post.belongsTo(models.User, {
 			foreignKey: "userId",
 			sourceKey: "id"
 		})
