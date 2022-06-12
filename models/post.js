@@ -50,7 +50,6 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.STRING,
 			allowNull: false
 		},
-		/*
 		userId: {
 				type: Sequelize.STRING,
 				allowNull: false,
@@ -60,7 +59,7 @@ module.exports = (sequelize, Sequelize) => {
 						key: 'id',
 						deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
 				}
-		}*/
+		}
 	}, {
 		sequelize,
 		modelName: 'post'
@@ -69,6 +68,10 @@ module.exports = (sequelize, Sequelize) => {
 	Post.associate = function (models) {
 		Post.hasMany(models.Comment, {
 		foreignKey: "postId"
+		})
+		Post.hasMany(models.User, {
+			foreignKey: "userId",
+			sourceKey: "id"
 		})
 	};
 
