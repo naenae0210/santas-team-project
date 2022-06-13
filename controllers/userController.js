@@ -117,24 +117,17 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
-        let userId = req.params.id;
+        let user = await User.findByPk(req.params.id);
         try{
-            let user = await User.findbyPk(userId);
-            user.changePassword(user.Password, req.body.Password, function (err) {
-                        if (!err) {
-                            res.locals.redirect = "/users/login";
-                            next();
-                        } else {
-                            console.log(err);
-                            next(error);
-                        }
-                    });
-                } 
-        catch (error) {
-            console.log(`Error deleting user by ID: ${error.messgae}`);
+            await user.changePassword(oldPassword, password);
+            res.locals.redirectView = '/';
             next();
+
+        }catch(error){
+            console.log(`Error fetching user by ID: ${error.messgae}`);
+            next(error);
         }
-    }
+      }
         
 ,
 
