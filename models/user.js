@@ -93,10 +93,11 @@ module.exports = (sequelize, Sequelize) => {
         console.log(err);
      }
     }*/
+    /*
     passwordComparison = (inputPassword) => {
       let user = this;
       return bcrypt.compare(inputPassword, user.password);
-    };
+    };*/
 
   };
 

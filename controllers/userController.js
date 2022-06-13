@@ -1,6 +1,7 @@
 const db = require("../models/index"),
     passport = require("passport"),	
     User = db.User,
+    bcrypt = require("bcrypt"),
     getUserParams = body => {
         return {
             id: body.id,
@@ -36,7 +37,8 @@ module.exports = {
             where: { id: req.body.id}
         })
         if (user) {
-            let passwordMatch = await user.passwordComparison(req.body.password);
+            //let passwordMatch = await user.passwordComparison(req.body.password);
+            let passwordMatch = await bcrypt.compare(req.body.password,user.password);
             if (passwordMatch) {
                 res.locals.redirect ="/";
                 req.flash("success",`${user.name}'s logged in successfully!`);
