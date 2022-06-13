@@ -95,10 +95,10 @@ router.get("/posts/new", postController.new);
 router.post("/posts/create", postController.create, postController.redirectView);
 router.get("/posts/:id/edit", postController.edit);
 router.post("/posts/:id/update", postController.update, postController.redirectView);
-router.get("/posts/:id", postController.show,/* postController.showView*/);
+router.get("/posts/:id", postController.show,postController.showView);
 router.post("/posts/:id/delete", postController.delete, postController.redirectView);
 
-router.post("/comments/:postId/create", commentController.create, commentController.redirectView);
+router.post("/comments/:postId/create", commentController.create);
 /*
 router.post("/comments/:postId/update", commentController.update, commentController.redirectView);
 router.post("/comments/:postId/delete", commentController.delete, commentController.redirectView);

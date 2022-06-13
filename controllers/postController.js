@@ -51,28 +51,20 @@ module.exports = {
         else next();
     },
 
-    show: async (req, res, next) => {
+     show: async (req, res, next) => {
         let postId = req.params.id;
-	let post, comments;
         try {
-            const post = await Post.findByPk(postId);
-            const comments = await Post.findAll({
-                include: [{
-                    model: comment,
-                    where: {
-                        postId: req.params.id,
-                    },
-                }]
-            });
+            let post = await Post.findByPk(postId);
+            res.locals.post = post;
+            next();
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
             next(error);
         };
-	    res.render("posts/show", {post: post, comments: comments});
     },
 
     showView: async (req, res) => {
-        res.render("posts/show", {post: post, comments: comments});
+        res.render("posts/show");
     },
 
     edit: async (req, res, next) => {
