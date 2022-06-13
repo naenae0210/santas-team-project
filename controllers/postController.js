@@ -65,7 +65,7 @@ module.exports = {
                     },
                 }]
             }).then((commentList) => {
-                res.render("posts/show", {post: post, comments: comments});
+                res.render("posts/show", {post: post, comments: commentList});
             })
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
