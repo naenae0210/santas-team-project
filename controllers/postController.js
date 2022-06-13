@@ -66,15 +66,14 @@ module.exports = {
     },
 
     showComment: async (req, res, next) => {
-        let postId = req.params.id;
-        Comment.findAll({
+        await Comment.findAll({
             where: {
-                postId: postId
+                postId: parseInt(req.params.id)
             }
         }).then(commentList => {
             res.render("posts/show", {comments: commentList});
         }).catch (error => {
-            console.log(`Error fetching post by ID: ${error.messgae}`);
+            console.log(`Error fetching comment by ID: ${error.messgae}`);
             next(error);
         });
     },
