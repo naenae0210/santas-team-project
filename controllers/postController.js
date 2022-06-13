@@ -67,18 +67,16 @@ module.exports = {
 
     showComment: async (req, res, next) => {
         let postId = req.params.id;
-        try {
-            Comment.findAll({
-                where: {
-                    postId: postId
-                }
-            }).then(commentList => {
-                res.render("posts/show", {comments: commentList});
-            })
-        } catch (error) {
+        Comment.findAll({
+            where: {
+                postId: postId
+            }
+        }).then(commentList => {
+            res.render("posts/show", {comments: commentList});
+        }).catch (error => {
             console.log(`Error fetching post by ID: ${error.messgae}`);
             next(error);
-        };
+        });
     },
 
     showView: async (req, res) => {
