@@ -117,6 +117,7 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
+        try{
         const user = await User.findOne({
             id: req.user.id
         });
@@ -125,6 +126,10 @@ module.exports = {
         req.flash('success', 'Password Changed Successfully'); 
         res.locals.redirect = "/";
         next();
+    } catch (error) {
+        console.log(`Error user by ID: ${error.messgae}`);
+        next(error);
+    };
     },
 
     delete: async (req, res, next) => {
