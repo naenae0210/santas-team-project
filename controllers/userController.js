@@ -122,7 +122,6 @@ module.exports = {
         });
         await user.setPassword(req.body.password);
         const updatedUser = await user.save();
-        req.login(updatedUser);
         req.flash('success', 'Password Changed Successfully'); 
         res.locals.redirect = "/";
         },
