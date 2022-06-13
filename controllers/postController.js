@@ -65,19 +65,6 @@ module.exports = {
         };
     },
 
-    showComment: async (req, res, next) => {
-        await Comment.findAll({
-        }).then(commentList => {
-            commentList.forEach(c => {
-                console.log(c);
-            })
-            res.render("posts/show", {comments: commentList});
-        }).catch (error => {
-            console.log(`Error fetching comment by ID: ${error.messgae}`);
-            next(error);
-        });
-    },
-
     showView: async (req, res) => {
         res.render("posts/show");
     },

@@ -1,8 +1,6 @@
 const db = require("../models/index"),
     Comment = db.Comment,
     Post = db.post,
-    post = db.post,
-
     getCommentParams = (req) => {
         return {
             commentNum: req.body.commentNum,
@@ -23,6 +21,15 @@ module.exports = {
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
 	        next();
+        };
+    },
+
+    showComment: async (req, res) => {
+        try {
+            let comments = await Comment.findAll();
+            res.locals.comments = comments;
+        } catch (error) {
+            console.log(`Error fetching posts: ${error.messgae}`);
         };
     },
 
