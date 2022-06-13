@@ -95,7 +95,7 @@ router.post("/posts/:id/update", postController.update, postController.redirectV
 router.get("/posts/:id", postController.show, commentController.showComment);
 router.post("/posts/:id/delete", postController.delete, postController.redirectView);
 
-router.post("/comments/:postId/create", commentController.create);
+router.post("/comments/:postId/create", commentController.create, commentController.redirectView);
 /*
 router.post("/comments/:postId/update", commentController.update, commentController.redirectView);
 router.post("/comments/:postId/delete", commentController.delete, commentController.redirectView);

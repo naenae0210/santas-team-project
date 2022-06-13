@@ -17,7 +17,7 @@ module.exports = {
         let commentParams = getCommentParams(req.body);
         try {
             let comment = await Comment.create({commentParams});
-            res.render("posts/show");
+            res.locals.redirect = `/posts/${postId}`;
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
 	        next();
@@ -40,12 +40,13 @@ module.exports = {
         };
     },
 
-/*
+
     redirectView: (req, res, next) => {
         let redirectPath = res.locals.redirect;
         if (redirectPath != undefined) res.redirect(redirectPath);
         else next();
     },
+    /*
     update: async (req, res, next) => {
         let postId = req.params.id;
         try {
