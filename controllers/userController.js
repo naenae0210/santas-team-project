@@ -120,13 +120,16 @@ module.exports = {
             let user = await User.findByPk(userId);
             bcrypt.genSalt(10, (error, mysalt)=> {
                 bcrypt.hash(userParams.password, mysalt,(error, myhash)=> {
-                    await User.update({mysalt:mysalt}, {
+                    let newsalt = await User.update({mysalt:mysalt}, {
                         where: {
                           id: userId
                         }
                       });
-                    userParams.password = myhash;  
+                    console.log(newsalt);
+                    userParams.password = myhash; 
+                    next(error); 
                  });
+                 next(error); 
               });
             user = await User.findByPkAndUpdate(userId, userParams);
             req.logout();
