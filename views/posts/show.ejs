@@ -35,6 +35,7 @@
         </div>
 
 
+<% if (loggedIn) { %>
   <div class="data-form">
     <form class="form-post" action="<%=`/comments/${post.id}/create`%>" method="post">
 
@@ -49,4 +50,5 @@
 
     </form>
   </div>
+<% } %>
 
