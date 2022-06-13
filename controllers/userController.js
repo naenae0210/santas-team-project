@@ -117,62 +117,14 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
-        //let userId = req.params.id,
-            //userParams = getUserParams(req.body),
-            //user = await User.findByPk(userId);
-            try{
-                let editPassword = async (req, res) => {
-                    const user = await User.findOne({
-                      id: user.id
-                  });
-                  await user.setPassword(req.body.password);
-                  const updatedUser = await user.save();
-                  req.login(updatedUser);
-                  req.flash('success', 'Password Changed Successfully')
-                  }
-                  /*
-                  req.logout((err) => {
-                    req.flash("success", "You have been logged out!");
-                  }); 
-                  res.locals.redirect = "/";
-                  next();*/
-                }catch(error){
-                    console.log(`Error saving user: ${error.message}`);
-                    res.locals.redirect = "/";
-                    req.flash("error", `Failed to update user account because: ${error.message}.`);
-                    next(error);
-                }
-                /*
-            bcrypt.genSalt(10, function(err, salt) {
-                if (err) return next(err);
-                bcrypt.hash(userParams.password, salt, async function (err, hash) {
-                  if (err) return next(err);
-                  //userParams.password = hash; 
-                  await User.update({mysalt:salt}, {
-                    where: {
-                      id: userId
-                    }
-                  });
-                  await User.update({password:hash}, {
-                    where: {
-                      id: userId
-                    }
-                  });
-                });
-              });
-              //user = await User.findByPkAndUpdate(userId, userParams); 
-              req.logout((err) => {
-                req.flash("success", "You have been logged out!");
-              }); 
-              res.locals.redirect = "/";
-              next();
-            } catch(error){
-                console.log(`Error saving user: ${error.message}`);
-                res.locals.redirect = "/";
-                req.flash("error", `Failed to update user account because: ${error.message}.`);
-                next(error);
-            }*/
-            
+        const user = await User.findOne({
+            id: req.user.id
+        });
+        await user.setPassword(req.body.password);
+        const updatedUser = await user.save();
+        req.login(updatedUser);
+        req.flash('success', 'Password Changed Successfully'); 
+        res.locals.redirect = "/";
         },
 
     delete: async (req, res, next) => {
