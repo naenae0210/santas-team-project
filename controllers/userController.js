@@ -123,7 +123,22 @@ module.exports = {
                     id: req.params.id
                 }
             })
-            User.register(user, req.body.password, (error, user) => {
+            User.changePassword(user.password, req.body.password, (error) => {
+                if(error) {
+                    console.log(`Error saving user: ${error.message}`);
+                    res.locals.redirect = "/"
+                    req.flash("error", `Failed to update user account because: ${error.message}.`);
+                    next(error);
+                  }else{
+                    req.flash("success", `${user.name}'s account updated successfully!`);
+                  req.logout((err) => {
+                    req.flash("success", "You have been logged out!");
+                  });
+                  res.locals.redirect = "/users/login";
+                  res.locals.user = user;
+                  next();
+                  }
+                /*
                 if(user) {
                   req.flash("success", `${user.name}'s account updated successfully!`);
                   req.logout((err) => {
@@ -137,7 +152,7 @@ module.exports = {
                   res.locals.redirect = "/"
                   req.flash("error", `Failed to update user account because: ${error.message}.`);
                   next(error);
-                }
+                }*/
               });    
 
         } catch(error) {
