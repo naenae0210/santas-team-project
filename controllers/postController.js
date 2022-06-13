@@ -56,8 +56,6 @@ module.exports = {
         let postId = req.params.id;
         try {
             const post = await Post.findByPk(postId);
-            console.log(post);
-
             const comments = Comment.findAll({
                 where: {
                     postId: postId
