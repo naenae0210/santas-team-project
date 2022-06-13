@@ -120,6 +120,7 @@ module.exports = {
         try {
             const salt = await bcrypt.genSalt(10);
             const hashPassword = await bcrypt.hash(req.body.password, salt);
+            console.log(hashPassword);
             //userParams.password = await bcrypt.hash(userParams.password, salt);
             await User.update({mysalt:salt}, {
                 where: {
