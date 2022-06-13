@@ -118,7 +118,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         try{
-            let user = User.findOne({ id: req.params.id }); 
+            let user = await User.findOne({ where: {id: req.params.id} })
             user.changePassword(user.Password, req.body.Password, function (err) {
                         if (!err) {
                             res.locals.redirect = "/users/login";
