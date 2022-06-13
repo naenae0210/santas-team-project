@@ -36,6 +36,7 @@
 }*/
 const passportLocalSequelize = require('passport-local-sequelize');
 
+
 module.exports = (sequelize, Sequelize) => {
   //const Post = require("./post")(sequelize, Sequelize);
   class User extends Sequelize.Model {
