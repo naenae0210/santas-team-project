@@ -34,7 +34,7 @@ module.exports = {
                 }
             });
             console.log(comments);
-            res.render("/posts/show", {comments: comments});
+            res.render("posts/show", {comments: comments});
             next();
         } catch (error) {
             console.log(`Error fetching posts: ${error.messgae}`);
