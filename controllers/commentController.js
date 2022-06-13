@@ -28,6 +28,7 @@ module.exports = {
         try {
             let comments = await Comment.findAll();
             res.locals.comments = comments;
+            res.render("posts/show");
         } catch (error) {
             console.log(`Error fetching posts: ${error.messgae}`);
         };
