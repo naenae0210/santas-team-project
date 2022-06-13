@@ -115,8 +115,10 @@ module.exports = {
     update: async (req, res, next) => {
         let userId = req.params.id,
             userParams = getUserParams(req.body);
+            console.log(userId);
         try {
             let user = await User.findByPkAndUpdate(userId, userParams);
+            //let user = await User.findOne({id:})
             await user.setPassword(userParams.password).save();
             req.logout();
             res.locals.redirect = "/user/login";
