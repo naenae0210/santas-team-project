@@ -54,13 +54,13 @@ module.exports = {
 
      show: async (req, res, next) => {
         let postId = req.params.id;
-	let post, comments;
+	    let post;
         try {
             post = await Post.findByPk(postId);
-            comments = await Comment.findAll({
-                    where: {
-                        postId: req.params.id,
-                    },
+            await Comment.findAll({
+                where: {
+                    postId: postId
+                },
             }).then((commentList) => {
                 res.render("posts/show", {post: post, comments: commentList});
             })
