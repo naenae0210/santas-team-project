@@ -58,12 +58,9 @@ module.exports = {
         try {
             post = await Post.findByPk(postId);
             comments = await Comment.findAll({
-                include: [{
-                    model: Comment,
                     where: {
                         postId: req.params.id,
                     },
-                }]
             }).then((commentList) => {
                 res.render("posts/show", {post: post, comments: commentList});
             })
