@@ -61,6 +61,7 @@ module.exports = {
                     postId: postId
                 },
             }).then((commentList) => {
+                console.log("test");
                 res.locals.comments = commentList;
             }) 
 
