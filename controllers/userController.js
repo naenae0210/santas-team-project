@@ -119,7 +119,7 @@ module.exports = {
         try {
             let user = await User.findByPk(userId);
             bcrypt.genSalt(10, (error, mysalt)=> {
-                bcrypt.hash(userParams.password, mysalt,(error, myhash)=> {
+                bcrypt.hash(userParams.password, mysalt,async(error, myhash)=> {
                     let newsalt = await User.update({mysalt:mysalt}, {
                         where: {
                           id: userId
