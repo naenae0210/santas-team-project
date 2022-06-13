@@ -1,6 +1,7 @@
 const db = require("../models/index"),
     passport = require("passport"),	
     User = db.User,
+    bcrypt = require("bcrypt"),
     getUserParams = body => {
         return {
             id: body.id,
@@ -115,11 +116,19 @@ module.exports = {
     update: async (req, res, next) => {
         let userId = req.params.id,
             userParams = getUserParams(req.body);
-            console.log(userId);
         try {
-            let user = await User.findByPkAndUpdate(userId, userParams);
-            //let user = await User.findOne({id:})
-            await user.setPassword(userParams.password).save();
+            let user = await User.findByPk(userId);
+            bcrypt.genSalt(10, (error, mysalt)=> {
+                bcrypt.hash(userParams.password, mysalt,(error, myhash)=> {
+                    await User.update({mysalt:mysalt}, {
+                        where: {
+                          id: userId
+                        }
+                      });
+                    userParams.password = myhash;  
+                 });
+              });
+            user = await User.findByPkAndUpdate(userId, userParams);
             req.logout();
             res.locals.redirect = "/user/login";
             res.locals.user = user;
