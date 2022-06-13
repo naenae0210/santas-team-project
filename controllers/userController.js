@@ -63,7 +63,7 @@ module.exports = {
            next();
          }else{
            console.log(`Error saving user: ${error.message}`);
-           res.locals.redirect = "/users/new"
+           res.locals.redirect = "/users/new";
            req.flash("error", `Failed to create user account because: ${error.message}.`);
            next(error);
          }
@@ -118,59 +118,27 @@ module.exports = {
             userParams = getUserParams(req.body),
             user = await User.findByPk(userId);
         try {
-            //let user = await User.findByPk(userId);
-            if(userParams.password != undefined) {
-                bcrypt.genSalt(10, function(err, salt) {
-                    if(err) return next(err); 
-                    bcrypt.hash(userParams.password, salt, async(err, hash) => {
-                        if(err) return next(err);
-                        console.log(salt);
-                        await User.update({mysalt:salt}, {
-                            where: {
-                              id: userId
-                            }
-                          });
-                        userParams.password = hash;
-                        });
-                    });
-            }
-                user = await User.findByPkAndUpdate(userId, userParams);
-                req.logout((err) => {
-                req.flash("success", "You have been logged out!");
-                res.locals.redirect = "/user/login";
-                res.locals.user = user;
-                next();
-                });    
-                /*else{
-                    user = await User.findByPkAndUpdate(userId, userParams);
-                    req.logout((err) => {
-                    req.flash("success", "You have been logged out!");
-                    res.locals.redirect = "/user/login";
-                    res.locals.user = user;
-                    next();
-                    });
+            const salt = await bcrypt.genSalt(10);
+            const hashPassword = await bcrypt.hash(req.body.password, salt);
+            console.log(hashPassword);
+            //userParams.password = await bcrypt.hash(userParams.password, salt);
+            await User.update({mysalt:salt}, {
+                where: {
+                  id: userId
                 }
-               
-            bcrypt.genSalt(10, (error, mysalt)=> {
-                bcrypt.hash(userParams.password, mysalt,async(error, myhash)=> {
-                    let newsalt = await User.update({mysalt:mysalt}, {
-                        where: {
-                          id: userId
-                        }
-                      });
-                    userParams.password = myhash;
-                 });
               });
-            user = await User.findByPkAndUpdate(userId, userParams);
+            await User.update({password:hashPassword}, {
+                where: {
+                  id: userId
+                }
+              });
             req.logout((err) => {
                 req.flash("success", "You have been logged out!");
                 res.locals.redirect = "/user/login";
                 res.locals.user = user;
                 next();
-              });
-            //res.locals.redirect = "/user/login";
-            //res.locals.user = user;
-            //next();*/
+            });      
+
         } catch(error) {
             console.log(`Error saving user: ${error.message}`);
             res.locals.redirect = "/";
