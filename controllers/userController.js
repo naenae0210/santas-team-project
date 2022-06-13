@@ -118,8 +118,10 @@ module.exports = {
 
     update: async (req, res, next) => {
         let user = await User.findByPk(req.params.id);
+        let userParams = getUserParams(req.body);
         try{
-            await user.changePassword(oldPassword, password);
+            let oldPassword = user.password;
+            await user.changePassword(oldPassword, userParams.password );
             res.locals.redirectView = '/';
             next();
 
