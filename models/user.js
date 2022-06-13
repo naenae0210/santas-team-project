@@ -34,7 +34,7 @@
 
   return user;
 }*/
-const passportLocalSequelize = require('passport-local-sequelize');
+//const passportLocalSequelize = require('passport-local-sequelize');
 const bcrypt = require("bcrypt");
 
 
@@ -51,6 +51,7 @@ module.exports = (sequelize, Sequelize) => {
           });
         }
         return user;
+      
       }/*
       try {
         let user = await User.findByPk(id);
