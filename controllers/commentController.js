@@ -4,7 +4,7 @@ const db = require("../models/index"),
     getCommentParams = (req) => {
         return {
             commentNum: req.body.commentNum,
-            postId: req.body.postId,
+            postId: req.params.postId,
             commentDetail: req.body.commentDetail,
             userId: req.user.id
         };
