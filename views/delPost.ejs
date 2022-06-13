@@ -17,10 +17,6 @@
           <thead>
             <tr>
               <th scope="col">
-                <label class="control control--checkbox">
-                  <input type="checkbox" class="js-check-all"/>
-                  <div class="control__indicator"></div>
-                </label>
               </th>
               <th scope="col">Num</th>
               <th scope="col">Title</th>
@@ -32,10 +28,6 @@
             <% posts.forEach(p => { %>
               <tr>
                 <th scope="row">
-                  <label class="control control--checkbox">
-                    <input type="checkbox"/>
-                    <div class="control__indicator"></div>
-                  </label>
                 </th>
                 <td><%= p.id %></td>
                 <td><%= p.title %></td>
