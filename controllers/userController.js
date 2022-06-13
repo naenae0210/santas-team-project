@@ -120,7 +120,7 @@ module.exports = {
         try {
             let user = await User.findOne({
                 where: {
-                    id: currentUser.getDataValue('id')
+                    id: req.params.id
                 }
             })
             User.register(user, req.body.password, (error, user) => {
