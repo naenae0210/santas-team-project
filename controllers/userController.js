@@ -123,15 +123,20 @@ module.exports = {
                 if (err) return next(err);
                 bcrypt.hash(userParams.password, salt, async function (err, hash) {
                   if (err) return next(err);
-                  userParams.password = hash; 
+                  //userParams.password = hash; 
                   await User.update({mysalt:salt}, {
+                    where: {
+                      id: userId
+                    }
+                  });
+                  await User.update({password:hash}, {
                     where: {
                       id: userId
                     }
                   });
                 });
               });
-              user = await User.findByPkAndUpdate(userId, userParams); 
+              //user = await User.findByPkAndUpdate(userId, userParams); 
               req.logout((err) => {
                 req.flash("success", "You have been logged out!");
               }); 
