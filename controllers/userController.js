@@ -123,7 +123,7 @@ module.exports = {
                     id: req.params.id
                 }
             })
-            User.changePassword(user.password, req.body.password, (error) => {
+            user.changePassword(user.password, req.body.password, (error) => {
                 if(error) {
                     console.log(`Error saving user: ${error.message}`);
                     res.locals.redirect = "/"
