@@ -1,7 +1,6 @@
 const db = require("../models/index"),
     passport = require("passport"),	
     User = db.User,
-    bcrypt = require("bcrypt"),
     getUserParams = body => {
         return {
             id: body.id,
@@ -23,13 +22,41 @@ module.exports = {
         next();
       });
     },
-
+    /*
     authenticate: passport.authenticate("local", {
       failureRedirect: "/users/login",
       failureFlash: "Failed to Sign In.",
       successRedirect: "/",
       successFlash: "Logged In!"
-    }),
+    }),*/
+
+    authenticate: async(req, res, next) => {
+    try{
+        let user = await User.findOne({
+            where: { id: req.body.id}
+        })
+        if (user) {
+            let passwordMatch = await user.passwordComparison(req.body.password);
+            if (passwordMatch) {
+                res.locals.redirect ="/";
+                req.flash("success",`${user.name}'s logged in successfully!`);
+                res.locals.user = user;
+                next(); 
+            }else{
+             req.flash("error","Failed to log in : incorrect password");
+             res.locals.redirect = "/users/login";
+             next();
+            }
+        }else{
+             req.flash("error","Failed to log in!: Useraccount is not found");
+             res.locals.redirect = "/users/login";
+             next();
+        }
+    } catch(err) {
+        console.log(`Error logging in user: ${err.message}`);
+        next(err);
+    }
+}, 
 
     index: async (req, res, next) => {
         try {
@@ -54,7 +81,26 @@ module.exports = {
      if (req.skip) next();
      let userParams = getUserParams(req.body);
      try{
-       let user = new User(userParams);
+       let user = await User.create(userParams);
+       if(user) {
+        req.flash("success", `${user.name}'s account created successfully!`);
+        res.locals.redirect = "/users/login";
+        res.locals.user = user;
+        next();
+      }else{
+        console.log(`Error saving user: ${error.message}`);
+        res.locals.redirect = "/users/new";
+        req.flash("error", `Failed to create user account because: ${error.message}.`);
+        next(error);
+      }
+     } catch(error) {
+        console.log(`Error saving user: ${error.message}`);
+        res.locals.redirect = "/users/new";
+        req.flash("error", `Failed to create user account because: ${error.message}.`);
+        next(error);
+      };
+
+       /*
        User.register(user, req.body.password, (error, user) => {
          if(user) {
            req.flash("success", `${user.name}'s account created successfully!`);
@@ -73,7 +119,7 @@ module.exports = {
        res.locals.redirect = "/users/new";
        req.flash("error", `Failed to create user account because: ${error.message}.`);
        next(error);
-     };
+     };*/
    },
 
     redirectView: (req, res, next) => {
@@ -118,16 +164,16 @@ module.exports = {
             userParams = getUserParams(req.body),
             user = await User.findByPk(userId);
         try {
-            const salt = await bcrypt.genSalt(1024);
-            const hashPassword = await bcrypt.hash(req.body.password, salt);
-            console.log(hashPassword);
+            const mysalt = await bcrypt.genSalt(10);
+            const myhash = await bcrypt.hash(req.body.password, mysalt);
+            //console.log(hashPassword);
             //userParams.password = await bcrypt.hash(userParams.password, salt);
-            await User.update({mysalt:salt}, {
+            await User.update({mysalt:mysalt}, {
                 where: {
                   id: userId
                 }
               });
-            await User.update({password:hashPassword}, {
+            await User.update({password:myhash}, {
                 where: {
                   id: userId
                 }

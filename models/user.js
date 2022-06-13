@@ -35,6 +35,7 @@
   return user;
 }*/
 const passportLocalSequelize = require('passport-local-sequelize');
+const bcrypt = require("bcrypt");
 
 
 module.exports = (sequelize, Sequelize) => {
@@ -71,6 +72,11 @@ module.exports = (sequelize, Sequelize) => {
       }
     }
 
+    passwordComparison = (inputPassword) => {
+      let user = this;
+      return bcrypt.compare(inputPassword, user.password);
+    }
+
   };
 
   User.init({
@@ -81,7 +87,7 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true
     },
     password: {
-      type: Sequelize.STRING(1024),
+      type: Sequelize.STRING,
       allowNull: false
     },
     name: {
@@ -98,15 +104,21 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     }
   }, {
+    hooks: {
+      beforeSave: async (user) => {
+        let hash = await bcrypt.hash(user.password, 10);
+        user.password = hash;
+      }
+    },
     sequelize,
     modelName: 'user'
   });
- 
+ /*
   passportLocalSequelize.attachToUser(User, {
     usernameField: 'id',
     hashField: 'password',
     saltField: 'mysalt'
-  });
+  });*/
 
   User.associate = function(models) {
     User.hasMany(models.Bookmark, {
