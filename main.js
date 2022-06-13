@@ -53,7 +53,7 @@ router.use(flash());
 
 router.use(passport.initialize());
 router.use(passport.session());
-//passport.use(User.createStrategy());
+passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
