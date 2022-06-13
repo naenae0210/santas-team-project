@@ -56,15 +56,16 @@ module.exports = {
         let postId = req.params.id;
         try {
             const post = await Post.findByPk(postId);
-            const comments = Comment.findAll({
+            Comment.findAll({
                 where: {
                     postId: postId
                 },
+            }).then(commentList => {
+                res.locals.comments = commentList;
             });
 
-            console.log(comments);
+            console.log(res.locals.comments);
             res.locals.post = post;
-            res.locals.comments = comments;
             next();
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
