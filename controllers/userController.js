@@ -119,24 +119,19 @@ module.exports = {
             userParams = getUserParams(req.body),
             user = await User.findByPk(userId);
             try{
-                crypto.randomBytes(64, (err, buf) => {
-                    crypto.pbkdf2(userParams.password, buf.toString('hex'), 10, 1024, 'sha512', async(err, key) => {
-                        if (err) return next(err);
-                        let salt = buf.toString('hex');
-                        let hash = key.toString('hex');
-                        await User.update({mysalt:salt}, {
-                            where: {
-                            id: userId
-                            }
-                        });
-                        await User.update({password:hash}, {
-                            where: {
-                            id: userId
-                            }
-                        });
-
-                    });
-                  });
+                User.findById(req.user._id)
+                .then(foundUser => {
+                    foundUser.changePassword(req.user.password, req.body.password)
+                        .then(() => {
+                            console.log('password changed');
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
                   req.logout((err) => {
                     req.flash("success", "You have been logged out!");
                   }); 
