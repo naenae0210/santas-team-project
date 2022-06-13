@@ -56,26 +56,12 @@ module.exports = {
         let postId = req.params.id;
         try {
             const post = await Post.findByPk(postId);
-            console.log(post);
             res.locals.post = post;
             next();
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
             next(error);
         };
-    },
-
-    showComment: async (req, res, next) => {
-        await Comment.findAll({
-        }).then(commentList => {
-            commentList.forEach(c => {
-                console.log(c);
-            })
-            res.render("posts/show", {comments: commentList});
-        }).catch (error => {
-            console.log(`Error fetching comment by ID: ${error.messgae}`);
-            next(error);
-        });
     },
 
     showView: async (req, res) => {

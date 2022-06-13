@@ -114,11 +114,11 @@ module.exports = (sequelize, Sequelize) => {
       sourceKey: "id"
     });
     User.hasMany(models.post, {
-      foreignKey: "id",
+      foreignKey: "userId",
       sourceKey: "id"
     });
     User.hasMany(models.Comment, {
-      foreignKey: "id",
+      foreignKey: "userId",
       sourceKey: "id"
     });
   }

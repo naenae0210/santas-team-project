@@ -16,7 +16,7 @@
 
 
   <div class="container-fluid">
-          <% if (comments.isArray != 0) { %>
+          <% if (comments.length != 0) { %>
           <% comments.forEach(comment=> { %> 
             
               <div class="row">
@@ -35,12 +35,13 @@
         </div>
 
 
+<% if (loggedIn) { %>
   <div class="data-form">
     <form class="form-post" action="<%=`/comments/${post.id}/create`%>" method="post">
 
       <div class="form-group">
         <label for="commentDetail">Comment</label>
-        <textarea id="commetDetail" name="commetDetail" class="form-control" placeholder="commetDetail"></textarea>
+        <textarea id="commentDetail" name="commentDetail" class="form-control" placeholder="commentDetail"></textarea>
       </div>
 
       <div>
@@ -49,4 +50,5 @@
 
     </form>
   </div>
+<% } %>
 
