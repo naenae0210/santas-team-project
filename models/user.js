@@ -96,7 +96,7 @@ module.exports = (sequelize, Sequelize) => {
     passwordComparison = (inputPassword) => {
       let user = this;
       return bcrypt.compare(inputPassword, user.password);
-    }
+    };
 
   };
 
@@ -120,7 +120,8 @@ module.exports = (sequelize, Sequelize) => {
     },
     nickname: {
       type: Sequelize.STRING,
-    },myhash: {
+    },
+    myhash: {
       type: Sequelize.STRING
     },
     mysalt: {
