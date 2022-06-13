@@ -92,7 +92,7 @@ router.get("/posts/new", postController.new);
 router.post("/posts/create", postController.create, postController.redirectView);
 router.get("/posts/:id/edit", postController.edit);
 router.post("/posts/:id/update", postController.update, postController.redirectView);
-router.get("/posts/:id", postController.show, postController.showView);
+router.get("/posts/:id", postController.show, postController.showComment);
 router.post("/posts/:id/delete", postController.delete, postController.redirectView);
 
 router.post("/comments/:postId/create", commentController.create);
