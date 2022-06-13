@@ -63,6 +63,7 @@ module.exports = {
                 raw: true,
             })
 
+            console.log(comments);
             res.locals.comments = comments;
             res.locals.post = post;
             next();
