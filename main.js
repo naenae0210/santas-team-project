@@ -70,7 +70,7 @@ router.get("/around/:region", aroundController.searchAroundByAdd);
 router.get("/bookmark", bookmarkController.allBookmark);
 
 router.get("/community", homeController.showCommunity);
-router.get("/delPost", homeController.showMyPost);
+router.get("/delPost", postController.postById);
 router.get("/myProfile", homeController.showMyProfile);
 router.get("/mountain", mountainController.allMountain, bookmarkController.isBookmark);
 router.get("/mountain/:region", mountainController.searchMountainByAdd, bookmarkController.isBookmark);
@@ -95,11 +95,11 @@ router.post("/posts/:id/update", postController.update, postController.redirectV
 router.get("/posts/:id", postController.show, postController.showView);
 router.post("/posts/:id/delete", postController.delete, postController.redirectView);
 
-router.post("/comments/:postId/create", commentController.create, commentController.redirectView);
+router.post("/comments/:postId/create", commentController.create);
+/*
 router.post("/comments/:postId/update", commentController.update, commentController.redirectView);
-router.get("/comments/:postId/getComment", commentController.getComment, commentController.redirectView);
 router.post("/comments/:postId/delete", commentController.delete, commentController.redirectView);
-
+*/
 
 
 router.get("/users/login", userController.login);

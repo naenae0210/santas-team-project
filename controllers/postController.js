@@ -1,10 +1,13 @@
 const db = require("../models/index"),
     Post = db.post,
-    getPostParams = body => {
+    User = db.User,
+    Comment = db.Comment,
+    getPostParams = (req) => {
         return {
-            id: body.id,
-            title: body.title,
-            detail: body.detail,
+            id: req.body.id,
+            title: req.body.title,
+            detail: req.body.detail,
+            userId: req.user.id
         };
     };
 
@@ -29,9 +32,10 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
-        let postParams = getPostParams(req.body);
+        let postParams = getPostParams(req);
         try {
-	    let postParams = getPostParams(req.body);
+	    let postParams = getPostParams(req);
+        console.log(postParams);
             let post = await Post.create(postParams);
             res.locals.redirect = "/posts";
             res.locals.post = post;
@@ -51,7 +55,16 @@ module.exports = {
     show: async (req, res, next) => {
         let postId = req.params.id;
         try {
-            let post = await Post.findByPk(postId);
+            const post = await Post.findByPk(postId);
+            const comments = Comment.findAll({
+                where: {
+                    postId: postId
+                },
+                raw: true,
+            })
+
+            console.log(comments);
+            res.locals.comments = comments;
             res.locals.post = post;
             next();
         } catch (error) {
@@ -80,10 +93,10 @@ module.exports = {
 
     update: async (req, res, next) => {
         let postId = req.params.id,
-            postParams = getPostParams(req.body);
+            postParams = getPostParams(req);
         try {
             let postId = req.params.id,
-            postParams = getPostParams(req.body);
+            postParams = getPostParams(req);
             let post = await Post.findByPkAndUpdate(postId, postParams);
             res.locals.redirect = `/posts/${postId}`;
             res.locals.post = post;
@@ -105,4 +118,27 @@ module.exports = {
             next();
         };
     },
+
+    postById : async (req, res) => {
+        const userId = req.user.id;
+
+        Post.findAll({
+            include: [
+                {
+                    model: User,
+                    as: 'user',
+                    required: true,
+                    where: {
+                        id: userId
+                    }
+                }
+            ]
+        }).then(postList => {
+            res.render('delPost', {posts: postList});
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message
+            })
+        })
+    }
 };

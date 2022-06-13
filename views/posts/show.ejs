@@ -16,6 +16,7 @@
 
 
   <div class="container-fluid">
+          <% if (comments.length != 0) { %>
           <% comments.forEach(comment=> { %> 
             
               <div class="row">
@@ -30,7 +31,7 @@
                 </div>
               </div>
             
-          <% }) %>
+          <% })} %>
         </div>
 
 

@@ -23,6 +23,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false
     },
+    userId: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      references: {
+          model: 'users',
+          key: 'id',
+          deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+      }
+  }
 
   });
 
@@ -30,6 +39,10 @@ module.exports = (sequelize, Sequelize) => {
     comment.belongsTo(models.post, {
       foreignKey: "postId"
     })
+    comment.belongsTo(models.User, {
+			foreignKey: "userId",
+			sourceKey: "id"
+		})
   };
   return comment;
 }

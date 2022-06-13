@@ -20,7 +20,8 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-green">
+        <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-green fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">SANTAS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation" data-target="#collapsibleNavbar">
@@ -50,7 +51,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		                        <a href="/bookmark" class="dropdown-item">북마크</a>
-                                <a href="<%=`/post/${currentUser.getDataValue('id')}`%>" class="dropdown-item">내 글</a>
+                                <a href="/delPost" class="dropdown-item">내 글</a>
 		                        <a href="<%=`/users/${currentUser.getDataValue('id')}/edit`%>" class="dropdown-item">정보 수정</a>
                                 <a href="/users/logout" class="dropdown-item">로그아웃</a>
                             </div>
@@ -63,22 +64,23 @@
                         </ul>
                     <% } %>
                 </div>
-
             </div>
         </nav>
-	<div class = "flashes">
-          <% if (flashMessages) { %>
-            <% if (flashMessages.success) { %>
-              <div class = "flash success">
-                <%= flashMessages.success %>
-              </div>
-            <% } else if (flashMessages.error) { %>
-              <div class = "flash error">
-                <%= flashMessages.error %>
-              </div>
+        <div class = "flashes fixed-top">
+            <% if (flashMessages) { %>
+              <% if (flashMessages.success) { %>
+                <div class = "flash success">
+                  <%= flashMessages.success %>
+                </div>
+              <% } else if (flashMessages.error) { %>
+                <div class = "flash error">
+                  <%= flashMessages.error %>
+                </div>
+              <% } %>
             <% } %>
-          <% } %>
-	</div>
+        </div>
+        <div style="padding: 35px;"></div>
+        </div>
     </header>
 
     <%- body %>

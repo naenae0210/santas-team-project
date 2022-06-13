@@ -17,10 +17,6 @@
           <thead>
             <tr>
               <th scope="col">
-                <label class="control control--checkbox">
-                  <input type="checkbox" class="js-check-all"/>
-                  <div class="control__indicator"></div>
-                </label>
               </th>
               <th scope="col">Num</th>
               <th scope="col">Title</th>
@@ -29,58 +25,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              <td>1392</td>
-              <td>James Yates</td>
-              <td>Web Designer</td>
-              <td>+63 983 0962 971</td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              <td>4616</td>
-              <td>Matthew Wasil</td>
-              <td>Graphic Designer</td>
-              <td>+02 020 3994 929</td>
-
-            </tr>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              <td>9841</td>
-              <td>Sampson Murphy</td>
-              <td>Mobile Dev</td>
-              <td>+01 352 1125 0192</td>
-
-            </tr>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              <td>9548</td>
-              <td>Gaspar Semenov</td>
-              <td>Illustrator</td>
-              <td>+92 020 3994 929</td>
-            
-            </tr>
-
+            <% posts.forEach(p => { %>
+              <tr>
+                <th scope="row">
+                </th>
+                <td><%= p.id %></td>
+                <td><%= p.title %></td>
+                <td><%= p.user.nickname %></td>
+                <td><%= p.createdAt %></td>
+              </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>

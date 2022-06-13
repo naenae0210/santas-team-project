@@ -53,7 +53,6 @@ module.exports = (sequelize, Sequelize) => {
 		userId: {
 				type: Sequelize.STRING,
 				allowNull: false,
-				unique: true,
 				references: {
 						model: 'users',
 						key: 'id',
@@ -67,9 +66,10 @@ module.exports = (sequelize, Sequelize) => {
 
 	Post.associate = function (models) {
 		Post.hasMany(models.Comment, {
-		foreignKey: "postId"
+			foreignKey: "postId",
+			sourceKey: "id"
 		})
-		Post.hasMany(models.User, {
+		Post.belongsTo(models.User, {
 			foreignKey: "userId",
 			sourceKey: "id"
 		})

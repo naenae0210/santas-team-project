@@ -24,16 +24,20 @@
           <%= post.createdAt %>
         </td>
         <td>
-          <a class="btn btn-outline-success" href="<%=`/posts/${post.id}/edit`%>">
-            Edit
-          </a>
+          <% if (loggedIn && post.userId == currentUser.id) { %>
+            <a class="btn btn-outline-success" href="<%=`/posts/${post.id}/edit`%>">
+              Edit
+            </a>
+          <% } %>
         </td>
         <td>
-          <form action="<%=`posts/${post.id}/delete`%>" method="post">
-            <input type="hidden" name="id" value="<%= post.id %>">
-            <input type="submit" name="Delete" value="Delete" class="btn btn-outline-success"
-              onClick="alert('Are you sure you want to delete this record?')">
-          </form>
+          <% if (loggedIn && post.userId == currentUser.id) { %>
+            <form action="<%=`posts/${post.id}/delete`%>" method="post">
+              <input type="hidden" name="id" value="<%= post.id %>">
+              <input type="submit" name="Delete" value="Delete" class="btn btn-outline-success"
+                onClick="alert('Are you sure you want to delete this record?')">
+            </form>
+          <% } %>
         </td>
       </tr>
       <% }) %>
@@ -41,6 +45,9 @@
 
   </table>
 </br>
-  <div>
-    <a class="btn btn-outline-success" href="/posts/new" type="submit">New</a>
+  <% if (loggedIn) { %>
+    <div class="align-items-end">
+      <a class="btn btn-outline-success" href="/posts/new" type="submit">New</a>
+    </div>
+  <% } %>
 
