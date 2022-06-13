@@ -25,14 +25,15 @@ module.exports = {
     },
 
     showComment: async (req, res, next) => {
-        try {
+        // try {
             let comments = await Comment.findAll();
+            console.log(comments);
             res.locals.comments = comments;
             res.redirect(`/posts/${postId}`);
-        } catch (error) {
-            console.log(`Error fetching posts: ${error.messgae}`);
-            next(error);
-        };
+        //} catch (error) {
+        //    console.log(`Error fetching posts: ${error.messgae}`);
+        //    next(error);
+        //};
     },
 
 /*
