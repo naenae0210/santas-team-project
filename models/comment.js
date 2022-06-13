@@ -1,6 +1,3 @@
-const Post = require('./post');
-const User = require('./user');
-
 module.exports = (sequelize, Sequelize) => {
   const comment = sequelize.define('comment', {
     commentNum: {
@@ -42,7 +39,7 @@ module.exports = (sequelize, Sequelize) => {
     })
     comment.belongsTo(models.User, {
 			foreignKey: "userId",
-			sourceKey: "id"
+			targetKey: "id"
 		})
   };
   return comment;
