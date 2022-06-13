@@ -4,11 +4,12 @@ const db = require("../models/index"),
     Post = db.post,
     post = db.post,
 
-    getCommentParams = body => {
+    getCommentParams = (req) => {
         return {
-            commentNum: body.commentNum,
-            postId: body.postId,
-            commentDetail: body.commentDetail,
+            commentNum: req.body.commentNum,
+            postId: req.body.postId,
+            commentDetail: req.body.commentDetail,
+            userId: req.user.id
         };
     };
 
@@ -16,14 +17,12 @@ const db = require("../models/index"),
 module.exports = {
     create: async (req, res, next) => {
         const postId = req.params.postId;
-        let commentParams = getCommentParams(req.body);
+        let commentParams = getCommentParams(req);
         try {
             let comment = await Comment.create({
-                postId: postId,
-                commentDetail: req.body.commentDetail,
-                commentNum: req.body.commentNum
+                commentParams
             });
-                 res.locals.redirect = `/posts/${postId}`;
+            res.locals.redirect = `/posts/${postId}`;
             res.locals.comment = comment;
             next();
         } catch (error) {
