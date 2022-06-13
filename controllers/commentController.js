@@ -15,9 +15,9 @@ module.exports = {
       create: async (req, res, next) => {
         const postId = req.params.postId;
         let commentParams = getCommentParams(req);
+        console.log(commentParams);
         try {
             let comment = await Comment.create({commentParams});
-            console.log(comment);
             res.locals.redirect = `/posts/${postId}`;
             next();
         } catch (error) {
