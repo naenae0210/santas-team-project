@@ -66,10 +66,9 @@ module.exports = {
     },
 
     showComment: async (req, res, next) => {
-        let postId = req.params.id;
         await Comment.findAll({
             where: {
-                postId: parseInt(postId)
+                postId: parseInt(req.params.id)
             }
         }).then(commentList => {
             res.render("posts/show", {comments: commentList});
