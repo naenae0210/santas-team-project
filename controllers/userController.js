@@ -119,7 +119,7 @@ module.exports = {
             userParams = getUserParams(req.body),
             user = await User.findByPk(userId);
             try{
-                User.findById(req.user._id)
+                User.findByPk(req.user.id)
                 .then(foundUser => {
                     foundUser.changePassword(req.user.password, req.body.password)
                         .then(() => {
