@@ -34,8 +34,8 @@ module.exports = {
     create: async (req, res, next) => {
         let postParams = getPostParams(req);
         try {
-	    let postParams = getPostParams(req);
-        console.log(postParams);
+	        let postParams = getPostParams(req);
+            console.log(postParams);
             let post = await Post.create(postParams);
             res.locals.redirect = "/posts";
             res.locals.post = post;
@@ -52,18 +52,19 @@ module.exports = {
         else next();
     },
 
-     show: async (req, res, next) => {
+    show: async (req, res, next) => {
         let postId = req.params.id;
-	    let post;
+	    let post, comments;
         try {
             post = await Post.findByPk(postId);
-            await Comment.findAll({
+            comments = await Comment.findAll({
                 where: {
                     postId: postId
-                },
-            }).then((commentList) => {
-                res.render("posts/show", {post: post, comments: commentList});
+                }
             })
+            res.locals.post = post;
+            res.locals.comments = comments;
+            next();
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
             next(error);
