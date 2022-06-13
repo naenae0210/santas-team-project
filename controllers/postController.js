@@ -64,7 +64,7 @@ module.exports = {
 
         Comment.findAll({
             where: {
-                postId: postId
+                postId: parseInt(postId)
             },
         }).then(commentList => {
             res.render('post/show', {comments: commentList});
