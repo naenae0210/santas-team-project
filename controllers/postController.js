@@ -67,7 +67,7 @@ module.exports = {
 
     showComment: async (req, res, next) => {
         let postId = req.params.id;
-        Comment.findAll({
+        await Comment.findAll({
             where: {
                 postId: parseInt(postId)
             }
