@@ -18,7 +18,7 @@ module.exports = {
         console.log(commentParams);
         console.log(req.body);
         try {
-            let comment = await Comment.create({commentParams});
+            let comment = await Comment.create(commentParams);
             console.log("created");
             res.locals.redirect = `/posts/${postId}`;
             next();
