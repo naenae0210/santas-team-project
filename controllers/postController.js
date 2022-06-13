@@ -66,6 +66,7 @@ module.exports = {
                 res.locals.comments = commentList;
             })
 
+            res.locals.comments = {};
             res.locals.post = post;
             next();
         } catch (error) {
