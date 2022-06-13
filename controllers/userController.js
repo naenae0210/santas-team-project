@@ -115,9 +115,42 @@ module.exports = {
 
     update: async (req, res, next) => {
         let userId = req.params.id,
-            userParams = getUserParams(req.body);
+            userParams = getUserParams(req.body),
+            user = await User.findByPk(userId);
         try {
-            let user = await User.findByPk(userId);
+            //let user = await User.findByPk(userId);
+            if(userParams.password != undefined) {
+                bcrypt.genSalt(10, function(err, salt) {
+                    if(err) return next(err); 
+                    bcrypt.hash(userParams.password, salt, async(err, hash) => {
+                        if(err) return next(err);
+                        console.log(salt);
+                        await User.update({mysalt:salt}, {
+                            where: {
+                              id: userId
+                            }
+                          });
+                        userParams.password = hash;
+                        });
+                    });
+            }
+                user = await User.findByPkAndUpdate(userId, userParams);
+                req.logout((err) => {
+                req.flash("success", "You have been logged out!");
+                res.locals.redirect = "/user/login";
+                res.locals.user = user;
+                next();
+                });    
+                /*else{
+                    user = await User.findByPkAndUpdate(userId, userParams);
+                    req.logout((err) => {
+                    req.flash("success", "You have been logged out!");
+                    res.locals.redirect = "/user/login";
+                    res.locals.user = user;
+                    next();
+                    });
+                }
+               
             bcrypt.genSalt(10, (error, mysalt)=> {
                 bcrypt.hash(userParams.password, mysalt,async(error, myhash)=> {
                     let newsalt = await User.update({mysalt:mysalt}, {
@@ -125,7 +158,6 @@ module.exports = {
                           id: userId
                         }
                       });
-                    console.log(newsalt);
                     userParams.password = myhash;
                  });
               });
@@ -138,7 +170,7 @@ module.exports = {
               });
             //res.locals.redirect = "/user/login";
             //res.locals.user = user;
-            //next();
+            //next();*/
         } catch(error) {
             console.log(`Error saving user: ${error.message}`);
             res.locals.redirect = "/";
