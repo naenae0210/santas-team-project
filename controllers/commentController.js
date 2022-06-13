@@ -18,6 +18,7 @@ module.exports = {
         try {
             let comment = await Comment.create({commentParams});
             res.locals.redirect = `/posts/${postId}`;
+            next();
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
 	        next();
