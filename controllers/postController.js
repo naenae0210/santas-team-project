@@ -1,11 +1,12 @@
 const db = require("../models/index"),
     Post = db.post,
     User = db.User,
-    getPostParams = body => {
+    getPostParams = (req) => {
         return {
-            id: body.id,
-            title: body.title,
-            detail: body.detail,
+            id: req.body.id,
+            title: req.body.title,
+            detail: req.body.detail,
+            userId: req.user.id
         };
     };
 
@@ -30,9 +31,10 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
-        let postParams = getPostParams(req.body);
+        let postParams = getPostParams(req);
         try {
-	    let postParams = getPostParams(req.body);
+	    let postParams = getPostParams(req);
+        console.log(postParams);
             let post = await Post.create(postParams);
             res.locals.redirect = "/posts";
             res.locals.post = post;
@@ -91,10 +93,10 @@ module.exports = {
 
     update: async (req, res, next) => {
         let postId = req.params.id,
-            postParams = getPostParams(req.body);
+            postParams = getPostParams(req);
         try {
             let postId = req.params.id,
-            postParams = getPostParams(req.body);
+            postParams = getPostParams(req);
             let post = await Post.findByPkAndUpdate(postId, postParams);
             res.locals.redirect = `/posts/${postId}`;
             res.locals.post = post;
