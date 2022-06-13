@@ -117,19 +117,27 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
-        try{
-        const user = await User.findOne({
-            id: req.user.id
-        });
-        await user.setPassword(req.body.password);
-        const updatedUser = await user.save();
-        req.flash('success', 'Password Changed Successfully'); 
-        res.locals.redirect = "/";
-        next();
-    } catch (error) {
-        console.log(`Error user by ID: ${error.messgae}`);
-        next(error);
-    };
+        if (typeof req.user === 'undefined') {
+            res.locals.redirect = "/users/login";
+            next();
+        } else {
+            User.findOne({ id: req.user.id }, function (err, user) {
+                if (!err) {
+                    user.changePassword(user.Password, req.body.Password, function (err) {
+                        if (!err) {
+                            res.locals.redirect = "/users/login";
+                            next();
+                        } else {
+                            console.log(err);
+                            next(error);
+                        }
+                    })
+                } else {
+                    console.log(err);
+                    next(error);
+                }
+            });
+        }
     },
 
     delete: async (req, res, next) => {
