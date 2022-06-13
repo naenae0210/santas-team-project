@@ -26,11 +26,11 @@ module.exports = {
 
     showComment: async (req, res) => {
         try {
-            let comments = await Comment.findAll();
+            let comments = await Post.findAll();
             res.locals.comments = comments;
             res.render("posts/show");
         } catch (error) {
-            console.log(`Error fetching posts: ${error.messgae}`);
+            console.log(`Error fetching comments: ${error.messgae}`);
         };
     },
 
