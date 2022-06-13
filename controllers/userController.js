@@ -1,6 +1,6 @@
 const db = require("../models/index"),
     passport = require("passport"),	
-    bcrypt = require(bcrypt),
+    bcrypt = require("bcrypt"),
     User = db.User,
     getUserParams = body => {
         return {
