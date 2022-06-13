@@ -118,9 +118,8 @@ module.exports = {
 
     update: async (req, res, next) => {
         try{
-            User.findOne({ id: req.params.id }, function (err, user) {
-                if (!err) {
-                    user.changePassword(user.Password, req.body.Password, function (err) {
+            let user = User.findOne({ id: req.params.id }); 
+            user.changePassword(user.Password, req.body.Password, function (err) {
                         if (!err) {
                             res.locals.redirect = "/users/login";
                             next();
@@ -129,17 +128,14 @@ module.exports = {
                             next(error);
                         }
                     });
-                } else {
-                    console.log(err);
-                    next(error);
-                }
-            });
-        }catch (error) {
+                } 
+        catch (error) {
             console.log(`Error deleting user by ID: ${error.messgae}`);
             next();
-        };
+        }
+    }
         
-        },
+,
 
     delete: async (req, res, next) => {
         let userId = req.params.id;
