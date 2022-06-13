@@ -28,8 +28,7 @@ exports.getImage = async (req, res) => {
             }
 
             if (image[0] != undefined) {
-                return res.redirect("../../images/cantload.png");
-                // return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
+                return res.redirect("https://www.forest.go.kr/images/data/down/mountain/" + image[0].imgfilename);
             }
             else {
                 return res.redirect("../../images/noimage.png");
