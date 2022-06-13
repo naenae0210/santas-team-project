@@ -17,7 +17,7 @@ module.exports = {
         let commentParams = getCommentParams(req.body);
         try {
             let comment = await Comment.create({commentParams});
-            res.redirect = `/posts/${postId}`;
+            res.redirect(`/posts/${postId}`);
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
 	        next();
