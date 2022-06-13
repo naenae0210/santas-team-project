@@ -57,7 +57,7 @@ module.exports = {
 	    let post, comments;
         try {
             post = await Post.findByPk(postId);
-            comments = await Post.findAll({
+            comments = await Comment.findAll({
                 include: [{
                     model: Comment,
                     where: {
