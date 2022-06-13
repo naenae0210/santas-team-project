@@ -70,7 +70,7 @@ module.exports = (sequelize, Sequelize) => {
       } catch (err) {
         console.log(err);
       }
-    }
+    },
 
     passwordComparison = (inputPassword) => {
       let user = this;
