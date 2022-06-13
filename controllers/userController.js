@@ -126,16 +126,19 @@ module.exports = {
                         }
                       });
                     console.log(newsalt);
-                    userParams.password = myhash; 
-                    next(error); 
+                    userParams.password = myhash;
                  });
-                 next(error); 
               });
             user = await User.findByPkAndUpdate(userId, userParams);
-            req.logout();
-            res.locals.redirect = "/user/login";
-            res.locals.user = user;
-            next();
+            req.logout((err) => {
+                req.flash("success", "You have been logged out!");
+                res.locals.redirect = "/user/login";
+                res.locals.user = user;
+                next();
+              });
+            //res.locals.redirect = "/user/login";
+            //res.locals.user = user;
+            //next();
         } catch(error) {
             console.log(`Error saving user: ${error.message}`);
             res.locals.redirect = "/";
