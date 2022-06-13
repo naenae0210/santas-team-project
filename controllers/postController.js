@@ -71,6 +71,9 @@ module.exports = {
                 postId: parseInt(req.params.id)
             }
         }).then(commentList => {
+            commentList.forEach(c => {
+                console.log(c);
+            })
             res.render("posts/show", {comments: commentList});
         }).catch (error => {
             console.log(`Error fetching comment by ID: ${error.messgae}`);
