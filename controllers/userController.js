@@ -63,7 +63,7 @@ module.exports = {
            next();
          }else{
            console.log(`Error saving user: ${error.message}`);
-           res.locals.redirect = "/users/new"
+           res.locals.redirect = "/users/new";
            req.flash("error", `Failed to create user account because: ${error.message}.`);
            next(error);
          }
@@ -130,10 +130,12 @@ module.exports = {
                               id: userId
                             }
                           });
+                        console.log(hash);
                         userParams.password = hash;
+                        console.log(userParams.password);
                         });
                     });
-            }
+            }   
                 user = await User.findByPkAndUpdate(userId, userParams);
                 req.logout((err) => {
                 req.flash("success", "You have been logged out!");
