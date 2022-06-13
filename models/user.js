@@ -42,6 +42,16 @@ module.exports = (sequelize, Sequelize) => {
   //const Post = require("./post")(sequelize, Sequelize);
   class User extends Sequelize.Model {
     static async findByPkAndUpdate(id, params) {
+      let user = await User.findByPk(id);
+        if (user) {
+          user = await User.update(params, {
+            where: {
+              id: id
+            }
+          });
+        }
+        return user;
+      }/*
       try {
         let user = await User.findByPk(id);
         if (user) {
@@ -55,8 +65,19 @@ module.exports = (sequelize, Sequelize) => {
       } catch (err) {
         console.log(err);
       }
-    }
+    }*/
     static async findByPkAndRemove(id) {
+      let user = await User.findByPk(id);
+        if (user) {
+          user = await User.destroy({
+            where: {
+              id: id
+            }
+          });
+        }
+        return user;
+      }
+      /*
       try {
         let user = await User.findByPk(id);
         if (user) {
@@ -67,10 +88,10 @@ module.exports = (sequelize, Sequelize) => {
           });
         }
         return user;
-      } catch (err) {
+      }catch (err) {
         console.log(err);
-      }
-    }
+     }
+    }*/
     passwordComparison = (inputPassword) => {
       let user = this;
       return bcrypt.compare(inputPassword, user.password);
@@ -98,6 +119,8 @@ module.exports = (sequelize, Sequelize) => {
     },
     nickname: {
       type: Sequelize.STRING,
+    },myhash: {
+      type: Sequelize.STRING
     },
     mysalt: {
       type: Sequelize.STRING
