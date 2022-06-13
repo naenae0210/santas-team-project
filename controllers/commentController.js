@@ -15,28 +15,34 @@ const db = require("../models/index"),
 
 
 module.exports = {
-    create: async (req, res, next) => {
+      create: async (req, res, next) => {
         const postId = req.params.postId;
-        let commentParams = getCommentParams(req);
+        let commentParams = getCommentParams(req.body);
         try {
             let comment = await Comment.create({
-                commentParams
+                postId: postId,
+                commentDetail: req.body.commentDetail,
+                commentNum: req.body.commentNum
             });
+            let result = await Comment.findAll({
+                        include: [{model: Post}],
+                });
             res.locals.redirect = `/posts/${postId}`;
-            res.locals.comment = comment;
-            next();
+            res.locals.comments = result;
+            
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
-            next(error);
+	    next();
         };
+	  res.render("posts/show", {comments: result});
     },
 
+/*
     redirectView: (req, res, next) => {
         let redirectPath = res.locals.redirect;
         if (redirectPath != undefined) res.redirect(redirectPath);
         else next();
     },
-/*
     update: async (req, res, next) => {
         let postId = req.params.id;
         try {

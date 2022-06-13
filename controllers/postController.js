@@ -52,9 +52,9 @@ module.exports = {
         else next();
     },
 
-    show: async (req, res, next) => {
+     show: async (req, res, next) => {
         let postId = req.params.id;
-	    let post, comments;
+	let post, comments;
         try {
             post = await Post.findByPk(postId);
             comments = await Comment.findAll({
