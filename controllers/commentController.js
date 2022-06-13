@@ -16,6 +16,7 @@ module.exports = {
         const postId = req.params.postId;
         let commentParams = getCommentParams(req);
         console.log(commentParams);
+        console.log(req.body);
         try {
             let comment = await Comment.create({commentParams});
             console.log("created");
