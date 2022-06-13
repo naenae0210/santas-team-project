@@ -20,11 +20,10 @@ module.exports = {
         let commentParams = getCommentParams(req.body);
         try {
             let comment = await Comment.create({commentParams});
-            res.locals.redirect = `/posts/${postId}`;
-            
+            res.redirect = `/posts/${postId}`;
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
-	    next();
+	        next();
         };
 	  res.render("posts/show", {comments: result});
     },
