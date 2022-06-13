@@ -56,6 +56,8 @@ module.exports = {
         let postId = req.params.id;
         try {
             const post = await Post.findByPk(postId);
+
+            /*
             Comment.findAll({
                 where: {
                     postId: postId
@@ -63,9 +65,10 @@ module.exports = {
             }).then((commentList) => {
                 console.log("test");
                 res.locals.comments = commentList;
-            }) 
+            }) */
 
-            console.log(res.locals.comments);
+            // console.log(res.locals.comments);
+            res.locals.comments = {};
             res.locals.post = post;
             next();
         } catch (error) {
