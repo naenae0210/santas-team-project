@@ -34,7 +34,7 @@
 
   return user;
 }*/
-//const passportLocalSequelize = require('passport-local-sequelize');
+const passportLocalSequelize = require('passport-local-sequelize');
 const bcrypt = require("bcrypt");
 
 
