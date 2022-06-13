@@ -18,12 +18,12 @@ module.exports = {
         const postId = req.params.postId;
         let commentParams = getCommentParams(req.body);
         try {
-            let comment = await comment.create({
+            let comment = await Comment.create({
                 postId: postId,
                 commentDetail: req.body.commentDetail,
                 commentNum: req.body.commentNum
             });
-            res.locals.redirect = "/posts";
+                 res.locals.redirect = `/posts/${postId}`;
             res.locals.comment = comment;
             next();
         } catch (error) {
