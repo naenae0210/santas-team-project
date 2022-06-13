@@ -1,12 +1,11 @@
 const db = require("../models/index"),
     Post = db.post,
     User = db.User,
-    getPostParams = body => {
+    getPostParams = (body) => {
         return {
             id: body.id,
             title: body.title,
-            detail: body.detail,
-            userId: req.user.id
+            detail: body.detail
         };
     };
 
@@ -34,6 +33,7 @@ module.exports = {
         let postParams = getPostParams(req.body);
         try {
 	    let postParams = getPostParams(req.body);
+        postParams.userId = req.user.id;
         console.log(postParams);
             let post = await Post.create(postParams);
             res.locals.redirect = "/posts";
@@ -87,6 +87,7 @@ module.exports = {
         try {
             let postId = req.params.id,
             postParams = getPostParams(req.body);
+            postParams.userId = req.user.id;
             let post = await Post.findByPkAndUpdate(postId, postParams);
             res.locals.redirect = `/posts/${postId}`;
             res.locals.post = post;
