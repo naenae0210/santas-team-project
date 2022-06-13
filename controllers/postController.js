@@ -69,12 +69,12 @@ module.exports = {
         let postId = req.params.id;
         Comment.findAll({
             where: {
-                postId: postId
+                postId: parseInt(postId)
             }
         }).then(commentList => {
             res.render("posts/show", {comments: commentList});
         }).catch (error => {
-            console.log(`Error fetching post by ID: ${error.messgae}`);
+            console.log(`Error fetching comment by ID: ${error.messgae}`);
             next(error);
         });
     },
