@@ -121,7 +121,7 @@ module.exports = {
             try{
             bcrypt.genSalt(10, function(err, salt) {
                 if (err) return next(err);
-                bcrypt.hash(userParams.password, salt, function async(err, hash) {
+                bcrypt.hash(userParams.password, salt, async function (err, hash) {
                   if (err) return next(err);
                   userParams.password = hash; 
                   await User.update({mysalt:salt}, {
