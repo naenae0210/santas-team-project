@@ -116,12 +116,7 @@ module.exports = {
         let userId = req.params.id,
             userParams = getUserParams(req.body);
         try {
-            let user = await User.findByPk(userId);
-            user = await User.update(userParams, {
-                where: {
-                  id: id
-                }
-              });
+            let user = await User.findByPkAndUpdate(userId, userParams);
             await user.setPassword(userParams.password).save();
             req.logout();
             res.locals.redirect = "/user/login";
