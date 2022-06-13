@@ -67,9 +67,6 @@ module.exports = {
 
     showComment: async (req, res, next) => {
         await Comment.findAll({
-            where: {
-                postId: req.params.id
-            }
         }).then(commentList => {
             commentList.forEach(c => {
                 console.log(c);
