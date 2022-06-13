@@ -67,7 +67,7 @@ module.exports = {
                 postId: parseInt(postId)
             },
         }).then(commentList => {
-            res.render('post/show', {comments: commentList});
+            res.render("post/show", {comments: commentList});
             next();
         }).catch(err => {
             res.status(500).send({
