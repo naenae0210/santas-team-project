@@ -61,19 +61,6 @@ module.exports = {
             console.log(`Error fetching post by ID: ${error.messgae}`);
             next(error);
         };
-
-        Comment.findAll({
-            where: {
-                postId: parseInt(postId)
-            },
-        }).then(commentList => {
-            res.render("post/show", {comments: commentList});
-            next();
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message
-            });
-        })
     },
 
     showView: async (req, res) => {
