@@ -1,3 +1,5 @@
+const user = require("../models/user");
+
 const db = require("../models/index"),
     passport = require("passport"),	
     crypto = require("crypto"),
@@ -115,28 +117,25 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
-        let userId = req.params.id,
-            userParams = getUserParams(req.body),
-            user = await User.findByPk(userId);
+        //let userId = req.params.id,
+            //userParams = getUserParams(req.body),
+            //user = await User.findByPk(userId);
             try{
-                User.findByPk(userId)
-                .then(foundUser => {
-                    foundUser.changePassword(user.password, req.body.password)
-                        .then(() => {
-                            console.log('password changed');
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        })
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                let editPassword = async (req, res) => {
+                    const user = await User.findOne({
+                      id: user.id
+                  });
+                  await user.setPassword(req.body.password);
+                  const updatedUser = await user.save();
+                  req.login(updatedUser);
+                  req.flash('success', 'Password Changed Successfully')
+                  }
+                  /*
                   req.logout((err) => {
                     req.flash("success", "You have been logged out!");
                   }); 
                   res.locals.redirect = "/";
-                  next();
+                  next();*/
                 }catch(error){
                     console.log(`Error saving user: ${error.message}`);
                     res.locals.redirect = "/";
