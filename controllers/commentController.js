@@ -12,12 +12,13 @@ const db = require("../models/index"),
 
 
 module.exports = {
-      create: async (req, res) => {
+      create: async (req, res, next) => {
         const postId = req.params.postId;
         let commentParams = getCommentParams(req.body);
         try {
             let comment = await Comment.create({commentParams});
             res.redirect(`/posts/${postId}`);
+            next();
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
 	        next();
@@ -34,7 +35,8 @@ module.exports = {
             });
             console.log(comments);
             res.locals.comments = comments;
-            res.render(`/posts/${postId}`);
+            res.redirect(`posts/${postId}`);
+            next();
         } catch (error) {
             console.log(`Error fetching posts: ${error.messgae}`);
             next(error);
