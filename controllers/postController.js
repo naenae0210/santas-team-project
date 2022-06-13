@@ -56,12 +56,13 @@ module.exports = {
         let postId = req.params.id;
         try {
             const post = await Post.findByPk(postId);
-            await Comment.findAll({
+            Comment.findAll({
                 where: {
                     postId: postId
                 },
                 raw: true,
             }).then((commentList) => {
+                console.log("test");
                 res.locals.comments = commentList;
             })
 
