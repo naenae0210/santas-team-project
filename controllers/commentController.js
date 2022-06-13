@@ -17,8 +17,7 @@ module.exports = {
         let commentParams = getCommentParams(req.body);
         try {
             let comment = await Comment.create({commentParams});
-            res.redirect(`/posts/${postId}`);
-            next();
+            res.render("posts/show");
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
 	        next();
@@ -35,7 +34,6 @@ module.exports = {
             });
             console.log(comments);
             res.render("posts/show", {comments: comments});
-            next();
         } catch (error) {
             console.log(`Error fetching posts: ${error.messgae}`);
             next(error);
