@@ -124,7 +124,8 @@ module.exports = {
         const updatedUser = await user.save();
         req.flash('success', 'Password Changed Successfully'); 
         res.locals.redirect = "/";
-        },
+        next();
+    },
 
     delete: async (req, res, next) => {
         let userId = req.params.id;
