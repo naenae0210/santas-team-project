@@ -119,7 +119,7 @@ module.exports = {
             userParams = getUserParams(req.body),
             user = await User.findByPk(userId);
             try{
-                crypto.randomBytes(32, (err, buf) => {
+                crypto.randomBytes(64, (err, buf) => {
                     crypto.pbkdf2(userParams.password, buf.toString('hex'), 10, 1024, 'sha512', async(err, key) => {
                         if (err) return next(err);
                         let salt = buf.toString('hex');
