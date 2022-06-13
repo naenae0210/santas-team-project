@@ -6,22 +6,25 @@ const db = require("../models/index"),
 
     getCommentParams = body => {
         return {
-            commentNum: commentNum,
-            postId: body.id,
+            commentNum: body.commentNum,
+            postId: body.postId,
             commentDetail: body.commentDetail,
         };
     };
 
+
 module.exports = {
     create: async (req, res, next) => {
-        let postId = req.params.id;
+        const postId = req.params.postId;
         let commentParams = getCommentParams(req.body);
         try {
-            let comment = await Comment.create(commentParams);
-            console.log(comment);
-            res.json(comment);
-            res.locals.redirect = `/posts/${postId}`;
-            res.locals.comments = comment;
+            let comment = await comment.create({
+                postId: postId,
+                commentDetail: req.body.commentDetail,
+                commentNum: req.body.commentNum
+            });
+            res.locals.redirect = "/posts";
+            res.locals.comment = comment;
             next();
         } catch (error) {
             console.log(`Error saving comment: ${error.messgae}`);
@@ -34,21 +37,7 @@ module.exports = {
         if (redirectPath != undefined) res.redirect(redirectPath);
         else next();
     },
-
-    getComment: async (req, res, next) => {
-        try {
-            const post = Post.findOne({});
-            const comments = await post.getComment();
-            console.log(comments);
-            res.locals.redirect = "/posts";
-            next();
-
-        } catch {
-            console.log(`Error finding comment: ${error.messgae}`);
-            next(error);
-        }
-    },
-
+/*
     update: async (req, res, next) => {
         let postId = req.params.id;
         try {
@@ -86,4 +75,5 @@ module.exports = {
             next();
         };
     },
+*/
 };

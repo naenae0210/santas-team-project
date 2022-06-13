@@ -52,8 +52,18 @@ module.exports = {
     show: async (req, res, next) => {
         let postId = req.params.id;
         try {
-            let post = await Post.findByPk(postId);
+            const post = await Post.findByPk(postId);
+            const comments = await Post.findAll({
+                include: [{
+                    model: Comment,
+                    where: {
+                        postId: req.params.id,
+                    },
+                }]
+            });
+
             res.locals.post = post;
+            res.locals.comments = comments;
             next();
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
