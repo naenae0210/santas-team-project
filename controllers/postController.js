@@ -1,6 +1,7 @@
 const db = require("../models/index"),
     Post = db.post,
     User = db.User,
+    Comment = db.Comment,
     getPostParams = (req) => {
         return {
             id: req.body.id,
