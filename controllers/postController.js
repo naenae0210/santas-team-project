@@ -1,6 +1,7 @@
 const db = require("../models/index"),
     Post = db.post,
     User = db.User,
+    Comment = db.Comment,
     getPostParams = (req) => {
         return {
             id: req.body.id,
@@ -53,10 +54,19 @@ module.exports = {
 
      show: async (req, res, next) => {
         let postId = req.params.id;
+	let post, comments;
         try {
-            let post = await Post.findByPk(postId);
-            res.locals.post = post;
-            next();
+            post = await Post.findByPk(postId);
+            comments = await Post.findAll({
+                include: [{
+                    model: Comment,
+                    where: {
+                        postId: req.params.id,
+                    },
+                }]
+            }).then((commentList) => {
+                res.render("posts/show", {post: post, comments: commentList});
+            })
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
             next(error);
