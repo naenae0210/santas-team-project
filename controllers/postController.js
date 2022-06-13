@@ -53,26 +53,22 @@ module.exports = {
 
     show: async (req, res, next) => {
         let postId = req.params.id;
-	let post, comments;
         try {
             const post = await Post.findByPk(postId);
-            const comments = await Post.findAll({
-                include: [{
-                    model: comment,
-                    where: {
-                        postId: req.params.id,
-                    },
-                }]
+            const comments = await Comment.findAll({
+                where: {
+                    postId: req.params.id,
+                },
             });
+            res.render("posts/show", {post: post, comments: comments});
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
             next(error);
         };
-	    res.render("posts/show", {post: post, comments: comments});
     },
 
     showView: async (req, res) => {
-        res.render("posts/show", {post: post, comments: comments});
+        res.render("posts/show");
     },
 
     edit: async (req, res, next) => {
