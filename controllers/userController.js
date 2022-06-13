@@ -1,6 +1,7 @@
 const db = require("../models/index"),
     passport = require("passport"),	
     User = db.User,
+    bcrypt = require("bcrypt"),
     getUserParams = body => {
         return {
             id: body.id,
@@ -115,15 +116,29 @@ module.exports = {
     update: async (req, res, next) => {
         let userId = req.params.id,
             userParams = getUserParams(req.body);
-            console.log(userId);
         try {
-            let user = await User.findByPkAndUpdate(userId, userParams);
-            //let user = await User.findOne({id:})
-            await user.setPassword(userParams.password).save();
-            req.logout();
-            res.locals.redirect = "/user/login";
-            res.locals.user = user;
-            next();
+            let user = await User.findByPk(userId);
+            bcrypt.genSalt(10, (error, mysalt)=> {
+                bcrypt.hash(userParams.password, mysalt,async(error, myhash)=> {
+                    let newsalt = await User.update({mysalt:mysalt}, {
+                        where: {
+                          id: userId
+                        }
+                      });
+                    console.log(newsalt);
+                    userParams.password = myhash;
+                 });
+              });
+            user = await User.findByPkAndUpdate(userId, userParams);
+            req.logout((err) => {
+                req.flash("success", "You have been logged out!");
+                res.locals.redirect = "/user/login";
+                res.locals.user = user;
+                next();
+              });
+            //res.locals.redirect = "/user/login";
+            //res.locals.user = user;
+            //next();
         } catch(error) {
             console.log(`Error saving user: ${error.message}`);
             res.locals.redirect = "/";
