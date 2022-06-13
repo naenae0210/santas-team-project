@@ -35,24 +35,12 @@
   return user;
 }*/
 const passportLocalSequelize = require('passport-local-sequelize');
-const bcrypt = require("bcrypt");
 
 
 module.exports = (sequelize, Sequelize) => {
   //const Post = require("./post")(sequelize, Sequelize);
   class User extends Sequelize.Model {
     static async findByPkAndUpdate(id, params) {
-      let user = await User.findByPk(id);
-        if (user) {
-          user = await User.update(params, {
-            where: {
-              id: id
-            }
-          });
-        }
-        return user;
-      
-      }/*
       try {
         let user = await User.findByPk(id);
         if (user) {
@@ -66,19 +54,8 @@ module.exports = (sequelize, Sequelize) => {
       } catch (err) {
         console.log(err);
       }
-    }*/
+    }
     static async findByPkAndRemove(id) {
-      let user = await User.findByPk(id);
-        if (user) {
-          user = await User.destroy({
-            where: {
-              id: id
-            }
-          });
-        }
-        return user;
-      }
-      /*
       try {
         let user = await User.findByPk(id);
         if (user) {
@@ -92,12 +69,7 @@ module.exports = (sequelize, Sequelize) => {
       }catch (err) {
         console.log(err);
      }
-    }*/
-    /*
-    passwordComparison = (inputPassword) => {
-      let user = this;
-      return bcrypt.compare(inputPassword, user.password);
-    };*/
+    }
 
   };
 
@@ -109,7 +81,7 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true
     },
     password: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(1024),
       allowNull: false
     },
     name: {
@@ -129,21 +101,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     }
   }, {
-    hooks: {
-      beforeSave: async (user) => {
-        let hash = await bcrypt.hash(user.password, 10);
-        user.password = hash;
-      }
-    },
     sequelize,
     modelName: 'user'
   });
- /*
+ 
   passportLocalSequelize.attachToUser(User, {
     usernameField: 'id',
     hashField: 'password',
     saltField: 'mysalt'
-  });*/
+  });
 
   User.associate = function(models) {
     User.hasMany(models.Bookmark, {

@@ -103,8 +103,7 @@ router.post("/comments/:commentNum/delete", commentController.delete, commentCon
 
 
 router.get("/users/login", userController.login);
-//router.post("/users/login", userController.authenticate);
-router.post("/users/login", userController.authenticate,userController.redirectView);
+router.post("/users/login", userController.authenticate);
 router.get("/users/logout", userController.logout, userController.redirectView);
 //router.get("/users", userController.index, userController.indexView);
 router.get("/users/new", userController.new);
