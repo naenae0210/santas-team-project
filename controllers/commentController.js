@@ -35,7 +35,7 @@ module.exports = {
             });
             console.log(comments);
             res.locals.comments = comments;
-            res.redirect(`posts/${postId}`);
+            res.redirect(`/posts/${postId}`);
             next();
         } catch (error) {
             console.log(`Error fetching posts: ${error.messgae}`);
