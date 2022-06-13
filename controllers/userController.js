@@ -119,9 +119,9 @@ module.exports = {
             userParams = getUserParams(req.body),
             user = await User.findByPk(userId);
             try{
-                User.findByPk(req.user.id)
+                User.findByPk(userId)
                 .then(foundUser => {
-                    foundUser.changePassword(req.user.password, req.body.password)
+                    foundUser.changePassword(user.password, req.body.password)
                         .then(() => {
                             console.log('password changed');
                         })
