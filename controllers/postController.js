@@ -6,6 +6,7 @@ const db = require("../models/index"),
             id: body.id,
             title: body.title,
             detail: body.detail,
+            userId: req.user.id
         };
     };
 
