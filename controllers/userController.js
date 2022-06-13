@@ -120,9 +120,10 @@ module.exports = {
             user = await User.findByPk(userId);
             try{
                 crypto.randomBytes(32, (err, buf) => {
-                    crypto.pbkdf2(userParams.password, buf.toString('hex'), 10, 1024, 'sha512', async(err, hash) => {
+                    crypto.pbkdf2(userParams.password, buf.toString('hex'), 10, 1024, 'sha512', async(err, key) => {
                         if (err) return next(err);
                         let salt = buf.toString('hex');
+                        let hash = key.toString('hex');
                         await User.update({mysalt:salt}, {
                             where: {
                             id: userId
