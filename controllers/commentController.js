@@ -1,6 +1,5 @@
 const db = require("../models/index"),
-    Comment = db.comment,
-    comment = db.comment,
+    Comment = db.Comment,
     Post = db.post,
     post = db.post,
 
@@ -25,7 +24,6 @@ module.exports = {
             console.log(`Error saving comment: ${error.messgae}`);
 	        next();
         };
-	  res.render("posts/show", {comments: result});
     },
 
 /*
