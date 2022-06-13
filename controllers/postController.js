@@ -61,7 +61,9 @@ module.exports = {
                     postId: req.params.id,
                 },
             });
-            res.render("posts/show", {post: post, comments: comments});
+            res.locals.post = post;
+            res.locals.comments = comments;
+            next();
         } catch (error) {
             console.log(`Error fetching post by ID: ${error.messgae}`);
             next(error);
