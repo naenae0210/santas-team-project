@@ -14,7 +14,7 @@ const db = require("../models/index"),
 module.exports = {
       create: async (req, res, next) => {
         const postId = req.params.postId;
-        let commentParams = getCommentParams(req.body);
+        let commentParams = getCommentParams(req);
         try {
             let comment = await Comment.create({commentParams});
             res.locals.redirect = `/posts/${postId}`;
