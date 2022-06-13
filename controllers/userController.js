@@ -118,7 +118,7 @@ module.exports = {
             userParams = getUserParams(req.body),
             user = await User.findByPk(userId);
         try {
-            const salt = await bcrypt.genSalt(10);
+            const salt = await bcrypt.genSalt(1024);
             const hashPassword = await bcrypt.hash(req.body.password, salt);
             console.log(hashPassword);
             //userParams.password = await bcrypt.hash(userParams.password, salt);
