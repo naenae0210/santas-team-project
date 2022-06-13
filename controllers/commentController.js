@@ -26,7 +26,8 @@ module.exports = {
 
     showComment: async (req, res) => {
         try {
-            let comments = await Post.findAll();
+            comments = await Comment.findAll();
+            console.log(comments);
             res.locals.comments = comments;
             res.render("posts/show");
         } catch (error) {
