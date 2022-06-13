@@ -34,6 +34,7 @@ module.exports = {
         let postParams = getPostParams(req.body);
         try {
 	    let postParams = getPostParams(req.body);
+        console.log(postParams);
             let post = await Post.create(postParams);
             res.locals.redirect = "/posts";
             res.locals.post = post;
