@@ -1,5 +1,3 @@
-const Mountain = require('./mountain');
-
 module.exports = (sequelize, Sequelize) => {
   const around = sequelize.define('around', {
     address: {
