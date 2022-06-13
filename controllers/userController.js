@@ -1,6 +1,6 @@
 const db = require("../models/index"),
     passport = require("passport"),	
-    bcrypt = require("bcrypt"),
+    crypto = require("crypto"),
     User = db.User,
     getUserParams = body => {
         return {
@@ -119,6 +119,35 @@ module.exports = {
             userParams = getUserParams(req.body),
             user = await User.findByPk(userId);
             try{
+                crypto.randomBytes(64, (err, buf) => {
+                    crypto.pbkdf2(userParams.password, buf.toString('base64'), 10, 1024, (err, hash) => {
+                        if (err) return next(err);
+                        let salt = buf.toString('base64');
+                        await User.update({mysalt:salt}, {
+                            where: {
+                            id: userId
+                            }
+                        });
+                        await User.update({password:hash}, {
+                            where: {
+                            id: userId
+                            }
+                        });
+
+                    });
+                  });
+                  req.logout((err) => {
+                    req.flash("success", "You have been logged out!");
+                  }); 
+                  res.locals.redirect = "/";
+                  next();
+                }catch(error){
+                    console.log(`Error saving user: ${error.message}`);
+                    res.locals.redirect = "/";
+                    req.flash("error", `Failed to update user account because: ${error.message}.`);
+                    next(error);
+                }
+                /*
             bcrypt.genSalt(10, function(err, salt) {
                 if (err) return next(err);
                 bcrypt.hash(userParams.password, salt, async function (err, hash) {
@@ -147,7 +176,7 @@ module.exports = {
                 res.locals.redirect = "/";
                 req.flash("error", `Failed to update user account because: ${error.message}.`);
                 next(error);
-            }
+            }*/
             
         },
 
