@@ -148,14 +148,14 @@ module.exports = {
                       res.locals.user = user;
                       next();
                     }catch(error){
-                        console.log(`Error updating user: ${error.message}`);
+                        console.log(`Error updating user: ${error.message: 1}`);
                         res.locals.redirect = `/users/${user.id}/edit`;
                         req.flash("error", `Failed to update user account because: ${error.message}.`);
                         next(error); 
                     }
                 }
                 else{
-                     console.log(`Error updating user: ${error.message}`);
+                     console.log(`Error updating user: ${error.message: 2}`);
                      res.locals.redirect = `/users/${user.id}/edit`;
                     req.flash("error", `Failed to update user account because: ${error.message}.`);
                     next(error);
@@ -163,7 +163,7 @@ module.exports = {
             
             });
         }catch(error){
-            console.log(`Error updating user: ${error.message}`);
+            console.log(`Error updating user: ${error.message : 3}`);
             res.locals.redirect = `/users/${user.id}/edit`;
             req.flash("error", `Failed to update user account because: ${error.message}.`);
             next(error);
