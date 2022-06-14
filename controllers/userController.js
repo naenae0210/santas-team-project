@@ -1,5 +1,5 @@
 const user = require("../models/user"); 
-
+const randomstring = require("randomstring");
 
 const db = require("../models/index"),
     passport = require("passport"),
@@ -122,7 +122,8 @@ module.exports = {
         
         try{
             let newParams = userParams;
-            newParams.id =`${userId}123`;
+            let randomStr = randomstring.generate(5);
+            newParams.id =`${userId}randomStr`;
             let newUser = new User(newParams);
             User.register(newUser,newUser.password,async(err,newUser)=>{
                 if(newUser){
