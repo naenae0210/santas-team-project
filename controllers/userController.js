@@ -2,7 +2,7 @@ const user = require("../models/user");
 
 const db = require("../models/index"),
     passport = require("passport"),	
-    crypto = require("crypto"),
+    bcrypt = require("bcrypt"),
     User = db.User,
     getUserParams = body => {
         return {
@@ -17,7 +17,7 @@ module.exports = {
     login: (req, res) => {
       res.render("users/login");
     },
-
+/*
     logout: (req, res, next) => {
       req.logout((err) => {
         req.flash("success", "You have been logged out!");
@@ -25,13 +25,38 @@ module.exports = {
         next();
       });
     },
-    
+    */
+    logout: (req,res) => {
+        req.logout();
+        req.session.destroy();
+        res.redirect('/');
+    },
+    /*
     authenticate: passport.authenticate("local", {
       failureRedirect: "/users/login",
       failureFlash: "Failed to Sign In.",
       successRedirect: "/",
       successFlash: "Logged In!"
-    }),
+    }),*/
+
+    authenticate: (req,res,next) => {
+        passport.authenticate('local', (authError,user,info)=>{
+            if(authError{
+                console.error(authError);
+                return next(authError);
+            }
+            if(!user){
+                return res.redirect('/users/login');
+            }
+            return req.login(user,(loginError)=>{
+                if(loginError){
+                    console.error(loginError);
+                    return next(loginError);
+                }
+                return res.redirect('/');
+            })
+        })(req,res,next);
+    },
 
 
     index: async (req, res, next) => {
@@ -57,6 +82,25 @@ module.exports = {
         if(req.skip) next();
         let userParams = getUserParams(req.body);
         try{
+            const exUser = await User.findOne({where:{id}});
+            if(exUser){
+                res.locals.redirectView = "/users/new";
+                req.flash("error", `Failed to create user account because: ${error.message}.`);
+                next(error);
+            }else{
+                const hash = await bcrypt.hash(password,10);
+                await User.create(userParams);
+                req.flash("success", `${user.name}'s account created successfully!`);
+                res.locals.redirectView = "/users/login";
+                res.locals.user = user;
+                next();
+            }
+        }catch(err){
+            console.error(err);
+            next(err);
+        }
+        /*
+        try{
             let user = new User(userParams);
             User.register(user, req.body.password, (error, user) => {
                 if(user) {
@@ -76,7 +120,7 @@ module.exports = {
        res.locals.redirect = "/users/new";
        req.flash("error", `Failed to create user account because: ${error.message}.`);
        next(error);
-     };
+     };*/
    },
 
     redirectView: (req, res, next) => {
@@ -117,13 +161,28 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
-        let user = await User.findByPk(req.params.id);
+        let userId = req.params.id;
         let userParams = getUserParams(req.body);
         try{
+            if(userParams.password = "undifined"){
+                let user = await User.findByPkAndUpdate(userId, userParams);
+                req.logout();
+                res.locals.redirect = 'users/login';
+                res.locals.user = user;
+                next();
+            }else{
+                userParams.password = await bcrypt.hash(userParams.password,10);
+                let user = await User.findByPkAndUpdate(userId, userParams);
+                req.flash("success", `${user.name}'s account updated successfully!`);
+                res.locals.redirectView = "/users/login";
+                res.locals.user = user;
+                next();
+            }
+            /*
             let oldPassword = user.password;
             await user.changePassword(oldPassword, userParams.password );
             res.locals.redirectView = '/';
-            next();
+            next();*/
 
         }catch(error){
             console.log(`Error fetching user by ID: ${error.messgae}`);

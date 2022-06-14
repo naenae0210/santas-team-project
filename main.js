@@ -1,5 +1,5 @@
 const express = require("express"),
-  app = express(),
+  //app = express(),
   router = express.Router(),
   path = require('path'),
   homeController = require("./controllers/homeController"),
@@ -15,12 +15,18 @@ const express = require("express"),
   mountainInfoController = require("./controllers/mountainInfoController"),
   imgController = require("./controllers/imgController"),
   searchController = require("./controllers/searchController");
+  
 
 const passport = require("passport");
 const session = require("express-session"),
     flash = require("connect-flash");
 
+const passportConfig = require('./passport');  //test
+
 db.sequelize.sync();
+
+const app = express(); //test
+passportConfig(passport); //test
 
 const User = db.User;
 
@@ -53,9 +59,9 @@ router.use(flash());
 
 router.use(passport.initialize());
 router.use(passport.session());
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+//passport.use(User.createStrategy());    test
+//passport.serializeUser(User.serializeUser());
+//passport.deserializeUser(User.deserializeUser());
 
 router.use((req, res, next) => {
   res.locals.loggedIn = req.isAuthenticated();
