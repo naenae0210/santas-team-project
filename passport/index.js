@@ -1,8 +1,8 @@
-const passport = require('passport');
-const local = require('./localStrategy');
-const User = require('../models/user');
+//const passport = require('passport');
+const local = require('./localStragegy');
+const {User} = require('../models');
 
-module.exports = () => {
+module.exports = (passport) => {
     passport.serializeUser((user,done)=>{
         done(null,user.id);
     });
@@ -11,5 +11,5 @@ module.exports = () => {
         .then(user =>done(null,user))
         .catch(err=>done(err));
     });
-    local();
+    local(passport);
 };

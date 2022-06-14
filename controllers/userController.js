@@ -1,8 +1,10 @@
-const user = require("../models/user");
+//const user = require("../models/user"); 
+const {User} = require('../models'); //test
 
 const db = require("../models/index"),
     passport = require("passport"),	
     bcrypt = require("bcrypt"),
+    express = require('express'), //test
     User = db.User,
     getUserParams = body => {
         return {

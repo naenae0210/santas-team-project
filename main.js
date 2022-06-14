@@ -21,12 +21,13 @@ const passport = require("passport");
 const session = require("express-session"),
     flash = require("connect-flash");
 
+require('dotenv').config(); //test
 const passportConfig = require('./passport');  //test
 
 db.sequelize.sync();
 
 const app = express(); //test
-passportConfig(); //test
+passportConfig(passport); //test
 
 const User = db.User;
 
