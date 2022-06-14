@@ -51,47 +51,20 @@ module.exports = {
         else next();
     },
 
-edit: async (req, res, next) => {
-    let commentNum = req.params.commentNum;
-    try {
-
-        let comment = await Comment.findByPk(commentNum);
-        res.render("comments/edit", {
-            comment: comment
-        });
-    } catch (error) {
-        console.log(`Error fetching by ID: ${error.messgae}`);
-        next(error);
-    };
-},
-
-update: async (req, res, next) => {
-    try {
-        let commentNum = req.params.commentNum;
-        let postId = req.params.id;
-        commentParams = getCommentParams(req);
-        let comment = await Comment.findByPkAndUpdate(commentNum, commentParams);
-        res.locals.redirect = `/posts/${postId}`;
-        res.locals.comment = comment;
-        next();
-    } catch (error) {
-        console.log(`Error updating comment by ID: ${error.messgae}`);
-        next(error);
-    };
-},
-
-delete: async (req, res, next) => {
-    let commentNum = req.params.commentNum;
-    let postId = req.params.id;
-    try {
-        let comment = await Comment.destroy({
-		where: {commentNum: req.params.commentNum},
-	});
-        res.locals.redirect = "/posts"
-        next();
-    } catch (error) {
-        console.log(`Error deleting comment by ID: ${error.messgae}`);
-        next();
-    };
-},
+    delete: async (req, res, next) => {
+   	 let commentNum = req.params.commentNum;
+    	let postId = req.params.id;
+   	 try {
+        	let comment = await Comment.destroy({
+                	where: {commentNum: req.params.commentNum},
+        	});
+        	res.locals.redirect = "/posts";
+        	next();
+    	} catch (error) {
+        	console.log(`Error deleting comment by ID: ${error.messgae}`);
+        	next();
+    	};
+    },
 };
+
+
