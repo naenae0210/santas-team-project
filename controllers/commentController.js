@@ -58,7 +58,7 @@ module.exports = {
         	let comment = await Comment.destroy({
                 	where: {commentNum: req.params.commentNum},
         	});
-        	res.locals.redirect = "/posts";
+        	res.locals.redirect = `/posts/${postId}`;
         	next();
     	} catch (error) {
         	console.log(`Error deleting comment by ID: ${error.messgae}`);
