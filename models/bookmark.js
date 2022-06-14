@@ -15,7 +15,8 @@ module.exports = (sequelize, Sequelize) => {
             model: 'users',
             key: 'id',
             deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        }
+        },
+        onDelete: "cascade"
       }, 
       mountainNum: {
         type: Sequelize.INTEGER,
