@@ -129,31 +129,13 @@ module.exports = {
                     try{
                         user.mysalt = newUser.mysalt;
                         user.save({fields: ['mysalt']});
-                     /*   
-                    await User.update({mysalt:newUser.mysalt}, {
-                        where: {
-                        id: userParams.id
-                        }
-                    });*/
                         userParams.password = newUser.password;
-                        const update = await user.update(userParams,{where: {id : userId}});
-                        //user = await User.findByPkAndUpdate(userId, userParams);
-                        //user.save({fields: ['mysalt']});
-                    //console.log(userParams.password);
-                    //console.log(newUser.password);
-                    /*
-                    await User.update(userParams, {
-                        where: {
-                          id: userParams.id
-                        }
-                      });
-                      */
-                      /*
-                    await User.destroy({
+                        const update = await user.update(userParams,{where: {id : userId}}); 
+                        await User.destroy({
                         where: {
                           id: newUser.id
                         }
-                      });*/
+                        });
                       req.flash("success", `${user.name}'s account updated successfully!`);
                       res.locals.redirect = "/users/login";
                       res.locals.user = user;
