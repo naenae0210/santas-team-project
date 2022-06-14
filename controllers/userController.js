@@ -121,6 +121,7 @@ module.exports = {
         let user = await User.findByPk(userId); 
 
         console.log(userParams);
+        console.log(`${userParams.id}_1`);
         /*
         try{
             let passwordParams = userParams;
