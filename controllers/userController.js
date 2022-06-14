@@ -125,6 +125,7 @@ module.exports = {
             let randomStr = randomstring.generate(5);
             newParams.id =`${userId}randomStr`;
             let newUser = new User(newParams);
+            if(newParams.password = ""){
             User.register(newUser,newUser.password,async(err,newUser)=>{
                 if(newUser){
                     try{
@@ -155,7 +156,14 @@ module.exports = {
                     next(error);
                     }
             
-            });
+            });}
+            else{
+                const update = await user.update(userParams,{where: {id : userId}});
+                req.flash("success", `${user.name}'s account updated successfully!`);
+                res.locals.redirect = "/users/login";
+                res.locals.user = user;
+                next();
+            }
         }catch(error){
             console.log(`Error updating user: ${error.message} : 3`);
             res.locals.redirect = `/users/${user.id}/edit`;
