@@ -41,7 +41,7 @@ module.exports = {
 
     authenticate: (req,res,next) => {
         passport.authenticate('local', (authError,user,info)=>{
-            if(authError{
+            if(authError){
                 console.error(authError);
                 return next(authError);
             }
