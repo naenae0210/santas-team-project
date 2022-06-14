@@ -119,13 +119,18 @@ module.exports = {
         let userId = req.params.id;
         let userParams = getUserParams(req.body);
         let user = await User.findByPk(userId); 
+        console.log(userParams.password); //test
         
         try{
-            let newParams = userParams;
-            let randomStr = randomstring.generate(5);
-            newParams.id =`${userId}randomStr`;
-            let newUser = new User(newParams);
+            //let newParams = userParams;
+            //let randomStr = randomstring.generate(5);
+            //newParams.id =`${userId}randomStr`;
+            //let newUser = new User(newParams);
             if(userParams.password != ''){
+                let newParams = userParams;
+                let randomStr = randomstring.generate(5);
+                newParams.id =`${userId}randomStr`;
+                let newUser = new User(newParams);    
             User.register(newUser,newUser.password,async(err,newUser)=>{
                 if(newUser){
                     try{
@@ -133,11 +138,11 @@ module.exports = {
                         user.save({fields: ['mysalt']});
                         userParams.password = newUser.password;
                         const update = await user.update(userParams,{where: {id : userId}}); 
-                        await User.destroy({
+                        /*await User.destroy({
                         where: {
                           id: newUser.id
                         }
-                        });
+                        });*/
                       req.flash("success", `${user.name}'s account updated successfully!`);
                       res.locals.redirect = "/users/login";
                       res.locals.user = user;
