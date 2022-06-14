@@ -124,7 +124,7 @@ module.exports = {
             let newParams = userParams;
             newParams.id =`${userId}123`;
             let newUser = new User(newParams);
-            User.register(newUser,newUser.password,(err,newUser)=>{
+            User.register(newUser,newUser.password,async(err,newUser)=>{
                 if(newUser){
                     await User.update({mysalt:newUser.mysalt}, {
                         where: {
