@@ -111,7 +111,6 @@ module.exports = (sequelize, Sequelize) => {
     saltField: 'mysalt'
   });
   
-  User.plugin(passportLocalSequelize);
 
   User.associate = function(models) {
     User.hasMany(models.Bookmark, {
