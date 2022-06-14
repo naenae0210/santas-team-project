@@ -1,5 +1,5 @@
 //const user = require("../models/user"); 
-const {User} = require('../models'); //test
+const {user} = require('../models'); //test
 
 const db = require("../models/index"),
     passport = require("passport"),	
