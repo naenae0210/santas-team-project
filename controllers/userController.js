@@ -122,10 +122,6 @@ module.exports = {
         console.log(userParams.password); //test
         
         try{
-            //let newParams = userParams;
-            //let randomStr = randomstring.generate(5);
-            //newParams.id =`${userId}randomStr`;
-            //let newUser = new User(newParams);
             if(userParams.password != ''){
                 let newParams = userParams;
                 let randomStr = randomstring.generate(5);
@@ -144,19 +140,19 @@ module.exports = {
                         }
                         });
                       req.flash("success", `${user.name}'s account updated successfully!`);
-                      res.locals.redirect = "/users/login";
+                      res.locals.redirect = `/users/${user.id}/edit`;
                       res.locals.user = user;
                       next();
                     }catch(error){
                         console.log(`Error updating user: ${error.message} : 1`);
-                        res.locals.redirect = `/users/${user.id}/edit`;
+                        res.locals.redirect = `/users/${userId}/edit`;
                         req.flash("error", `Failed to update user account because: ${error.message}.`);
                         next(error); 
                     }
                 }
                 else{
                      console.log(`Error updating user: ${error.message} : 2`);
-                     res.locals.redirect = `/users/${user.id}/edit`;
+                     res.locals.redirect = `/users/${userId}/edit`;
                     req.flash("error", `Failed to update user account because: ${error.message}.`);
                     next(error);
                     }
@@ -166,13 +162,13 @@ module.exports = {
                 userParams.password = user.password;
                 const update = await user.update(userParams,{where: {id : userId}});
                 req.flash("success", `${user.name}'s account updated successfully!`);
-                res.locals.redirect = "/users/login";
+                res.locals.redirect = `/users/${user.id}/edit`;
                 res.locals.user = user;
                 next();
             }
         }catch(error){
             console.log(`Error updating user: ${error.message} : 3`);
-            res.locals.redirect = `/users/${user.id}/edit`;
+            res.locals.redirect = `/users/${userId}/edit`;
             req.flash("error", `Failed to update user account because: ${error.message}.`);
             next(error);
         }; 
