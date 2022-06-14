@@ -53,12 +53,12 @@ module.exports = {
 
     delete: async (req, res, next) => {
    	 let commentNum = req.params.commentNum;
-    	let postId = getCommentParams.postId;
+    	let postId = req.params.id;
    	 try {
         	let comment = await Comment.destroy({
                 	where: {commentNum: req.params.commentNum},
         	});
-        	res.locals.redirect = `/posts/${postId}`;
+        	res.locals.redirect = "/posts";
         	next();
     	} catch (error) {
         	console.log(`Error deleting comment by ID: ${error.messgae}`);
