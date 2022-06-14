@@ -126,6 +126,7 @@ module.exports = {
             let newUser = new User(newParams);
             User.register(newUser,newUser.password,async(err,newUser)=>{
                 if(newUser){
+                    try{
                     await User.update({mysalt:newUser.mysalt}, {
                         where: {
                         id: userId
@@ -145,13 +146,21 @@ module.exports = {
                       req.flash("success", `${user.name}'s account updated successfully!`);
                       res.locals.redirect = "/users/login";
                       res.locals.user = user;
-                      next(); 
-                    }else{
+                      next();
+                    }catch(error){
                         console.log(`Error updating user: ${error.message}`);
                         res.locals.redirect = `/users/${user.id}/edit`;
                         req.flash("error", `Failed to update user account because: ${error.message}.`);
-                        next(error);
+                        next(error); 
                     }
+                }
+                else{
+                     console.log(`Error updating user: ${error.message}`);
+                     res.locals.redirect = `/users/${user.id}/edit`;
+                    req.flash("error", `Failed to update user account because: ${error.message}.`);
+                    next(error);
+                    }
+            
             });
         }catch(error){
             console.log(`Error updating user: ${error.message}`);
