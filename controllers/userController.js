@@ -119,28 +119,46 @@ module.exports = {
         let userId = req.params.id;
         let userParams = getUserParams(req.body);
         let user = await User.findByPk(userId); 
-
-        console.log(userParams);
-        console.log(`${userParams.id}_1`);
-        /*
+        
         try{
-            let passwordParams = userParams;
-            newUserParams.id = "userId"+"1";
-            let newUser = new User(newUserParams);
-            User.register(newUser,newUserParams.password,(err,new)=>{
-                if(){
-                    
-                }
-            }) 
-            let oldPassword = user.password;
-            await user.changePassword(oldPassword, userParams.password );
-            res.locals.redirectView = '/';
-            next();
-
+            let newParams = userParams;
+            newParams.id =`${userId}123`;
+            let newUser = new User(newParams);
+            User.register(newUser,newUser.password,(err,newUser)=>{
+                if(newUser){
+                    await User.update({mysalt:newUser.mysalt}, {
+                        where: {
+                        id: userId
+                        }
+                    });
+                    userParams.password = newUser.password;
+                    await User.update(userParams, {
+                        where: {
+                          id: userId
+                        }
+                      });
+                    await User.destroy({
+                        where: {
+                          id: newUser.id
+                        }
+                      });
+                      req.flash("success", `${user.name}'s account updated successfully!`);
+                      res.locals.redirect = "/users/login";
+                      res.locals.user = user;
+                      next(); 
+                    }else{
+                        console.log(`Error updating user: ${error.message}`);
+                        res.locals.redirect = `/users/${user.id}/edit`;
+                        req.flash("error", `Failed to update user account because: ${error.message}.`);
+                        next(error);
+                    }
+            });
         }catch(error){
-            console.log(`Error fetching user by ID: ${error.messgae}`);
+            console.log(`Error updating user: ${error.message}`);
+            res.locals.redirect = `/users/${user.id}/edit`;
+            req.flash("error", `Failed to update user account because: ${error.message}.`);
             next(error);
-        }*/
+        }; 
       }
         
 ,
