@@ -30,7 +30,7 @@ module.exports = {
       failureRedirect: "/users/login",
       failureFlash: "Failed to Sign In.",
       successRedirect: "/",
-      successFlash: "Logged In!"
+      successFlash: ""
     }),
 
     index: async (req, res, next) => {
@@ -67,14 +67,14 @@ module.exports = {
                 console.log(`Error saving user: ${error.message}`);
                 res.locals.redirect = "/users/new";
                 req.flash("error", `Failed to create user account because: ${error.message}.`);
-                next(error);
+                next(); //next(err);
                 }
        });
      } catch(error) {
        console.log(`Error saving user: ${error.message}`);
        res.locals.redirect = "/users/new";
        req.flash("error", `Failed to create user account because: ${error.message}.`);
-       next(error);
+       next(); //next(error);
      };
    },
 
@@ -111,7 +111,9 @@ module.exports = {
             });
         } catch (error) {
             console.log(`Error fetching user by ID: ${error.messgae}`);
-            next(error);
+            res.locals.redirect = "/";
+            req.flash("error","페이지를 불러올 수 없습니다.");
+            next(); // next(error);
         };
     },
 
@@ -147,14 +149,14 @@ module.exports = {
                         console.log(`Error updating user: ${error.message} : 1`);
                         res.locals.redirect = `/users/${userId}/edit`;
                         req.flash("error", `Failed to update user account because: ${error.message}.`);
-                        next(error); 
+                        next(); //next(error); 
                     }
                 }
                 else{
                      console.log(`Error updating user: ${error.message} : 2`);
                      res.locals.redirect = `/users/${userId}/edit`;
                     req.flash("error", `Failed to update user account because: ${error.message}.`);
-                    next(error);
+                    next(); //next(error);
                     }
             
             });}
@@ -170,7 +172,7 @@ module.exports = {
             console.log(`Error updating user: ${error.message} : 3`);
             res.locals.redirect = `/users/${userId}/edit`;
             req.flash("error", `Failed to update user account because: ${error.message}.`);
-            next(error);
+            next(); //next(error);
         }; 
       }
         
@@ -184,6 +186,8 @@ module.exports = {
             next();
         } catch (error) {
             console.log(`Error deleting user by ID: ${error.messgae}`);
+            res.locals.redirect = `/users/${userId}/edit`;
+            req.flash("error", `Failed to delete user account because: ${error.message}.`);
             next();
         };
     }
