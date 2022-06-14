@@ -35,7 +35,7 @@ module.exports = (sequelize, Sequelize) => {
       });
       bookmark.belongsTo(models.User, {
         foreignKey: "id",
-        onDelete: "cascade",
+        onDelete: 'CASCADE',
         sourceKey: "id"
       })
     };
