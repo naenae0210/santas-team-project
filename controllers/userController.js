@@ -118,12 +118,9 @@ module.exports = {
     update: async (req, res, next) => {
         let userId = req.params.id;
         let userParams = getUserParams(req.body);
-        let user = await User.findByPk(userId);
+        let user = await User.findByPk(userId); 
 
-        console.log(user.password);
-        console.log(user.mysalt);
-        console.log(user.id);
-        console.log(user.name);
+        console.log(userParams);
         /*
         try{
             let passwordParams = userParams;
