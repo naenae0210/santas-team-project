@@ -118,7 +118,23 @@ module.exports = {
     update: async (req, res, next) => {
         let userId = req.params.id;
         let userParams = getUserParams(req.body);
+        let user = await User.findByPk(userId);
+
+        console.log(userParams);
+        console.log(req.params);
+        console.log(req.params.id);
+        console.log(req.body);
+        console.log(user);
+        /*
         try{
+            let passwordParams = userParams;
+            newUserParams.id = "userId"+"1";
+            let newUser = new User(newUserParams);
+            User.register(newUser,newUserParams.password,(err,new)=>{
+                if(){
+                    
+                }
+            }) 
             let oldPassword = user.password;
             await user.changePassword(oldPassword, userParams.password );
             res.locals.redirectView = '/';
@@ -127,7 +143,7 @@ module.exports = {
         }catch(error){
             console.log(`Error fetching user by ID: ${error.messgae}`);
             next(error);
-        }
+        }*/
       }
         
 ,
