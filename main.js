@@ -102,8 +102,6 @@ router.get("/posts/:id", postController.show, commentController.showComment);
 router.post("/posts/:id/delete", postController.delete, postController.redirectView);
 
 router.post("/comments/:postId/create", commentController.create, commentController.redirectView);
-router.get("/comments/:commentNum/edit", commentController.edit);
-router.post("/comments/:commentNum/update", commentController.update, commentController.redirectView);
 router.post("/comments/:commentNum/delete", commentController.delete, commentController.redirectView);
 
 
