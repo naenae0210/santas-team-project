@@ -120,11 +120,10 @@ module.exports = {
         let userParams = getUserParams(req.body);
         let user = await User.findByPk(userId);
 
-        console.log(userParams);
-        console.log(req.params);
-        console.log(req.params.id);
-        console.log(req.body);
-        console.log(user);
+        console.log(user.password);
+        console.log(user.mysalt);
+        console.log(user.id);
+        console.log(user.name);
         /*
         try{
             let passwordParams = userParams;
