@@ -115,8 +115,9 @@ module.exports = (sequelize, Sequelize) => {
   User.associate = function(models) {
     User.hasMany(models.Bookmark, {
       foreignKey: "id",
+      sourceKey: "id",
       onDelete: 'CASCADE',
-      sourceKey: "id"
+      hooks: true
     });
     User.hasMany(models.post, {
       foreignKey: "userId",
