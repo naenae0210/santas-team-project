@@ -116,7 +116,7 @@ module.exports = (sequelize, Sequelize) => {
     User.hasMany(models.Bookmark, {
       foreignKey: "id",
       sourceKey: "id",
-      onDelete: 'CASCADE',
+      onDelete: "cascade",
       hooks: true
     });
     User.hasMany(models.post, {
