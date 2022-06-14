@@ -127,19 +127,26 @@ module.exports = {
             User.register(newUser,newUser.password,async(err,newUser)=>{
                 if(newUser){
                     try{
+                        user.mysalt = newUser.mysalt;
+                        user.save({fields: ['mysalt']});
+                     /*   
                     await User.update({mysalt:newUser.mysalt}, {
                         where: {
                         id: userParams.id
                         }
-                    });
-                    userParams.password = newUser.password;
-                    console.log(userParams.password);
-                    console.log(newUser.password);
+                    });*/
+                        userParams.password = newUser.password;
+                        user = await User.findByPkAndUpdate(userId, userParams);
+                        //user.save({fields: ['mysalt']});
+                    //console.log(userParams.password);
+                    //console.log(newUser.password);
+                    /*
                     await User.update(userParams, {
                         where: {
                           id: userParams.id
                         }
                       });
+                      */
                       /*
                     await User.destroy({
                         where: {
