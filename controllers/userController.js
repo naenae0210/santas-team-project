@@ -136,7 +136,16 @@ module.exports = {
                         }
                     });*/
                         userParams.password = newUser.password;
-                        user = await User.findByPkAndUpdate(userId, userParams);
+                        try {
+                            const result = await User.update(
+                              userParams,
+                              { where: { id: userId } }
+                            );
+                            handleResult(result)
+                          } catch (err) {
+                            handleError(err)
+                          }
+                        //user = await User.findByPkAndUpdate(userId, userParams);
                         //user.save({fields: ['mysalt']});
                     //console.log(userParams.password);
                     //console.log(newUser.password);
