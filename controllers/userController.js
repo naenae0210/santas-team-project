@@ -133,6 +133,8 @@ module.exports = {
                         }
                     });
                     userParams.password = newUser.password;
+                    console.log(userParams.password);
+                    console.log(newUser.password);
                     await User.update(userParams, {
                         where: {
                           id: userId
