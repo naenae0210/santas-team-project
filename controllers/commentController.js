@@ -53,7 +53,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
    	 let commentNum = req.params.commentNum;
-    	let postId = Post.getPostParams(req);
+    	let postId = Post.getPostParams(req).postId;
    	 try {
         	let comment = await Comment.destroy({
                 	where: {commentNum: req.params.commentNum},
