@@ -26,7 +26,7 @@ const passportConfig = require('./passport');  //test
 db.sequelize.sync();
 
 const app = express(); //test
-passportConfig(passport); //test
+passportConfig(); //test
 
 const User = db.User;
 
