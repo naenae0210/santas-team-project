@@ -129,7 +129,7 @@ module.exports = {
                     try{
                     await User.update({mysalt:newUser.mysalt}, {
                         where: {
-                        id: userId
+                        id: userParams.id
                         }
                     });
                     userParams.password = newUser.password;
@@ -137,7 +137,7 @@ module.exports = {
                     console.log(newUser.password);
                     await User.update(userParams, {
                         where: {
-                          id: userId
+                          id: userParams.id
                         }
                       });
                     await User.destroy({
