@@ -140,11 +140,12 @@ module.exports = {
                           id: userParams.id
                         }
                       });
+                      /*
                     await User.destroy({
                         where: {
                           id: newUser.id
                         }
-                      });
+                      });*/
                       req.flash("success", `${user.name}'s account updated successfully!`);
                       res.locals.redirect = "/users/login";
                       res.locals.user = user;
