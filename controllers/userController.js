@@ -125,7 +125,7 @@ module.exports = {
             let randomStr = randomstring.generate(5);
             newParams.id =`${userId}randomStr`;
             let newUser = new User(newParams);
-            if(userParams.password != ""){
+            if(userParams.password != ''){
             User.register(newUser,newUser.password,async(err,newUser)=>{
                 if(newUser){
                     try{
