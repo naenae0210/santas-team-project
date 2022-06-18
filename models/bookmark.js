@@ -15,7 +15,8 @@ module.exports = (sequelize, Sequelize) => {
             model: 'users',
             key: 'id',
             deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
-        }
+        },
+        //onDelete: "cascade"
       }, 
       mountainNum: {
         type: Sequelize.INTEGER,
@@ -35,7 +36,9 @@ module.exports = (sequelize, Sequelize) => {
       });
       bookmark.belongsTo(models.User, {
         foreignKey: "id",
-        sourceKey: "id"
+        sourceKey: "id",
+        //onDelete: "cascade",
+        //hooks: true
       })
     };
     return bookmark;

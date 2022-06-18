@@ -1,5 +1,5 @@
 const user = require("../models/user"); 
-
+const randomstring = require("randomstring");
 
 const db = require("../models/index"),
     passport = require("passport"),
@@ -30,7 +30,7 @@ module.exports = {
       failureRedirect: "/users/login",
       failureFlash: "Failed to Sign In.",
       successRedirect: "/",
-      successFlash: "Logged In!"
+      successFlash: ""
     }),
 
     index: async (req, res, next) => {
@@ -67,14 +67,14 @@ module.exports = {
                 console.log(`Error saving user: ${error.message}`);
                 res.locals.redirect = "/users/new";
                 req.flash("error", `Failed to create user account because: ${error.message}.`);
-                next(error);
+                next(); //next(err);
                 }
        });
      } catch(error) {
        console.log(`Error saving user: ${error.message}`);
        res.locals.redirect = "/users/new";
        req.flash("error", `Failed to create user account because: ${error.message}.`);
-       next(error);
+       next(); //next(error);
      };
    },
 
@@ -111,7 +111,9 @@ module.exports = {
             });
         } catch (error) {
             console.log(`Error fetching user by ID: ${error.messgae}`);
-            next(error);
+            res.locals.redirect = "/";
+            req.flash("error","페이지를 불러올 수 없습니다.");
+            next(); // next(error);
         };
     },
 
@@ -119,28 +121,59 @@ module.exports = {
         let userId = req.params.id;
         let userParams = getUserParams(req.body);
         let user = await User.findByPk(userId); 
-
-        console.log(userParams);
-        console.log(`${userParams.id}_1`);
-        /*
+        console.log(userParams.password); //test
+        
         try{
-            let passwordParams = userParams;
-            newUserParams.id = "userId"+"1";
-            let newUser = new User(newUserParams);
-            User.register(newUser,newUserParams.password,(err,new)=>{
-                if(){
-                    
+            if(userParams.password != ''){
+                let newParams = userParams;
+                let randomStr = randomstring.generate(5);
+                newParams.id =`${userId}randomStr`;
+                let newUser = new User(newParams);    
+            User.register(newUser,newUser.password,async(err,newUser)=>{
+                if(newUser){
+                    try{
+                        user.mysalt = newUser.mysalt;
+                        user.save({fields: ['mysalt']});
+                        userParams.password = newUser.password;
+                        const update = await user.update(userParams,{where: {id : userId}}); 
+                        await User.destroy({
+                        where: {
+                          id: newUser.id
+                        }
+                        });
+                      req.flash("success", `${user.name}'s account updated successfully!`);
+                      res.locals.redirect = `/users/${user.id}/edit`;
+                      res.locals.user = user;
+                      next();
+                    }catch(error){
+                        console.log(`Error updating user: ${error.message} : 1`);
+                        res.locals.redirect = `/users/${userId}/edit`;
+                        req.flash("error", `Failed to update user account because: ${error.message}.`);
+                        next(); //next(error); 
+                    }
                 }
-            }) 
-            let oldPassword = user.password;
-            await user.changePassword(oldPassword, userParams.password );
-            res.locals.redirectView = '/';
-            next();
-
+                else{
+                     console.log(`Error updating user: ${error.message} : 2`);
+                     res.locals.redirect = `/users/${userId}/edit`;
+                    req.flash("error", `Failed to update user account because: ${error.message}.`);
+                    next(); //next(error);
+                    }
+            
+            });}
+            else{
+                userParams.password = user.password;
+                const update = await user.update(userParams,{where: {id : userId}});
+                req.flash("success", `${user.name}'s account updated successfully!`);
+                res.locals.redirect = `/users/${user.id}/edit`;
+                res.locals.user = user;
+                next();
+            }
         }catch(error){
-            console.log(`Error fetching user by ID: ${error.messgae}`);
-            next(error);
-        }*/
+            console.log(`Error updating user: ${error.message} : 3`);
+            res.locals.redirect = `/users/${userId}/edit`;
+            req.flash("error", `Failed to update user account because: ${error.message}.`);
+            next(); //next(error);
+        }; 
       }
         
 ,
@@ -153,6 +186,8 @@ module.exports = {
             next();
         } catch (error) {
             console.log(`Error deleting user by ID: ${error.messgae}`);
+            res.locals.redirect = `/users/${userId}/edit`;
+            req.flash("error", `Failed to delete user account because: ${error.message}.`);
             next();
         };
     }
